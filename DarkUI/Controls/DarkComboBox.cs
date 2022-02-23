@@ -107,6 +107,13 @@ namespace DarkUI.Controls
             _buffer = null;
             Invalidate();
         }
+        
+        protected override void OnEnabledChanged(EventArgs e)
+        {
+            base.OnEnabledChanged(e);
+            _buffer = null;
+            Invalidate();
+        }
 
         private void PaintCombobox()
         {
@@ -118,8 +125,10 @@ namespace DarkUI.Controls
             using (var g = Graphics.FromImage(_buffer))
             {
                 var rect = new Rectangle(0, 0, ClientSize.Width, ClientSize.Height);
+                var textColor = Enabled
+                    ? ThemeProvider.Theme.Colors.LightText
+                    : ThemeProvider.Theme.Colors.DisabledText;
 
-                var textColor = ThemeProvider.Theme.Colors.LightText;
                 var borderColor = ThemeProvider.Theme.Colors.GreySelection;
                 var fillColor = ThemeProvider.Theme.Colors.LightBackground;
 
