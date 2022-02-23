@@ -5,7 +5,7 @@ using DarkUI2.Forms;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace DarkUI2.Example
+namespace DarkUI2.Example.Docking
 {
     public partial class DockDocument : DarkDocument
     {

@@ -1,7 +1,7 @@
 ﻿using DarkUI2.Controls;
 using DarkUI2.Forms;
 
-namespace DarkUI2.Example
+namespace DarkUI2.Example.Dialogs
 {
     public partial class DialogControls : DarkDialog
     {

@@ -1,4 +1,4 @@
-﻿namespace DarkUI2.Example
+﻿namespace DarkUI2.Example.Docking
 {
     partial class DockDocument
     {

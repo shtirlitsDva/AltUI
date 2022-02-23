@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DarkUI2.Example.Forms;
+using System;
 using System.Windows.Forms;
 
 namespace DarkUI2.Example

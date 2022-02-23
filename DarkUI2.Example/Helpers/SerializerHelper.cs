@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Converters;
 using System.IO;
 
-namespace DarkUI2.Example
+namespace DarkUI2.Example.Helpers
 {
     public class SerializerHelper
     {

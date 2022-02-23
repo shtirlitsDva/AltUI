@@ -1,7 +1,7 @@
 ﻿using DarkUI2.Controls;
 using DarkUI2.Docking;
 
-namespace DarkUI2.Example
+namespace DarkUI2.Example.Docking
 {
     partial class DockLayers
     {

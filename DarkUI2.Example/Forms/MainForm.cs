@@ -1,5 +1,8 @@
 ﻿using DarkUI2.Config;
 using DarkUI2.Docking;
+using DarkUI2.Example.Dialogs;
+using DarkUI2.Example.Docking;
+using DarkUI2.Example.Helpers;
 using DarkUI2.Forms;
 using DarkUI2.Win32;
 using System;
@@ -7,7 +10,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 
-namespace DarkUI2.Example
+namespace DarkUI2.Example.Forms
 {
     public partial class MainForm : DarkForm
     {
