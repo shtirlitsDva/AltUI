@@ -192,9 +192,9 @@ namespace DarkUI2.Controls
             var textColor = ThemeProvider.Theme.Colors.LightText;
             var fillColor = ThemeProvider.Theme.Colors.LightBackground;
 
-            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected ||
+            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected && !TabStop ||
                 (e.State & DrawItemState.Focus) == DrawItemState.Focus ||
-                (e.State & DrawItemState.NoFocusRect) != DrawItemState.NoFocusRect)
+                (e.State & DrawItemState.NoFocusRect) != DrawItemState.NoFocusRect && !TabStop)
                 fillColor = ThemeProvider.Theme.Colors.BlueSelection;
 
             using (var b = new SolidBrush(fillColor))
