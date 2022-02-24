@@ -284,7 +284,7 @@ namespace DarkUI2.Controls
 
             var textColor = ThemeProvider.Theme.Colors.LightText;
             var borderColor = ThemeProvider.Theme.Colors.LightText;
-            var fillColor = Checked ? ThemeProvider.Theme.Colors.DarkBackground : ThemeProvider.Theme.Colors.LightestBackground;
+            var fillColor = Checked ? ThemeProvider.Theme.Colors.LightestBackground : ThemeProvider.Theme.Colors.DarkBackground;
 
             if (Enabled)
             {
