@@ -10,21 +10,21 @@ namespace DarkUI2.Config
 
         public LightTheme()
         {
-            Colors.GreyBackground = Color.FromArgb(180, 183, 185);
+            Colors.GreyBackground = Color.FromArgb(240, 240, 240);
             Colors.HeaderBackground = Color.FromArgb(177, 180, 182);
             Colors.BlueBackground = Color.FromArgb(186, 197, 215);
             Colors.DarkBlueBackground = Color.FromArgb(172, 177, 186);
             Colors.DarkBackground = Color.FromArgb(160, 160, 160);
             Colors.MediumBackground = Color.FromArgb(169, 171, 173);
             Colors.LightBackground = Color.FromArgb(189, 193, 194);
-            Colors.LighterBackground = Color.FromArgb(100, 101, 102);
-            Colors.LightestBackground = Color.FromArgb(178, 178, 178);
+            Colors.LighterBackground = Color.FromArgb(177, 180, 182);
+            Colors.LightestBackground = Color.FromArgb(0, 0, 0);
             Colors.LightBorder = Color.FromArgb(201, 201, 201);
-            Colors.DarkBorder = Color.FromArgb(171, 171, 171);
-            Colors.LightText = Color.FromArgb(20, 20, 20);
+            Colors.DarkBorder = Color.FromArgb(220, 220, 220);
+            Colors.LightText = Color.FromArgb(0, 0, 0);
             Colors.DisabledText = Color.FromArgb(103, 103, 103);
             Colors.BlueHighlight = Color.FromArgb(104, 151, 187);
-            Colors.BlueSelection = Color.FromArgb(75, 110, 175);
+            Colors.BlueSelection = Color.FromArgb(104, 151, 187);
             Colors.GreyHighlight = Color.FromArgb(182, 188, 182);
             Colors.GreySelection = Color.FromArgb(160, 160, 160);
             Colors.DarkGreySelection = Color.FromArgb(202, 202, 202);

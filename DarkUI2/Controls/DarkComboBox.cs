@@ -190,7 +190,7 @@ namespace DarkUI2.Controls
             var rect = e.Bounds;
 
             var textColor = ThemeProvider.Theme.Colors.LightText;
-            var fillColor = ThemeProvider.Theme.Colors.LightBackground;
+            var fillColor = ThemeProvider.Theme.Colors.GreyBackground;
 
             if ((e.State & DrawItemState.Selected) == DrawItemState.Selected ||
                 (e.State & DrawItemState.Focus) == DrawItemState.Focus ||

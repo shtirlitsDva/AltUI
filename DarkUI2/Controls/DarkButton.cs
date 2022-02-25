@@ -326,7 +326,7 @@ namespace DarkUI2.Controls
                             fillColor = _isDefault ? ThemeProvider.Theme.Colors.BlueBackground : ThemeProvider.Theme.Colors.LighterBackground;
                             break;
                         case DarkControlState.Pressed:
-                            fillColor = _isDefault ? ThemeProvider.Theme.Colors.DarkBackground : ThemeProvider.Theme.Colors.DarkBackground;
+                            fillColor = ThemeProvider.Theme.Colors.DarkBackground;
                             break;
                     }
                 }
