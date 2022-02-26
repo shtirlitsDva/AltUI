@@ -1,8 +1,8 @@
 ﻿using DarkUI2.Config;
 using System;
-using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Drawing.Drawing2D;
 
 namespace DarkUI2.Controls
 {
@@ -37,7 +37,9 @@ namespace DarkUI2.Controls
             using (var p = new Pen(borderColor, 1))
             {
                 var borderRect = new Rectangle(0, (int)stringSize.Height / 2, rect.Width - 1, rect.Height - ((int)stringSize.Height / 2) - 1);
-                g.DrawRectangle(p, borderRect);
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                RoundRects.DrawRoundedRectangle(g, p, borderRect, 4);
+                g.SmoothingMode = SmoothingMode.None;
             }
 
             var textRect = new Rectangle(rect.Left + ThemeProvider.Theme.Sizes.Padding,

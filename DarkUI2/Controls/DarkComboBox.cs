@@ -3,6 +3,7 @@ using DarkUI2.Icons;
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace DarkUI2.Controls
@@ -135,15 +136,25 @@ namespace DarkUI2.Controls
                 if (Focused && TabStop)
                     borderColor = ThemeProvider.Theme.Colors.BlueHighlight;
 
-                using (var b = new SolidBrush(fillColor))
+                using (var b = new SolidBrush(ThemeProvider.Theme.Colors.GreyBackground))
                 {
                     g.FillRectangle(b, rect);
+                }
+
+                using (var b = new SolidBrush(fillColor))
+                {
+                    var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
+                    g.SmoothingMode = SmoothingMode.AntiAlias;
+                    RoundRects.FillRoundedRectangle(g, b, modRect, 4);
+                    g.SmoothingMode = SmoothingMode.None;
                 }
 
                 using (var p = new Pen(borderColor, 1))
                 {
                     var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
-                    g.DrawRectangle(p, modRect);
+                    g.SmoothingMode = SmoothingMode.AntiAlias;
+                    RoundRects.DrawRoundedRectangle(g, p, modRect, 4);
+                    g.SmoothingMode = SmoothingMode.None;
                 }
 
                 var icon = ScrollIcons.scrollbar_arrow_hot;

@@ -2,12 +2,13 @@
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-
 namespace DarkUI2.Controls
 {
     [ToolboxBitmap(typeof(Button))]
     [DefaultEvent("Click")]
+
     public class DarkButton : Button
     {
         #region Field Region
@@ -352,9 +353,17 @@ namespace DarkUI2.Controls
                 fillColor = ThemeProvider.Theme.Colors.DarkGreySelection;
             }
 
-            using (var b = new SolidBrush(fillColor))
+            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.GreyBackground))
             {
                 g.FillRectangle(b, rect);
+            }
+
+            using (var b = new SolidBrush(fillColor))
+            {
+                var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                RoundRects.FillRoundedRectangle(g, b, modRect, 4);
+                g.SmoothingMode = SmoothingMode.None;
             }
 
             if (ButtonStyle == DarkButtonStyle.Normal)
@@ -362,8 +371,9 @@ namespace DarkUI2.Controls
                 using (var p = new Pen(borderColor, 1))
                 {
                     var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
-
-                    g.DrawRectangle(p, modRect);
+                    g.SmoothingMode = SmoothingMode.AntiAlias;
+                    RoundRects.DrawRoundedRectangle(g, p, modRect, 4);
+                    g.SmoothingMode = SmoothingMode.None;
                 }
             }
 
