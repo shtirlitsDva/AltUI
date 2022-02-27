@@ -1,10 +1,10 @@
-<img src="http://www.DarkUI.com/images/logo-888.png">
+<img src="https://raw.githubusercontent.com/kran27/DarkUI/master/title.png">
 
-## DarkUI2
-Dark themed control and docking library for .NET WinForms.
+## Alt UI
+Bringing modern styling and features to WinForms
 
-### About DarkUI2
-DarkUI2 is an attempt to create a simple, extensible control library which emulates the look and feel of WinForms controls, but with a more modern look and feel, using colours from Windows itself, and Visual Studio 2022's dark theme.
+### About Alt UI
+Alt UI is an attempt to create a simple, extensible control library which emulates the look and feel of WinForms controls, but with a more modern look and feel, using colours from Windows itself, and Visual Studio 2022's dark theme.
 
 ### Attribution
 
