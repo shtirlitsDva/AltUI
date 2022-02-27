@@ -312,7 +312,7 @@ namespace DarkUI2.Controls
 
             var textColor = ThemeProvider.Theme.Colors.LightText;
             var borderColor = ThemeProvider.Theme.Colors.GreySelection;
-            var fillColor = _isDefault ? ThemeProvider.Theme.Colors.DarkBlueBackground : ThemeProvider.Theme.Colors.LightBackground;
+            var fillColor = ThemeProvider.Theme.Colors.LightBackground;
 
             if (Enabled)
             {
@@ -324,7 +324,7 @@ namespace DarkUI2.Controls
                     switch (ButtonState)
                     {
                         case DarkControlState.Hover:
-                            fillColor = _isDefault ? ThemeProvider.Theme.Colors.BlueBackground : ThemeProvider.Theme.Colors.LighterBackground;
+                            fillColor = ThemeProvider.Theme.Colors.LighterBackground;
                             break;
                         case DarkControlState.Pressed:
                             fillColor = ThemeProvider.Theme.Colors.DarkBackground;
@@ -362,7 +362,7 @@ namespace DarkUI2.Controls
             {
                 var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
                 g.SmoothingMode = SmoothingMode.AntiAlias;
-                RoundRects.FillRoundedRectangle(g, b, modRect, 4);
+                RoundRects.FillRoundedRectangle(g, b, modRect, 4, false);
                 g.SmoothingMode = SmoothingMode.None;
             }
 
@@ -372,7 +372,7 @@ namespace DarkUI2.Controls
                 {
                     var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
                     g.SmoothingMode = SmoothingMode.AntiAlias;
-                    RoundRects.DrawRoundedRectangle(g, p, modRect, 4);
+                    RoundRects.DrawRoundedRectangle(g, p, modRect, 4, false);
                     g.SmoothingMode = SmoothingMode.None;
                 }
             }

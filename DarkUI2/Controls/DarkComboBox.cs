@@ -28,6 +28,8 @@ namespace DarkUI2.Controls
 
         private Bitmap _buffer;
 
+        private bool clicked;
+
         public DarkComboBox() : base()
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer |
@@ -115,7 +117,18 @@ namespace DarkUI2.Controls
             _buffer = null;
             Invalidate();
         }
-
+        protected override void OnDropDown(EventArgs e)
+        {
+            base.OnDropDown(e);
+            clicked = true;
+            Invalidate();
+        }
+        protected override void OnDropDownClosed(EventArgs e)
+        {
+            base.OnDropDownClosed(e);
+            clicked = false;
+            Invalidate();
+        }
         private void PaintCombobox()
         {
             if (ClientRectangle.Width <= 0 || ClientRectangle.Height <= 0)
@@ -145,7 +158,7 @@ namespace DarkUI2.Controls
                 {
                     var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
                     g.SmoothingMode = SmoothingMode.AntiAlias;
-                    RoundRects.FillRoundedRectangle(g, b, modRect, 4);
+                    RoundRects.FillRoundedRectangle(g, b, modRect, 4, clicked);
                     g.SmoothingMode = SmoothingMode.None;
                 }
 
@@ -153,7 +166,7 @@ namespace DarkUI2.Controls
                 {
                     var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
                     g.SmoothingMode = SmoothingMode.AntiAlias;
-                    RoundRects.DrawRoundedRectangle(g, p, modRect, 4);
+                    RoundRects.DrawRoundedRectangle(g, p, modRect, 4, clicked);
                     g.SmoothingMode = SmoothingMode.None;
                 }
 

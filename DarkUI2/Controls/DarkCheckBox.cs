@@ -283,21 +283,15 @@ namespace DarkUI2.Controls
             var size = ThemeProvider.Theme.Sizes.CheckBoxSize;
 
             var textColor = ThemeProvider.Theme.Colors.LightText;
-            var borderColor = ThemeProvider.Theme.Colors.LightText;
-            var fillColor = Checked ? ThemeProvider.Theme.Colors.LightestBackground : ThemeProvider.Theme.Colors.DarkBackground;
+            var borderColor = ThemeProvider.Theme.Colors.GreySelection;
+            var fillColor = Checked ? ThemeProvider.Theme.Colors.LightestBackground : ThemeProvider.Theme.Colors.GreyBackground;
 
             if (Enabled)
             {
-                if (Focused)
+                if (Focused || _controlState == DarkControlState.Hover)
                 {
                     borderColor = ThemeProvider.Theme.Colors.BlueHighlight;
-                    fillColor = ThemeProvider.Theme.Colors.BlueSelection;
-                }
-
-                if (_controlState == DarkControlState.Hover)
-                {
-                    borderColor = ThemeProvider.Theme.Colors.BlueHighlight;
-                    fillColor = ThemeProvider.Theme.Colors.BlueSelection;
+                    fillColor = ThemeProvider.Theme.Colors.BlueHighlight;
                 }
                 else if (_controlState == DarkControlState.Pressed)
                 {
@@ -308,7 +302,7 @@ namespace DarkUI2.Controls
             else
             {
                 textColor = ThemeProvider.Theme.Colors.DisabledText;
-                borderColor = ThemeProvider.Theme.Colors.GreyHighlight;
+                borderColor = ThemeProvider.Theme.Colors.GreySelection;
                 fillColor = ThemeProvider.Theme.Colors.GreySelection;
             }
 
@@ -325,10 +319,12 @@ namespace DarkUI2.Controls
 
             if (Checked)
             {
-                using (var b = new SolidBrush(fillColor))
+                using (var p = new Pen(fillColor, 1))
                 {
-                    Rectangle boxRect = new Rectangle(2, (rect.Height / 2) - ((size - 4) / 2), size - 3, size - 3);
-                    g.FillRectangle(b, boxRect);
+                    g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                    g.DrawLine(p, 2, 9, 5, 12);
+                    g.DrawLine(p, 5, 12, 10, 5);
+                    g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
                 }
             }
 

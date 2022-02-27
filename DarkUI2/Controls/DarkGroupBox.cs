@@ -38,7 +38,7 @@ namespace DarkUI2.Controls
             {
                 var borderRect = new Rectangle(0, (int)stringSize.Height / 2, rect.Width - 1, rect.Height - ((int)stringSize.Height / 2) - 1);
                 g.SmoothingMode = SmoothingMode.AntiAlias;
-                RoundRects.DrawRoundedRectangle(g, p, borderRect, 4);
+                RoundRects.DrawRoundedRectangle(g, p, borderRect, 4, false);
                 g.SmoothingMode = SmoothingMode.None;
             }
 
