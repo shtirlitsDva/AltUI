@@ -30,6 +30,8 @@ namespace AltUI.Controls
 
         private bool clicked;
 
+        private bool hover;
+
         public DarkComboBox() : base()
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer |
@@ -129,6 +131,18 @@ namespace AltUI.Controls
             clicked = false;
             Invalidate();
         }
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            base.OnMouseMove(e);
+            hover = true;
+            Invalidate();
+        }
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            base.OnMouseLeave(e);
+            hover = false;
+            Invalidate();
+        }
         private void PaintCombobox()
         {
             if (ClientRectangle.Width <= 0 || ClientRectangle.Height <= 0)
@@ -144,7 +158,7 @@ namespace AltUI.Controls
                     : ThemeProvider.Theme.Colors.DisabledText;
 
                 var borderColor = ThemeProvider.Theme.Colors.GreySelection;
-                var fillColor = ThemeProvider.Theme.Colors.LightBackground;
+                var fillColor = hover ? ThemeProvider.Theme.Colors.LighterBackground : ThemeProvider.Theme.Colors.LightBackground;
 
                 if (Focused && TabStop)
                     borderColor = ThemeProvider.Theme.Colors.BlueHighlight;

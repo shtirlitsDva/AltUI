@@ -288,10 +288,15 @@ namespace AltUI.Controls
 
             if (Enabled)
             {
-                if (Focused || _controlState == DarkControlState.Hover)
+                if (Focused)
                 {
                     borderColor = ThemeProvider.Theme.Colors.BlueHighlight;
                     fillColor = ThemeProvider.Theme.Colors.BlueHighlight;
+                }
+                else if (_controlState == DarkControlState.Hover)
+                {
+                    borderColor = ThemeProvider.Theme.Colors.GreyHighlight;
+                    fillColor = ThemeProvider.Theme.Colors.LightText;
                 }
                 else if (_controlState == DarkControlState.Pressed)
                 {
@@ -322,8 +327,8 @@ namespace AltUI.Controls
                 using (var p = new Pen(fillColor, 1))
                 {
                     g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                    g.DrawLine(p, 2, 9, 5, 12);
-                    g.DrawLine(p, 5, 12, 10, 5);
+                    g.DrawLine(p, 2, 10, 5, 13);
+                    g.DrawLine(p, 5, 13, 10, 6);
                     g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
                 }
             }
