@@ -9,6 +9,15 @@ namespace AltUI.Config
     {
         private static ITheme theme;
         public static int LightMode = (int) Registry.GetValue("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", "SystemUsesLightTheme", 0);
+        public static bool IsWindows11()
+        {
+            var reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion");
+
+            var currentBuildStr = (string)reg.GetValue("CurrentBuild");
+            var currentBuild = int.Parse(currentBuildStr);
+
+            return currentBuild >= 22000;
+        }
         public static ITheme Theme
         {
             get
