@@ -1,5 +1,4 @@
 ﻿using AltUI.Config;
-using AltUI.Icons;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -183,12 +182,15 @@ namespace AltUI.Controls
                     RoundRects.DrawRoundedRectangle(g, p, modRect, 4, clicked);
                     g.SmoothingMode = SmoothingMode.None;
                 }
-
-                var icon = ScrollIcons.scrollbar_arrow_hot;
-                g.DrawImageUnscaled(icon,
-                                    rect.Right - icon.Width - (ThemeProvider.Theme.Sizes.Padding / 2),
-                                    (rect.Height / 2) - (icon.Height / 2));
-
+                using (var p = new Pen(borderColor, 1))
+                {
+                    var x = rect.Right - 8 - (ThemeProvider.Theme.Sizes.Padding / 2);
+                    var y = rect.Height / 2 - 2;
+                    g.SmoothingMode = SmoothingMode.AntiAlias;
+                    g.DrawLine(p, x, y, x + 3, y +3);
+                    g.DrawLine(p, x + 4, y + 3, x + 7, y);
+                    g.SmoothingMode = SmoothingMode.None;
+                }
                 var text = SelectedItem != null ? SelectedItem.ToString() : Text;
 
                 using (var b = new SolidBrush(textColor))
@@ -197,7 +199,7 @@ namespace AltUI.Controls
 
                     var modRect = new Rectangle(rect.Left + padding,
                                                 rect.Top + padding,
-                                                rect.Width - icon.Width - (ThemeProvider.Theme.Sizes.Padding / 2) - (padding * 2),
+                                                rect.Width - 8 - (ThemeProvider.Theme.Sizes.Padding / 2) - (padding * 2),
                                                 rect.Height - (padding * 2));
 
                     var stringFormat = new StringFormat
@@ -235,7 +237,7 @@ namespace AltUI.Controls
                 (e.State & DrawItemState.NoFocusRect) != DrawItemState.NoFocusRect && !TabStop)
             {
                 fillColor = ThemeProvider.Theme.Colors.BlueSelection;
-                if (ThemeProvider.LightMode == 1)
+                if (ThemeProvider.LightMode)
                     textColor = ThemeProvider.Theme.Colors.GreyBackground;
             }
 
