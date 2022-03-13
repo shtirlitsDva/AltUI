@@ -66,7 +66,8 @@ namespace AltUI.Forms
 
         protected override void OnHandleCreated(EventArgs e)
         {
-            if (!ThemeProvider.LightMode && DwmSetWindowAttribute(Handle, 19, new[] { 1 }, 4) != 0)
+            var Detect = new Detect();
+            if (!Detect.LightMode && DwmSetWindowAttribute(Handle, 19, new[] { 1 }, 4) != 0)
             {
                 DwmSetWindowAttribute(Handle, 20, new[] { 1 }, 4);
             }

@@ -40,7 +40,7 @@ namespace Example.Docking
 
         public override void Close()
         {
-            var result = DarkMessageBox.ShowWarning(@"You will lose any unsaved changes. Continue?", @"Close document", DarkDialogButton.YesNo);
+            var result = DarkMessageBox.ShowWarning(@"You will lose any unsaved changes. Continue? ", @"Close document", DarkDialogButton.YesNo);
             if (result == DialogResult.No)
                 return;
 

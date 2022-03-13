@@ -5,15 +5,31 @@ using System.Drawing.Drawing2D;
 
 namespace AltUI.Config
 {
+    public class Detect
+    {
+        public bool LightMode
+        {
+            get
+            {
+                var mode = false;
+                try
+                {
+                    mode = (int)Registry.GetValue("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", "SystemUsesLightTheme", 0) == 1;
+                }
+                catch {}
+                return mode;
+            }
+        }
+    }
     public static class ThemeProvider
     {
         private static ITheme theme;
-        public static bool LightMode = (int)Registry.GetValue("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", "SystemUsesLightTheme", 0) == 1;
         public static ITheme Theme
         {
             get
             {
-                if (LightMode)
+                var Detect = new Detect();
+                if (Detect.LightMode)
                     theme = new LightTheme();
                 else
                     theme = new DarkTheme();

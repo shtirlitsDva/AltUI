@@ -238,7 +238,8 @@ namespace AltUI.Controls
                 (e.State & DrawItemState.NoFocusRect) != DrawItemState.NoFocusRect && !TabStop)
             {
                 fillColor = ThemeProvider.Theme.Colors.BlueSelection;
-                if (ThemeProvider.LightMode)
+                var Detect = new Detect();
+                if (Detect.LightMode)
                     textColor = ThemeProvider.Theme.Colors.GreyBackground;
             }
 
