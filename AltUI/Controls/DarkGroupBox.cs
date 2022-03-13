@@ -25,7 +25,7 @@ namespace AltUI.Controls
             var rect = new Rectangle(0, 0, ClientSize.Width, ClientSize.Height);
             var stringSize = g.MeasureString(Text, Font);
 
-            var borderColor = ThemeProvider.Theme.Colors.LighterBackground;
+            var borderColor = ThemeProvider.Theme.Colors.GreySelection;
             var textColor = ThemeProvider.Theme.Colors.LightText;
             var fillColor = ThemeProvider.Theme.Colors.GreyBackground;
 

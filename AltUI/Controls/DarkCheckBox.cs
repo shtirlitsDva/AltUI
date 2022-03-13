@@ -329,8 +329,8 @@ namespace AltUI.Controls
                 using (var p = new Pen(fillColor, 1))
                 {
                     g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                    g.DrawLine(p, 3, ThemeProvider.IsWindows11 ? 10 : 9, 5, ThemeProvider.IsWindows11 ? 13 : 12);
-                    g.DrawLine(p, 5, ThemeProvider.IsWindows11 ? 13 : 12, 9, ThemeProvider.IsWindows11 ? 7 : 6);
+                    g.DrawLine(p, 3, 9, 5, 12);
+                    g.DrawLine(p, 5, 12, 9, 6);
                     g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
                 }
             }

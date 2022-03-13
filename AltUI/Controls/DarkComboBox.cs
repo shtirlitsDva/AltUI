@@ -158,6 +158,7 @@ namespace AltUI.Controls
 
                 var borderColor = ThemeProvider.Theme.Colors.GreySelection;
                 var fillColor = hover ? ThemeProvider.Theme.Colors.LighterBackground : ThemeProvider.Theme.Colors.LightBackground;
+                var arrowColour = !(Focused && TabStop) ? ThemeProvider.Theme.Colors.GreyHighlight : ThemeProvider.Theme.Colors.BlueHighlight;
 
                 if (Focused && TabStop)
                     borderColor = ThemeProvider.Theme.Colors.BlueHighlight;
@@ -182,7 +183,7 @@ namespace AltUI.Controls
                     RoundRects.DrawRoundedRectangle(g, p, modRect, 4, clicked);
                     g.SmoothingMode = SmoothingMode.None;
                 }
-                using (var p = new Pen(borderColor, 1))
+                using (var p = new Pen(arrowColour, 1))
                 {
                     var x = rect.Right - 8 - (ThemeProvider.Theme.Sizes.Padding / 2);
                     var y = rect.Height / 2 - 2;
