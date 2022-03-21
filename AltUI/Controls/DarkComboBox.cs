@@ -163,7 +163,7 @@ namespace AltUI.Controls
                 if (Focused && TabStop)
                     borderColor = ThemeProvider.Theme.Colors.BlueHighlight;
 
-                using (var b = new SolidBrush(ThemeProvider.Theme.Colors.GreyBackground))
+                using (var b = new SolidBrush(ThemeProvider.BackgroundColour))
                 {
                     g.FillRectangle(b, rect);
                 }

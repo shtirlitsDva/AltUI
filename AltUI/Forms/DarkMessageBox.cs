@@ -1,4 +1,5 @@
-﻿using AltUI.Icons;
+﻿using AltUI.Config;
+using AltUI.Icons;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -177,11 +178,20 @@ namespace AltUI.Forms
 
         [DllImport("DwmApi")]
         private static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, int[] attrValue, int attrSize);
-
         protected override void OnHandleCreated(EventArgs e)
         {
-            if (!Config.ThemeProvider.LightMode)
+            // Round corners (Windows 11 only, mainly here for Borderless forms
+            DwmSetWindowAttribute(Handle, 33, new[] { 2 }, 8);
+            // Apply immersive dark mode if it's used by system
+            if (!ThemeProvider.LightMode)
                 DwmSetWindowAttribute(Handle, 20, new[] { 1 }, 4);
+            // Enable mica effect if transparency is enabled
+            if (ThemeProvider.TransparencyMode & ThemeProvider.IsWindows11)
+            {
+                TransparencyKey = BackColor;
+                AllowTransparency = true;
+                DwmSetWindowAttribute(Handle, 1029, new[] { 1 }, Marshal.SizeOf(typeof(int)));
+            }
         }
 
     }

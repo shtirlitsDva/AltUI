@@ -45,5 +45,7 @@ namespace AltUI.Config
         public Color LightBlueBorder { get; set; }
 
         public Color ActiveControl { get; set; }
+
+        public Color MicaAntiAlias { get; set; }
     }
 }

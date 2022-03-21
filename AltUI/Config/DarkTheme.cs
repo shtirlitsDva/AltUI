@@ -23,14 +23,15 @@ namespace AltUI.Config
             Colors.DarkBorder = Color.FromArgb(32, 32, 32);
             Colors.LightText = Color.FromArgb(213, 213, 213); // Normal Text
             Colors.DisabledText = Color.FromArgb(101, 101, 101); // Disabled Text
-            Colors.BlueHighlight = Color.FromArgb(0, 122, 204); // Blue Borders
-            Colors.BlueSelection = Color.FromArgb(30, 71, 112); // Blue Selection
+            Colors.BlueHighlight = ThemeProvider.GetAccentColor(50); // Blue Borders
+            Colors.BlueSelection = ThemeProvider.GetAccentColor(0); // DropDown Selection
             Colors.GreyHighlight = Color.FromArgb(146, 146, 146); // ComboBox Arrow
             Colors.GreySelection = Color.FromArgb(47, 47, 55); // Control Border
             Colors.DarkGreySelection = Color.FromArgb(82, 82, 82);
             Colors.DarkBlueBorder = Color.FromArgb(51, 61, 78);
             Colors.LightBlueBorder = Color.FromArgb(86, 97, 114);
             Colors.ActiveControl = Color.FromArgb(159, 178, 196);
+            Colors.MicaAntiAlias = Color.FromArgb(32, 32, 32);
 
             Sizes.Padding = 10;
             Sizes.ScrollBarSize = 15;

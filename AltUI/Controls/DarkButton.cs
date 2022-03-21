@@ -353,7 +353,7 @@ namespace AltUI.Controls
                 fillColor = ThemeProvider.Theme.Colors.DarkGreySelection;
             }
 
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.GreyBackground))
+            using (var b = new SolidBrush(ThemeProvider.BackgroundColour))
             {
                 g.FillRectangle(b, rect);
             }

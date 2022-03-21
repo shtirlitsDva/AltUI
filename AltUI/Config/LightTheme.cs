@@ -23,14 +23,15 @@ namespace AltUI.Config
             Colors.DarkBorder = Color.FromArgb(220, 220, 220);
             Colors.LightText = Color.FromArgb(30, 30, 30); // Normal Text
             Colors.DisabledText = Color.FromArgb(113, 113, 113); // Disabled Text
-            Colors.BlueHighlight = Color.FromArgb(0, 108, 190); // Blue Borders
-            Colors.BlueSelection = Color.FromArgb(104, 151, 187); // Blue Selection
+            Colors.BlueHighlight = ThemeProvider.GetAccentColor(50); // Selected Control Borders
+            Colors.BlueSelection = ThemeProvider.GetAccentColor(0); // DropDown Selection
             Colors.GreyHighlight = Color.FromArgb(113, 113, 113); // ComboBox Arrow
             Colors.GreySelection = Color.FromArgb(204, 206, 219); // Control Border
             Colors.DarkGreySelection = Color.FromArgb(202, 202, 202);
             Colors.DarkBlueBorder = Color.FromArgb(171, 181, 198);
             Colors.LightBlueBorder = Color.FromArgb(206, 217, 114);
             Colors.ActiveControl = Color.FromArgb(159, 178, 196);
+            Colors.MicaAntiAlias = Color.FromArgb(243, 243, 243);
 
             Sizes.Padding = 10;
             Sizes.ScrollBarSize = 15;
@@ -41,7 +42,6 @@ namespace AltUI.Config
             Sizes.ToolWindowHeaderSize = 25;
             Sizes.DocumentTabAreaSize = 24;
             Sizes.ToolWindowTabAreaSize = 21;
-
         }
     }
 }

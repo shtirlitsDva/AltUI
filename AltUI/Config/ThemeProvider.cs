@@ -11,9 +11,62 @@ namespace AltUI.Config
         { get {
                 var mode = false;
                 try {
-                    mode = (int)Registry.GetValue("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", "SystemUsesLightTheme", 0) == 1; }
+                    mode = (int)Registry.GetValue("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", "SystemUsesLightTheme", 0) == 1;
+                }
                 catch { }
                 return mode; }
+        }
+        public static bool TransparencyMode
+        {
+            get
+            {
+                var mode = false;
+                try {
+                    mode = (int)Registry.GetValue("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", "EnableTransparency", 0) == 1;
+                }
+                catch { }
+                return mode;
+            }
+        }
+        public static bool IsWindows11
+        {
+            get
+            {
+                var mode = false;
+                try
+                {
+                    mode = int.Parse((string)Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", "CurrentBuild", 0)) >= 22000;
+                }
+                catch { }
+                return mode;
+            }
+        }
+        public static Color BackgroundColour
+        {
+            get
+            {
+                if (TransparencyMode)
+                { return Theme.Colors.MicaAntiAlias; }
+                else
+                { return Theme.Colors.GreyBackground; }
+            }
+        }
+        public static Color GetAccentColor(int brighten)
+        {
+            int accentColorObj = (int)Registry.GetValue("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\DWM", "AccentColor", null);
+            return ParseDWordColor(accentColorObj, brighten);
+        }
+        private static Color ParseDWordColor(int color, int brighten)
+        {
+            int
+                a = (color >> 24) & 0xFF, r = (color >> 0) & 0xFF, g = (color >> 8) & 0xFF, b = (color >> 16) & 0xFF;
+            if (b + brighten > 255) { b = 255; }
+            else { b += brighten; }
+            if (g + brighten > 255) { g = 255; }
+            else { g += brighten; }
+            if (r + brighten > 255) { r = 255; }
+            else { r += brighten; }
+            return Color.FromArgb(a,r,g,b);
         }
         private static ITheme theme;
         public static ITheme Theme
@@ -24,7 +77,6 @@ namespace AltUI.Config
                     theme = new LightTheme();
                 else
                     theme = new DarkTheme();
-
                 return theme;
             }
             set
