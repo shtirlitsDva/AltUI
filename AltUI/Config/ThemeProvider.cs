@@ -45,7 +45,7 @@ namespace AltUI.Config
         {
             get
             {
-                if (TransparencyMode)
+                if (TransparencyMode & IsWindows11)
                 { return Theme.Colors.MicaAntiAlias; }
                 else
                 { return Theme.Colors.GreyBackground; }

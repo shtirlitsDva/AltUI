@@ -66,10 +66,10 @@ namespace AltUI.Forms
         protected override void OnHandleCreated(EventArgs e)
         {
             // Round corners (Windows 11 only, mainly here for Borderless forms)
-            DwmSetWindowAttribute(Handle, 33, new[] { 2 }, 8);
+            DwmSetWindowAttribute(Handle, 33, new[] { 2 }, Marshal.SizeOf(typeof(int)));
             // Apply immersive dark mode if it's used by system
             if (!ThemeProvider.LightMode)
-                DwmSetWindowAttribute(Handle, 20, new[] { 1 }, 4);
+                DwmSetWindowAttribute(Handle, 20, new[] { 1 }, Marshal.SizeOf(typeof(int)));
             // Enable mica effect if transparency is enabled
             if (ThemeProvider.TransparencyMode & ThemeProvider.IsWindows11)
             {
