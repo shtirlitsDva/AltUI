@@ -311,9 +311,17 @@ namespace AltUI.Controls
                 fillColor = ThemeProvider.Theme.Colors.GreySelection;
             }
 
-            using (var b = new SolidBrush(ThemeProvider.BackgroundColour))
+            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.GreyBackground))
             {
                 g.FillRectangle(b, rect);
+            }
+
+            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.LightBackground))
+            {
+                var boxRect = new Rectangle(0, (rect.Height / 2) - (size / 2), size, size);
+                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                RoundRects.FillRoundedRectangle(g, b, boxRect, 2, false);
+                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
             }
 
             using (var p = new Pen(borderColor))

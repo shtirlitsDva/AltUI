@@ -10,7 +10,7 @@ namespace AltUI.Config
 
         public LightTheme()
         {
-            Colors.GreyBackground = Color.FromArgb(255, 255, 255); //Form Background
+            Colors.GreyBackground = ThemeProvider.BackgroundColour; //Form Background
             Colors.HeaderBackground = Color.FromArgb(177, 180, 182);
             Colors.BlueBackground = Color.FromArgb(186, 197, 215);
             Colors.DarkBlueBackground = Color.FromArgb(172, 177, 186);
@@ -31,7 +31,6 @@ namespace AltUI.Config
             Colors.DarkBlueBorder = Color.FromArgb(171, 181, 198);
             Colors.LightBlueBorder = Color.FromArgb(206, 217, 114);
             Colors.ActiveControl = Color.FromArgb(159, 178, 196);
-            Colors.MicaAntiAlias = Color.FromArgb(243, 243, 243);
 
             Sizes.Padding = 10;
             Sizes.ScrollBarSize = 15;

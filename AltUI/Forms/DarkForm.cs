@@ -36,7 +36,7 @@ namespace AltUI.Forms
 
         public DarkForm()
         {
-            BackColor = ThemeProvider.BackgroundColour;
+            BackColor = ThemeProvider.Theme.Colors.GreyBackground;
         }
 
         #endregion

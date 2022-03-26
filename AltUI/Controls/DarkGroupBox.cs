@@ -29,7 +29,7 @@ namespace AltUI.Controls
             var textColor = ThemeProvider.Theme.Colors.LightText;
             var fillColor = ThemeProvider.Theme.Colors.GreyBackground;
 
-            using (var b = new SolidBrush(ThemeProvider.BackgroundColour))
+            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.GreyBackground))
             {
                 g.FillRectangle(b, rect);
             }
@@ -47,7 +47,7 @@ namespace AltUI.Controls
                     rect.Width - (ThemeProvider.Theme.Sizes.Padding * 2),
                     (int)stringSize.Height);
 
-            using (var b2 = new SolidBrush(ThemeProvider.BackgroundColour))
+            using (var b2 = new SolidBrush(ThemeProvider.Theme.Colors.GreyBackground))
             {
                 var modRect = new Rectangle(textRect.Left, textRect.Top, Math.Min(textRect.Width, (int)stringSize.Width), textRect.Height);
                 g.FillRectangle(b2, modRect);

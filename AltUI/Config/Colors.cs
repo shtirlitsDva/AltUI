@@ -46,6 +46,5 @@ namespace AltUI.Config
 
         public Color ActiveControl { get; set; }
 
-        public Color MicaAntiAlias { get; set; }
     }
 }

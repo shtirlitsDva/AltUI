@@ -45,10 +45,19 @@ namespace AltUI.Config
         {
             get
             {
-                if (TransparencyMode & IsWindows11)
-                { return Theme.Colors.MicaAntiAlias; }
-                else
-                { return Theme.Colors.GreyBackground; }
+                if (LightMode)
+                {
+                    if (TransparencyMode & IsWindows11)
+                    { return Color.FromArgb(243, 243, 243); }
+                    else { return Color.FromArgb(255, 255, 255); }
+                }
+               else
+               {
+                   if (TransparencyMode & IsWindows11)
+                   { return Color.FromArgb(32, 32, 32); }
+                   else { return Color.FromArgb(16, 16, 17); }
+               }
+
             }
         }
         public static Color GetAccentColor(int brighten)
