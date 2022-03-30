@@ -130,9 +130,9 @@ namespace AltUI.Controls
             clicked = false;
             Invalidate();
         }
-        protected override void OnMouseMove(MouseEventArgs e)
+        protected override void OnMouseEnter(EventArgs e)
         {
-            base.OnMouseMove(e);
+            base.OnMouseEnter(e);
             hover = true;
             Invalidate();
         }

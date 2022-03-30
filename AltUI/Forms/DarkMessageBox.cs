@@ -187,20 +187,24 @@ namespace AltUI.Forms
             if (!ThemeProvider.LightMode)
             {
                 DwmSetWindowAttribute(Handle, 20, new[] { 1 }, MSOTOI);
-                // Set Window border to match control border
-                int[] CaptionColour = new[] { ThemeProvider.TransparencyMode ? 0x00202020 : 0x00111010 };
-                DwmSetWindowAttribute(Handle, 34, new[] { 0x00372F2F }, MSOTOI);
-                // Set Window Caption to match background
-                DwmSetWindowAttribute(Handle, 35, CaptionColour, MSOTOI);
                 // Set Titlebar Font to match DarkTheme
                 DwmSetWindowAttribute(Handle, 36, new[] { 0x00D5D5D5 }, MSOTOI);
+                // Set Window border to match control border
+                DwmSetWindowAttribute(Handle, 34, new[] { 0x00372F2F }, MSOTOI);
+                if (ThemeProvider.WindowsVersion < 22523)
+                {
+                    // Set Window Caption to match background
+                    int[] CaptionColour = new[] { ThemeProvider.TransparencyMode ? 0x00202020 : 0x00111010 };
+                    DwmSetWindowAttribute(Handle, 35, CaptionColour, MSOTOI);
+                }
             }
             // Enable mica effect if transparency is enabled
-            if (ThemeProvider.TransparencyMode & ThemeProvider.IsWindows11)
+            if (ThemeProvider.TransparencyMode & ThemeProvider.WindowsVersion >= 22000)
             {
                 TransparencyKey = BackColor;
                 AllowTransparency = true;
                 DwmSetWindowAttribute(Handle, 1029, new[] { 1 }, MSOTOI);
+                DwmSetWindowAttribute(Handle, 38, new[] { 2 }, MSOTOI);
             }
         }
     }

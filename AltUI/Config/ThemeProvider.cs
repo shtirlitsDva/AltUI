@@ -7,63 +7,47 @@ namespace AltUI.Config
 {
     public static class ThemeProvider
     {
-        public static bool LightMode
-        { get {
-                var mode = false;
-                try {
-                    mode = (int)Registry.GetValue("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", "SystemUsesLightTheme", 0) == 1;
-                }
-                catch { }
-                return mode; }
-        }
-        public static bool TransparencyMode
+        private static object RegistryCGV(string keyName, string valueName, object defaultValue)
         {
-            get
+            try
             {
-                var mode = false;
-                try {
-                    mode = (int)Registry.GetValue("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", "EnableTransparency", 0) == 1;
-                }
-                catch { }
-                return mode;
+                return Registry.GetValue(keyName, valueName, defaultValue);
             }
+            catch { return defaultValue; }
         }
-        public static bool IsWindows11
-        {
-            get
-            {
-                var mode = false;
-                try
-                {
-                    mode = int.Parse((string)Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", "CurrentBuild", 0)) >= 22000;
-                }
-                catch { }
-                return mode;
-            }
-        }
+        public static bool LightMode = (int)RegistryCGV("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", "AppsUseLightTheme", 0) == 1;
+        public static bool TransparencyMode = (int)RegistryCGV("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", "EnableTransparency", 0) == 1;
+        public static int WindowsVersion = int.Parse((string)RegistryCGV("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", "CurrentBuild", 0));
         public static Color BackgroundColour
         {
             get
             {
                 if (LightMode)
                 {
-                    if (TransparencyMode & IsWindows11)
+                    if (TransparencyMode & WindowsVersion >= 22000)
                     { return Color.FromArgb(243, 243, 243); }
                     else { return Color.FromArgb(255, 255, 255); }
                 }
-               else
-               {
-                   if (TransparencyMode & IsWindows11)
-                   { return Color.FromArgb(32, 32, 32); }
-                   else { return Color.FromArgb(16, 16, 17); }
-               }
+                else if (TransparencyMode & WindowsVersion >= 22000)
+                { return Color.FromArgb(32, 32, 32); }
+                else { return Color.FromArgb(16, 16, 17); }
 
             }
         }
+        private static readonly int AccentColour = (int)RegistryCGV("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\DWM", "AccentColor", 0);
         public static Color GetAccentColor(int brighten)
         {
-            int accentColorObj = (int)Registry.GetValue("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\DWM", "AccentColor", null);
-            return ParseDWordColor(accentColorObj, brighten);
+            if (WindowsVersion >= 22000)
+            {
+                return ParseDWordColor(AccentColour, brighten);
+            }
+            else
+            {
+                if (brighten != 0)
+                    return Color.FromArgb(0, 122, 204);
+                else
+                    return Color.FromArgb(30, 71, 112);
+            }
         }
         private static Color ParseDWordColor(int color, int brighten)
         {
