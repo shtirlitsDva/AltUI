@@ -76,7 +76,7 @@ namespace AltUI.Forms
                 DwmSetWindowAttribute(Handle, 36, new[] { 0x00D5D5D5 }, MSOTOI);
                 // Set Window border to match control border
                 DwmSetWindowAttribute(Handle, 34, new[] { 0x00372F2F }, MSOTOI);
-                if (ThemeProvider.WindowsVersion < 22523)
+                if (ThemeProvider.WindowsVersion < 22523 || !ThemeProvider.TransparencyMode)
                 {
                     // Set Window Caption to match background
                     int[] CaptionColour = new[] { ThemeProvider.TransparencyMode ? 0x00202020 : 0x00111010 };
