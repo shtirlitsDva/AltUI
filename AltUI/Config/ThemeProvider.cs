@@ -44,7 +44,7 @@ namespace AltUI.Config
             else
             {
                 if (brighten != 0)
-                    return Color.FromArgb(0, 122, 204);
+                    return Color.FromArgb(0, 120, 215);
                 else
                     return Color.FromArgb(30, 71, 112);
             }
