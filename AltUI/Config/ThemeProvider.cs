@@ -78,7 +78,7 @@ namespace AltUI.Config
                 theme = value;
             }
         }
-        private static int ColorToHex(Color c) => int.Parse($"{c.B:X2}{c.G:X2}{c.R:X2}");
+        private static int ColorToHex(Color c) => Convert.ToInt32($"{c.B:X2}{c.G:X2}{c.R:X2}", 16);
         [DllImport("DwmApi")]
         private static extern int DwmSetWindowAttribute(IntPtr hwnd, uint attr, int[] attrValue, int attrSize);
         public static void SetupWindow(IntPtr Handle)
