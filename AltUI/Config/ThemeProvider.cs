@@ -2,6 +2,7 @@
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Runtime.InteropServices;
 
 namespace AltUI.Config
 {
@@ -75,6 +76,31 @@ namespace AltUI.Config
             set
             {
                 theme = value;
+            }
+        }
+        private static int ColorToHex(Color c) => int.Parse($"{c.B:X2}{c.G:X2}{c.R:X2}");
+        [DllImport("DwmApi")]
+        private static extern int DwmSetWindowAttribute(IntPtr hwnd, uint attr, int[] attrValue, int attrSize);
+        public static void SetupWindow(IntPtr Handle)
+        {
+            var MSOTOI = Marshal.SizeOf(typeof(int));
+            // Round corners (Windows 11 only, mainly here for Borderless forms)
+            DwmSetWindowAttribute(Handle, 33, new[] { 2 }, MSOTOI);
+            // Set Window border to match control border
+            DwmSetWindowAttribute(Handle, 34, new[] { ColorToHex(Theme.Colors.GreySelection) }, MSOTOI);
+            // Set Window Caption to match background
+            if (WindowsVersion < 22523 || !TransparencyMode)
+                DwmSetWindowAttribute(Handle, 35, new[] { ColorToHex(Theme.Colors.GreyBackground) }, MSOTOI);
+            // Set Titlebar Font to match Theme
+            DwmSetWindowAttribute(Handle, 36, new[] { ColorToHex(Theme.Colors.LightText) }, MSOTOI);
+            // Apply immersive dark mode if it's used by system
+            if (!LightMode)
+                DwmSetWindowAttribute(Handle, 20, new[] { 1 }, MSOTOI);
+            // Enable mica effect if transparency is enabled
+            if (TransparencyMode & WindowsVersion >= 22000)
+            {
+                DwmSetWindowAttribute(Handle, 1029, new[] { 1 }, MSOTOI);
+                DwmSetWindowAttribute(Handle, 38, new[] { 2 }, MSOTOI);
             }
         }
     }

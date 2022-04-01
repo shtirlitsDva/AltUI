@@ -61,35 +61,13 @@ namespace AltUI.Forms
 
         #endregion
 
-        [DllImport("DwmApi")]
-        private static extern int DwmSetWindowAttribute(IntPtr hwnd, uint attr, int[] attrValue, int attrSize);
         protected override void OnHandleCreated(EventArgs e)
         {
-            var MSOTOI = Marshal.SizeOf(typeof(int));
-            // Round corners (Windows 11 only, mainly here for Borderless forms)
-            DwmSetWindowAttribute(Handle, 33, new[] { 2 }, MSOTOI);
-            // Apply immersive dark mode if it's used by system
-            if (!ThemeProvider.LightMode)
-            {
-                DwmSetWindowAttribute(Handle, 20, new[] { 1 }, MSOTOI);
-                // Set Titlebar Font to match DarkTheme
-                DwmSetWindowAttribute(Handle, 36, new[] { 0x00D5D5D5 }, MSOTOI);
-                // Set Window border to match control border
-                DwmSetWindowAttribute(Handle, 34, new[] { 0x00372F2F }, MSOTOI);
-                if (ThemeProvider.WindowsVersion < 22523 || !ThemeProvider.TransparencyMode)
-                {
-                    // Set Window Caption to match background
-                    int[] CaptionColour = new[] { ThemeProvider.TransparencyMode ? 0x00202020 : 0x00111010 };
-                    DwmSetWindowAttribute(Handle, 35, CaptionColour, MSOTOI);
-                }
-            }
-            // Enable mica effect if transparency is enabled
+            ThemeProvider.SetupWindow(Handle);
             if (ThemeProvider.TransparencyMode & ThemeProvider.WindowsVersion >= 22000)
             {
                 TransparencyKey = BackColor;
                 AllowTransparency = true;
-                DwmSetWindowAttribute(Handle, 1029, new[] { 1 }, MSOTOI);
-                DwmSetWindowAttribute(Handle, 38, new[] { 2 }, MSOTOI);
             }
         }
     }
