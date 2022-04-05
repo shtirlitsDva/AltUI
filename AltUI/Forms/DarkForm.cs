@@ -63,7 +63,7 @@ namespace AltUI.Forms
 
         protected override void OnHandleCreated(EventArgs e)
         {
-            ThemeProvider.SetupWindow(Handle);
+            ThemeProvider.SetupWindow(Handle, FormBorderStyle == FormBorderStyle.None ? 3 : 2);
             if (ThemeProvider.TransparencyMode & ThemeProvider.WindowsVersion >= 22000)
             {
                 TransparencyKey = BackColor;
