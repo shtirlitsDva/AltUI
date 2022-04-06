@@ -30,7 +30,7 @@ namespace AltUI.Config
                     else { return Color.FromArgb(255, 255, 255); }
                 }
                 else if (TransparencyMode & WindowsVersion >= 22000)
-                { return Color.FromArgb(32, 32, 32); }
+                { return Color.FromArgb(31, 31, 32); }
                 else { return Color.FromArgb(16, 16, 17); }
 
             }
