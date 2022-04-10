@@ -84,6 +84,11 @@ namespace AltUI.Forms
             return ShowDialog(message, caption, DarkMessageBoxIcon.Error, buttons);
         }
 
+        public static DialogResult ShowMessage(string message, string caption, DarkDialogButton buttons = DarkDialogButton.Ok)
+        {
+            return ShowDialog(message, caption, DarkMessageBoxIcon.None, buttons);
+        }
+
         public static DialogResult ShowCustom(string message, string caption, Bitmap customIcon, DarkDialogButton buttons = DarkDialogButton.Ok)
         {
             return ShowDialog(message, caption, DarkMessageBoxIcon.Custom, buttons, customIcon);

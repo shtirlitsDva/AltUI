@@ -8,11 +8,11 @@ namespace AltUI.Controls
 {
     public class DarkLabel : Label
     {
-
         #region Field Region
 
         private bool _autoUpdateHeight;
         private bool _isGrowing;
+        private bool _isEnabled = true;
 
         #endregion
 
@@ -47,6 +47,16 @@ namespace AltUI.Controls
                     AutoUpdateHeight = false;
             }
         }
+        public new bool Enabled
+        {
+            get { return _isEnabled; }
+            set
+            {
+                _isEnabled = value;
+                ForeColor = _isEnabled ? ThemeProvider.Theme.Colors.LightText : ThemeProvider.Theme.Colors.DisabledText;
+                ResizeLabel();
+            }
+        }
 
         #endregion
 
@@ -54,10 +64,8 @@ namespace AltUI.Controls
 
         public DarkLabel()
         {
-            SetStyle(ControlStyles.SupportsTransparentBackColor |
-                     ControlStyles.OptimizedDoubleBuffer |
-                     ControlStyles.ResizeRedraw |
-                     ControlStyles.UserPaint, true);
+            ForeColor = ThemeProvider.Theme.Colors.LightText;
+            ResizeRedraw = true;
         }
 
         #endregion
@@ -68,6 +76,7 @@ namespace AltUI.Controls
         {
             if (!_autoUpdateHeight || _isGrowing)
                 return;
+
             try
             {
                 _isGrowing = true;
@@ -80,46 +89,35 @@ namespace AltUI.Controls
                 _isGrowing = false;
             }
         }
-        #endregion
 
-        #region Paint Region
-
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            var g = e.Graphics;
-            var rect = new Rectangle(0, 0, ClientSize.Width, ClientSize.Height);
-            var textColor = Enabled
-                ?ThemeProvider.Theme.Colors.LightText
-                :ThemeProvider.Theme.Colors.DisabledText;
-
-            using (var b = new SolidBrush(textColor))
-            {
-                var stringFormat = new StringFormat
-                {
-                    LineAlignment = StringAlignment.Center,
-                    Alignment = StringAlignment.Near
-                };
-                g.DrawString(Text, Font, b, rect, stringFormat);
-            }
-        }
         #endregion
 
         #region Event Handler Region
+
         protected override void OnTextChanged(EventArgs e)
         {
             base.OnTextChanged(e);
             ResizeLabel();
         }
+
         protected override void OnFontChanged(EventArgs e)
         {
             base.OnFontChanged(e);
             ResizeLabel();
         }
+
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
             ResizeLabel();
         }
+
+        protected override void OnEnabledChanged(EventArgs e)
+        {
+            base.OnEnabledChanged(e);
+            Enabled = true;
+        }
+
         #endregion
     }
 }
