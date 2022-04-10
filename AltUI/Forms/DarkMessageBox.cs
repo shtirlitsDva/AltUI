@@ -3,7 +3,6 @@ using AltUI.Icons;
 using System;
 using System.ComponentModel;
 using System.Drawing;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace AltUI.Forms
@@ -40,14 +39,14 @@ namespace AltUI.Forms
             InitializeComponent();
         }
 
-        public DarkMessageBox(string message, string title, DarkMessageBoxIcon icon, DarkDialogButton buttons)
+        public DarkMessageBox(string message, string title, DarkMessageBoxIcon icon, DarkDialogButton buttons, Bitmap customIcon = null)
             : this()
         {
             Text = title;
             _message = message;
 
             DialogButtons = buttons;
-            SetIcon(icon);
+            SetIcon(icon, customIcon);
         }
 
         public DarkMessageBox(string message)
@@ -85,9 +84,14 @@ namespace AltUI.Forms
             return ShowDialog(message, caption, DarkMessageBoxIcon.Error, buttons);
         }
 
-        private static DialogResult ShowDialog(string message, string caption, DarkMessageBoxIcon icon, DarkDialogButton buttons)
+        public static DialogResult ShowCustom(string message, string caption, Bitmap customIcon, DarkDialogButton buttons = DarkDialogButton.Ok)
         {
-            using (var dlg = new DarkMessageBox(message, caption, icon, buttons))
+            return ShowDialog(message, caption, DarkMessageBoxIcon.Custom, buttons, customIcon);
+        }
+
+        private static DialogResult ShowDialog(string message, string caption, DarkMessageBoxIcon icon, DarkDialogButton buttons, Bitmap customIcon = null)
+        {
+            using (var dlg = new DarkMessageBox(message, caption, icon, buttons, customIcon))
             {
                 var result = dlg.ShowDialog();
                 return result;
@@ -98,7 +102,7 @@ namespace AltUI.Forms
 
         #region Method Region
 
-        private void SetIcon(DarkMessageBoxIcon icon)
+        private void SetIcon(DarkMessageBoxIcon icon, Bitmap customIcon = null)
         {
             switch (icon)
             {
@@ -114,6 +118,9 @@ namespace AltUI.Forms
                     break;
                 case DarkMessageBoxIcon.Error:
                     picIcon.Image = MessageBoxIcons.error;
+                    break;
+                case DarkMessageBoxIcon.Custom:
+                    picIcon.Image = customIcon;
                     break;
             }
         }
@@ -174,7 +181,7 @@ namespace AltUI.Forms
             CalculateSize();
         }
 
-        #endregion
+        
         protected override void OnHandleCreated(EventArgs e)
         {
             ThemeProvider.SetupWindow(Handle, 2);
@@ -184,5 +191,7 @@ namespace AltUI.Forms
                 AllowTransparency = true;
             }
         }
+        
+        #endregion
     }
 }

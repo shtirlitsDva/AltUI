@@ -31,7 +31,7 @@ namespace AltUI.Forms
         private void InitializeComponent()
         {
             this.picIcon = new System.Windows.Forms.PictureBox();
-            this.lblText = new DarkLabel();
+            this.lblText = new AltUI.Controls.DarkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -40,6 +40,7 @@ namespace AltUI.Forms
             this.picIcon.Location = new System.Drawing.Point(10, 10);
             this.picIcon.Name = "picIcon";
             this.picIcon.Size = new System.Drawing.Size(32, 32);
+            this.picIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picIcon.TabIndex = 3;
             this.picIcon.TabStop = false;
             // 
