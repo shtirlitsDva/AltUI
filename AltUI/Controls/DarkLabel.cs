@@ -112,12 +112,6 @@ namespace AltUI.Controls
             ResizeLabel();
         }
 
-        protected override void OnEnabledChanged(EventArgs e)
-        {
-            base.OnEnabledChanged(e);
-            Enabled = true;
-        }
-
         #endregion
     }
 }
