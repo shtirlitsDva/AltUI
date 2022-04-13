@@ -199,14 +199,14 @@ namespace Example.Forms
 
         private void darkToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BackColor = ThemeProvider.Theme.Colors.GreyBackground;
-            this.Refresh();
+            ThemeProvider.LightMode = false;
+            Refresh();
         }
 
         private void lightToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BackColor = ThemeProvider.Theme.Colors.GreyBackground;
-            this.Refresh();
+            ThemeProvider.LightMode = true;
+            Refresh();
         }
 
         #endregion
