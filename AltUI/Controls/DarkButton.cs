@@ -18,7 +18,8 @@ namespace AltUI.Controls
 
         private bool _isDefault;
         private bool _spacePressed;
-        private bool _drawBackground = true;
+        private bool _flatBottom;
+        private bool _flatTop;
 
         private int _padding = ThemeProvider.Theme.Sizes.Padding / 2;
         private int _imagePadding = 5; // ThemeProvider.Theme.Sizes.Padding / 2
@@ -74,18 +75,31 @@ namespace AltUI.Controls
         }
 
         [Category("Appearance")]
-        [Description("Determines wheter or not to draw a rect behind the button.")]
+        [Description("Determines whether or not the button has a flat top.")]
         [DefaultValue(5)]
-        public bool DrawBackground
+        public bool FlatTop
         {
-            get { return _drawBackground; }
+            get { return _flatTop; }
             set
             {
-                _drawBackground = value;
+                _flatTop = value;
                 Invalidate();
             }
         }
 
+        [Category("Appearance")]
+        [Description("Determines whether or not the button has a flat bottom.")]
+        [DefaultValue(5)]
+        public bool FlatBottom
+        {
+            get { return _flatBottom; }
+            set
+            {
+                _flatBottom = value;
+                Invalidate();
+            }
+        }
+        
         #endregion
 
         #region Code Property Region
@@ -332,7 +346,10 @@ namespace AltUI.Controls
             if (Enabled)
             {
                 if (Focused && TabStop)
+                {
+                    BringToFront();
                     borderColor = ThemeProvider.Theme.Colors.BlueHighlight;
+                }                    
                 if (ButtonStyle == DarkButtonStyle.Normal)
                 {
                     switch (ButtonState)
@@ -382,38 +399,28 @@ namespace AltUI.Controls
                 fillColor = ThemeProvider.Theme.Colors.DarkGreySelection;
             }
 
-            if (_drawBackground)
-            {
-                using (var b = new SolidBrush(ThemeProvider.Theme.Colors.GreyBackground))
-                {
-                    g.FillRectangle(b, rect);
-                }
-            }
+           using (var b = new SolidBrush(ThemeProvider.Theme.Colors.GreyBackground))
+           {
+               g.FillRectangle(b, rect);
+           }
 
             using (var b = new SolidBrush(fillColor))
             {
                 var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
                 g.SmoothingMode = SmoothingMode.AntiAlias;
-                RoundRects.FillRoundedRectangle(g, b, modRect, 4);
+                RoundRects.FillRoundedRectangle(g, b, modRect, 4, _flatBottom, 0, _flatTop);
                 g.SmoothingMode = SmoothingMode.None;
             }
-
-            if (ButtonStyle == DarkButtonStyle.Image)
+            
+            if (ButtonStyle == DarkButtonStyle.Image && BackgroundImage != null)
             {
                 var imgRect = new Rectangle(rect.Left + 1, rect.Top + 1, rect.Width - 2, rect.Height - 2);
-                var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
-                if (BackgroundImage.Width > ClientSize.Width || BackgroundImage.Height > ClientSize.Height)
-                {
                     g.DrawImage(BackgroundImage, imgRect.X, imgRect.Y, imgRect.Width, imgRect.Height);
-                    g.SmoothingMode = SmoothingMode.AntiAlias;
-                    g.DrawRectangleCorners(new SolidBrush(ThemeProvider.Theme.Colors.LightBackground), modRect, 4);
-                    g.SmoothingMode = SmoothingMode.None;
-                }
-                else
-                { g.DrawImage(BackgroundImage, imgRect.Width / 2 - BackgroundImage.Width / 2, imgRect.Height / 2 - BackgroundImage.Height / 2, BackgroundImage.Width, BackgroundImage.Height); }
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                RoundRects.DrawRectangleCorners(g, new SolidBrush(ThemeProvider.Theme.Colors.LightBackground), rect, 4);
                 using (var b = new SolidBrush(overlayColor))
                 {
-                    RoundRects.FillRoundedRectangle(g, b, modRect, 4);
+                    RoundRects.FillRoundedRectangle(g, b, imgRect, 4);
                 }
             }
 
@@ -423,7 +430,7 @@ namespace AltUI.Controls
                 {
                     var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
                     g.SmoothingMode = SmoothingMode.AntiAlias;
-                    RoundRects.DrawRoundedRectangle(g, p, modRect, 4, false);
+                    RoundRects.DrawRoundedRectangle(g, p, modRect, 4, _flatBottom, 0, _flatTop);
                     g.SmoothingMode = SmoothingMode.None;
                 }
             }

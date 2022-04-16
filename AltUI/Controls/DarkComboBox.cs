@@ -209,7 +209,7 @@ namespace AltUI.Controls
                 {
                     var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
                     g.SmoothingMode = SmoothingMode.AntiAlias;
-                    RoundRects.FillRoundedRectangle(g, b, modRect, 4, clicked);
+                    RoundRects.FillRoundedRectangle(g, b, modRect, 4, clicked, 1);
                     g.SmoothingMode = SmoothingMode.None;
                 }
 
@@ -217,7 +217,7 @@ namespace AltUI.Controls
                 {
                     var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
                     g.SmoothingMode = SmoothingMode.AntiAlias;
-                    RoundRects.DrawRoundedRectangle(g, p, modRect, 4, clicked);
+                    RoundRects.DrawRoundedRectangle(g, p, modRect, 4, clicked, 1);
                     g.SmoothingMode = SmoothingMode.None;
                 }
                 using (var p = new Pen(arrowColour, 1))

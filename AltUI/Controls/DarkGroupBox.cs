@@ -61,9 +61,9 @@ namespace AltUI.Controls
             {
                 var borderRect = new Rectangle(0, (int)stringSize.Height / 2, rect.Width - 1, rect.Height - ((int)stringSize.Height / 2) - 1);
                 g.SmoothingMode = SmoothingMode.AntiAlias;
-                RoundRects.DrawRoundedRectangle(g, p, borderRect, 4);
                 if (_opaqueBackground)
                     g.FillRoundedRectangle(new SolidBrush(ThemeProvider.Theme.Colors.LightBackground), borderRect, 4);
+                RoundRects.DrawRoundedRectangle(g, p, borderRect, 4);
                 g.SmoothingMode = SmoothingMode.None;
             }
 
