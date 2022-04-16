@@ -13,10 +13,24 @@ namespace AltUI.Controls
         private DarkControlState _controlState = DarkControlState.Normal;
 
         private bool _spacePressed;
+        private int _offset = 0;
 
         #endregion
 
         #region Property Region
+
+        [Category("Appearance")]
+        [Description("Offsets the check in the box to avoid a weird bug")]
+        [DefaultValue(false)]
+        public int Offset
+        {
+            get { return _offset; }
+            set
+            {
+                _offset = value;
+                Invalidate();
+            }
+        }
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -337,8 +351,8 @@ namespace AltUI.Controls
                 using (var p = new Pen(fillColor, 1))
                 {
                     g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                    g.DrawLine(p, 3, 10, 5, 13);
-                    g.DrawLine(p, 5, 13, 9, 7);
+                    g.DrawLine(p, 3, 10 - _offset, 5, 13 - _offset);
+                    g.DrawLine(p, 5, 13 - _offset, 9, 7 - _offset);
                     g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
                 }
             }
