@@ -9,6 +9,28 @@ namespace AltUI.Controls
 {
     public class DarkComboBox : ComboBox
     {
+        #region Field Region
+
+        private bool _autoExpanding;
+
+        #endregion
+
+        #region Property Region
+
+        [Category("Appearance")]
+        [Description("Determines whether the drop down list should automatically expand to fit items.")]
+        [DefaultValue(false)]
+        public bool AutoExpanding
+        {
+            get { return _autoExpanding; }
+            set
+            {
+                _autoExpanding = value;
+                Invalidate();
+            }
+        }
+        #endregion
+
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new Color ForeColor { get; set; }
@@ -121,6 +143,21 @@ namespace AltUI.Controls
         protected override void OnDropDown(EventArgs e)
         {
             base.OnDropDown(e);
+            if (_autoExpanding)
+            {
+                int width = DropDownWidth;
+                Graphics g = CreateGraphics();
+                Font font = Font;
+                int scrollBarWidth = SystemInformation.VerticalScrollBarWidth;
+                int newWidth;
+                foreach (string s in Items)
+                {
+                    newWidth = (int)g.MeasureString(s, font).Width + scrollBarWidth;
+                    if (newWidth > width)
+                        width = newWidth;
+                }
+                DropDownWidth = width;
+            }
             clicked = true;
             Invalidate();
         }

@@ -147,7 +147,7 @@ namespace AltUI.Config
             return path;
         }
 
-        public static void DrawRoundedRectangle(this Graphics graphics, Pen pen, Rectangle bounds, int cornerRadius, bool flatBottom)
+        public static void DrawRoundedRectangle(this Graphics graphics, Pen pen, Rectangle bounds, int cornerRadius, bool flatBottom = false)
         {
             if (graphics == null)
                 throw new ArgumentNullException("graphics");
@@ -160,7 +160,7 @@ namespace AltUI.Config
             }
         }
 
-        public static void FillRoundedRectangle(this Graphics graphics, Brush brush, Rectangle bounds, int cornerRadius, bool flatBottom)
+        public static void FillRoundedRectangle(this Graphics graphics, Brush brush, Rectangle bounds, int cornerRadius, bool flatBottom = false)
         {
             if (graphics == null)
                 throw new ArgumentNullException("graphics");
@@ -172,6 +172,50 @@ namespace AltUI.Config
                 graphics.FillPath(brush, path);
             }
         }
+
+        public static void DrawRectangleCorners(this Graphics graphics, Brush brush, Rectangle bounds, int cornerRadius)
+        {
+            int diameter = cornerRadius * 2;
+            Size size = new Size(diameter, diameter);
+            Rectangle arc = new Rectangle(bounds.Location, size);
+            GraphicsPath path = new GraphicsPath();
+            
+            path.AddArc(arc, 180, 90);
+            path.AddLine(new PointF(bounds.Left, bounds.Top), new PointF(bounds.Left, bounds.Top));
+            path.CloseFigure();
+
+            arc.X = bounds.Right - diameter;
+            path.AddArc(arc, 270, 90);
+            path.AddLine(new PointF(bounds.Right, bounds.Top), new PointF(bounds.Right, bounds.Top));
+            path.CloseFigure();
+
+            arc.Y = bounds.Bottom - diameter;
+            path.AddArc(arc, 0, 90);
+            path.AddLine(new PointF(bounds.Right, bounds.Bottom), new PointF(bounds.Right, bounds.Bottom));
+            path.CloseFigure();
+
+            arc.X = bounds.Left;
+            path.AddArc(arc, 90, 90);
+            path.AddLine(new PointF(bounds.Left, bounds.Bottom), new PointF(bounds.Left, bounds.Bottom));
+            path.CloseFigure();
+
+            graphics.FillPath(brush, path);
+        }
+        
+        public static void DrawCustomBorder(this Graphics graphics, Rectangle bounds, int cornerRadius)
+        {
+            SolidBrush brush = new SolidBrush(ThemeProvider.Theme.Colors.GreyBackground);
+            Pen pen1 = new Pen(ThemeProvider.Theme.Colors.GreyBackground);
+            Pen pen2 = new Pen(ThemeProvider.Theme.Colors.GreySelection);
+            bounds.Width--;
+            bounds.Height--;
+            graphics.SmoothingMode = SmoothingMode.None;
+            DrawRectangleCorners(graphics, brush, bounds, cornerRadius - 1);
+            graphics.DrawRectangle(pen1, bounds);
+            graphics.SmoothingMode = SmoothingMode.AntiAlias;
+            DrawRoundedRectangle(graphics, pen2, bounds, cornerRadius);
+        }
+
     }
 
 }

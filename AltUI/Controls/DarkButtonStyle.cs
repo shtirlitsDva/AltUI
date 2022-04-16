@@ -3,6 +3,7 @@
     public enum DarkButtonStyle
     {
         Normal,
-        Flat
+        Flat,
+        Image
     }
 }

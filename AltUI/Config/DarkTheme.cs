@@ -14,7 +14,7 @@ namespace AltUI.Config
             Colors.HeaderBackground = Color.FromArgb(22, 22, 22); // List Alt Colour
             Colors.BlueBackground = Color.FromArgb(66, 77, 95);
             Colors.DarkBlueBackground = Color.FromArgb(52, 57, 66);
-            Colors.DarkBackground = Color.FromArgb(47, 47, 47);
+            Colors.DarkBackground = Color.FromArgb(47, 47, 47); // Control Clicked
             Colors.MediumBackground = Color.FromArgb(49, 51, 53);
             Colors.LightBackground = Color.FromArgb(26, 26, 29); // Control Colour
             Colors.LighterBackground = Color.FromArgb(33, 33, 37); // Control Hover

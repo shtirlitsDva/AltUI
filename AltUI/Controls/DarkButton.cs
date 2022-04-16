@@ -18,6 +18,7 @@ namespace AltUI.Controls
 
         private bool _isDefault;
         private bool _spacePressed;
+        private bool _drawBackground = true;
 
         private int _padding = ThemeProvider.Theme.Sizes.Padding / 2;
         private int _imagePadding = 5; // ThemeProvider.Theme.Sizes.Padding / 2
@@ -68,6 +69,19 @@ namespace AltUI.Controls
             set
             {
                 _imagePadding = value;
+                Invalidate();
+            }
+        }
+
+        [Category("Appearance")]
+        [Description("Determines wheter or not to draw a rect behind the button.")]
+        [DefaultValue(5)]
+        public bool DrawBackground
+        {
+            get { return _drawBackground; }
+            set
+            {
+                _drawBackground = value;
                 Invalidate();
             }
         }
@@ -313,14 +327,14 @@ namespace AltUI.Controls
             var textColor = ThemeProvider.Theme.Colors.LightText;
             var borderColor = ThemeProvider.Theme.Colors.GreySelection;
             var fillColor = ThemeProvider.Theme.Colors.LightBackground;
+            var overlayColor = Color.Transparent;
 
             if (Enabled)
             {
+                if (Focused && TabStop)
+                    borderColor = ThemeProvider.Theme.Colors.BlueHighlight;
                 if (ButtonStyle == DarkButtonStyle.Normal)
                 {
-                    if (Focused && TabStop)
-                        borderColor = ThemeProvider.Theme.Colors.BlueHighlight;
-
                     switch (ButtonState)
                     {
                         case DarkControlState.Hover:
@@ -346,6 +360,21 @@ namespace AltUI.Controls
                             break;
                     }
                 }
+                else if (ButtonStyle == DarkButtonStyle.Image)
+                {
+                    switch (ButtonState)
+                    {
+                        case DarkControlState.Normal:
+                            overlayColor = Color.Transparent;
+                            break;
+                        case DarkControlState.Hover:
+                            overlayColor = Color.FromArgb(27, 242, 242, 255);
+                            break;
+                        case DarkControlState.Pressed:
+                            overlayColor = Color.FromArgb(57, 255, 255, 246);
+                            break;
+                    }
+                }
             }
             else
             {
@@ -353,20 +382,42 @@ namespace AltUI.Controls
                 fillColor = ThemeProvider.Theme.Colors.DarkGreySelection;
             }
 
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.GreyBackground))
+            if (_drawBackground)
             {
-                g.FillRectangle(b, rect);
+                using (var b = new SolidBrush(ThemeProvider.Theme.Colors.GreyBackground))
+                {
+                    g.FillRectangle(b, rect);
+                }
             }
 
             using (var b = new SolidBrush(fillColor))
             {
                 var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
                 g.SmoothingMode = SmoothingMode.AntiAlias;
-                RoundRects.FillRoundedRectangle(g, b, modRect, 4, false);
+                RoundRects.FillRoundedRectangle(g, b, modRect, 4);
                 g.SmoothingMode = SmoothingMode.None;
             }
 
-            if (ButtonStyle == DarkButtonStyle.Normal)
+            if (ButtonStyle == DarkButtonStyle.Image)
+            {
+                var imgRect = new Rectangle(rect.Left + 1, rect.Top + 1, rect.Width - 2, rect.Height - 2);
+                var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
+                if (BackgroundImage.Width > ClientSize.Width || BackgroundImage.Height > ClientSize.Height)
+                {
+                    g.DrawImage(BackgroundImage, imgRect.X, imgRect.Y, imgRect.Width, imgRect.Height);
+                    g.SmoothingMode = SmoothingMode.AntiAlias;
+                    g.DrawRectangleCorners(new SolidBrush(ThemeProvider.Theme.Colors.LightBackground), modRect, 4);
+                    g.SmoothingMode = SmoothingMode.None;
+                }
+                else
+                { g.DrawImage(BackgroundImage, imgRect.Width / 2 - BackgroundImage.Width / 2, imgRect.Height / 2 - BackgroundImage.Height / 2, BackgroundImage.Width, BackgroundImage.Height); }
+                using (var b = new SolidBrush(overlayColor))
+                {
+                    RoundRects.FillRoundedRectangle(g, b, modRect, 4);
+                }
+            }
+
+            if (ButtonStyle == DarkButtonStyle.Normal || ButtonStyle == DarkButtonStyle.Image)
             {
                 using (var p = new Pen(borderColor, 1))
                 {
@@ -405,7 +456,6 @@ namespace AltUI.Controls
                         x = x + (int)stringSize.Width;
                         break;
                 }
-
                 g.DrawImageUnscaled(Image, x, y);
             }
 

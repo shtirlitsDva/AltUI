@@ -64,6 +64,7 @@ namespace AltUI.Controls
 
         public DarkLabel()
         {
+            BackColor = Color.Transparent;
             ForeColor = ThemeProvider.Theme.Colors.LightText;
             ResizeRedraw = true;
         }

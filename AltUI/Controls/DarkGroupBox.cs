@@ -3,12 +3,35 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
+using System.ComponentModel;
 
 namespace AltUI.Controls
 {
     public class DarkGroupBox : GroupBox
     {
+        #region Field Region
 
+        private bool _opaqueBackground;
+
+        #endregion
+
+        #region Property Region
+
+        [Category("Appearance")]
+        [Description("Determines whether the background of the GroupBox should be filled in.")]
+        [DefaultValue(false)]
+        public bool OpaqueBackground
+        {
+            get { return _opaqueBackground; }
+            set
+            {
+                _opaqueBackground = value;
+                Invalidate();
+            }
+        }
+
+        #endregion
+        
         public DarkGroupBox()
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer |
@@ -28,8 +51,8 @@ namespace AltUI.Controls
             var borderColor = ThemeProvider.Theme.Colors.GreySelection;
             var textColor = ThemeProvider.Theme.Colors.LightText;
             var fillColor = ThemeProvider.Theme.Colors.GreyBackground;
-
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.GreyBackground))
+            
+            using (var b = new SolidBrush(fillColor))
             {
                 g.FillRectangle(b, rect);
             }
@@ -38,7 +61,9 @@ namespace AltUI.Controls
             {
                 var borderRect = new Rectangle(0, (int)stringSize.Height / 2, rect.Width - 1, rect.Height - ((int)stringSize.Height / 2) - 1);
                 g.SmoothingMode = SmoothingMode.AntiAlias;
-                RoundRects.DrawRoundedRectangle(g, p, borderRect, 4, false);
+                RoundRects.DrawRoundedRectangle(g, p, borderRect, 4);
+                if (_opaqueBackground)
+                    g.FillRoundedRectangle(new SolidBrush(ThemeProvider.Theme.Colors.LightBackground), borderRect, 4);
                 g.SmoothingMode = SmoothingMode.None;
             }
 
