@@ -182,7 +182,7 @@ namespace AltUI.Config
             }
         }
 
-        public static void DrawRectangleCorners(Graphics graphics, Brush brush, Rectangle bounds, int cornerRadius)
+        public static void DrawRectangleCorners(this Graphics graphics, Brush brush, Rectangle bounds, int cornerRadius)
         {
             GraphicsPath path = RoundedRect(bounds, cornerRadius);
 

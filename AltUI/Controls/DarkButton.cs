@@ -432,7 +432,7 @@ namespace AltUI.Controls
                 var imgRect = new Rectangle(rect.Left + 1, rect.Top + 1, rect.Width - 2, rect.Height - 2);
                 var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
                 g.DrawImage(BackgroundImage, imgRect.X, imgRect.Y, imgRect.Width, imgRect.Height);
-                RoundRects.DrawRectangleCorners(g, new SolidBrush(ThemeProvider.Theme.Colors.LightBackground), rect, 4);
+                g.DrawRectangleCorners(new SolidBrush(ThemeProvider.Theme.Colors.LightBackground), rect, 4);
                 g.SmoothingMode = SmoothingMode.AntiAlias;
                 using (var b = new SolidBrush(overlayColor))
                 {
