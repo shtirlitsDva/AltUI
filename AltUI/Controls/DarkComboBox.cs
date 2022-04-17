@@ -148,11 +148,10 @@ namespace AltUI.Controls
                 int width = DropDownWidth;
                 Graphics g = CreateGraphics();
                 Font font = Font;
-                int scrollBarWidth = SystemInformation.VerticalScrollBarWidth;
                 int newWidth;
                 foreach (string s in Items)
                 {
-                    newWidth = (int)g.MeasureString(s, font).Width + scrollBarWidth;
+                    newWidth = (int)g.MeasureString(s, font).Width + 25;
                     if (newWidth > width)
                         width = newWidth;
                 }

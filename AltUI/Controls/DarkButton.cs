@@ -20,6 +20,7 @@ namespace AltUI.Controls
         private bool _spacePressed;
         private bool _flatBottom;
         private bool _flatTop;
+        private bool _holdColour;
 
         private int _padding = ThemeProvider.Theme.Sizes.Padding / 2;
         private int _imagePadding = 5; // ThemeProvider.Theme.Sizes.Padding / 2
@@ -99,7 +100,20 @@ namespace AltUI.Controls
                 Invalidate();
             }
         }
-        
+
+        [Category("Appearance")]
+        [Description("Determines whether or not the button has a coloured border.")]
+        [DefaultValue(5)]
+        public bool HoldColour
+        {
+            get { return _holdColour; }
+            set
+            {
+                _holdColour = value;
+                Invalidate();
+            }
+        }
+
         #endregion
 
         #region Code Property Region
@@ -345,11 +359,12 @@ namespace AltUI.Controls
 
             if (Enabled)
             {
-                if (Focused && TabStop)
+                if (Focused && TabStop || _holdColour)
                 {
                     BringToFront();
                     borderColor = ThemeProvider.Theme.Colors.BlueHighlight;
-                }                    
+                }
+
                 if (ButtonStyle == DarkButtonStyle.Normal)
                 {
                     switch (ButtonState)
@@ -415,12 +430,13 @@ namespace AltUI.Controls
             if (ButtonStyle == DarkButtonStyle.Image && BackgroundImage != null)
             {
                 var imgRect = new Rectangle(rect.Left + 1, rect.Top + 1, rect.Width - 2, rect.Height - 2);
-                    g.DrawImage(BackgroundImage, imgRect.X, imgRect.Y, imgRect.Width, imgRect.Height);
-                g.SmoothingMode = SmoothingMode.AntiAlias;
+                var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
+                g.DrawImage(BackgroundImage, imgRect.X, imgRect.Y, imgRect.Width, imgRect.Height);
                 RoundRects.DrawRectangleCorners(g, new SolidBrush(ThemeProvider.Theme.Colors.LightBackground), rect, 4);
+                g.SmoothingMode = SmoothingMode.AntiAlias;
                 using (var b = new SolidBrush(overlayColor))
                 {
-                    RoundRects.FillRoundedRectangle(g, b, imgRect, 4);
+                    RoundRects.FillRoundedRectangle(g, b, modRect, 4);
                 }
             }
 
