@@ -9,6 +9,12 @@ namespace AltUI.Controls
 {
     public partial class DarkProgressBar : ProgressBar
     {
+        private string _text;
+        public override string Text
+        {
+            get { return _text; }
+            set { _text = value; Invalidate(); }
+        }
         public DarkProgressBar()
         {
             SetStyle(ControlStyles.UserPaint, true);
@@ -19,6 +25,7 @@ namespace AltUI.Controls
         {
             var g = e.Graphics;
             g.SmoothingMode = SmoothingMode.AntiAlias;
+            g.Clip = new Region(ClientRectangle);
             var modRect = new Rectangle(0, 0, Width - 1, Height - 1);
             using (var b = new SolidBrush(ThemeProvider.Theme.Colors.GreyBackground))
             {
@@ -50,6 +57,10 @@ namespace AltUI.Controls
                 g.DrawRoundedRectangle(p, modRect, 4);
             }
             base.OnPaint(e);
+            using (var p = new Pen(ThemeProvider.Theme.Colors.LightText))
+            {
+                g.DrawString(Text, Font, p.Brush, new Point(modRect.X + 2, modRect.Height / 2 - Font.Height / 2));
+            }
         }
         protected override void OnVisibleChanged(EventArgs e)
         {
