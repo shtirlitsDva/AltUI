@@ -71,19 +71,19 @@ namespace AltUI.Forms
 
         public static DialogResult ShowInformation(string message, string caption, DarkDialogButton buttons = DarkDialogButton.Ok)
         {
-            return ShowDialog(message, caption, DarkMessageBoxIcon.Information, buttons);
+            return ShowDialog(message, caption, ThemeProvider.LightMode ? DarkMessageBoxIcon.LInformation : DarkMessageBoxIcon.Information, buttons);
         }
 
         public static DialogResult ShowWarning(string message, string caption, DarkDialogButton buttons = DarkDialogButton.Ok)
         {
-            return ShowDialog(message, caption, DarkMessageBoxIcon.Warning, buttons);
+            return ShowDialog(message, caption, ThemeProvider.LightMode ? DarkMessageBoxIcon.LWarning : DarkMessageBoxIcon.Warning, buttons);
         }
 
         public static DialogResult ShowError(string message, string caption, DarkDialogButton buttons = DarkDialogButton.Ok)
         {
-            return ShowDialog(message, caption, DarkMessageBoxIcon.Error, buttons);
+            return ShowDialog(message, caption, ThemeProvider.LightMode ? DarkMessageBoxIcon.LError : DarkMessageBoxIcon.Error, buttons);
         }
-
+        
         public static DialogResult ShowMessage(string message, string caption, DarkDialogButton buttons = DarkDialogButton.Ok)
         {
             return ShowDialog(message, caption, DarkMessageBoxIcon.None, buttons);
@@ -126,6 +126,15 @@ namespace AltUI.Forms
                     break;
                 case DarkMessageBoxIcon.Custom:
                     picIcon.Image = customIcon;
+                    break;
+                case DarkMessageBoxIcon.LInformation:
+                    picIcon.Image = MessageBoxIcons.linfo;
+                    break;
+                case DarkMessageBoxIcon.LWarning:
+                    picIcon.Image = MessageBoxIcons.lwarning;
+                    break;
+                case DarkMessageBoxIcon.LError:
+                    picIcon.Image = MessageBoxIcons.lerror;
                     break;
             }
         }

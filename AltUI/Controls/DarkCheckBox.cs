@@ -13,7 +13,7 @@ namespace AltUI.Controls
         private DarkControlState _controlState = DarkControlState.Normal;
 
         private bool _spacePressed;
-        private int _offset = 0;
+        private int _offset = 1;
 
         #endregion
 

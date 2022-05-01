@@ -82,6 +82,9 @@
     <Compile Include="Controls\DarkRadioButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\DarkRichTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\DarkScrollOrientation.cs" />
     <Compile Include="Controls\DarkTitle.cs">
       <SubType>Component</SubType>
@@ -349,6 +352,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\scrollbar_arrow_small_standard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lerror.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\linfo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lwarning.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

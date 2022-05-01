@@ -6,6 +6,9 @@
         Information,
         Warning,
         Error,
-        Custom
+        Custom,
+        LInformation,
+        LWarning,
+        LError
     }
 }

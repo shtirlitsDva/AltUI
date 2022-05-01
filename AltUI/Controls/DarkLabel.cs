@@ -12,12 +12,12 @@ namespace AltUI.Controls
 
         private bool _autoUpdateHeight;
         private bool _isGrowing;
-        private bool _isEnabled = true;
+
+        private DarkControlState _controlState = DarkControlState.Normal;
 
         #endregion
 
         #region Property Region
-
         [Category("Layout")]
         [Description("Enables automatic height sizing based on the contents of the label.")]
         [DefaultValue(false)]
@@ -35,43 +35,10 @@ namespace AltUI.Controls
                 }
             }
         }
-
-        public new bool AutoSize
-        {
-            get { return base.AutoSize; }
-            set
-            {
-                base.AutoSize = value;
-
-                if (AutoSize)
-                    AutoUpdateHeight = false;
-            }
-        }
-        public new bool Enabled
-        {
-            get { return _isEnabled; }
-            set
-            {
-                _isEnabled = value;
-                ForeColor = _isEnabled ? ThemeProvider.Theme.Colors.LightText : ThemeProvider.Theme.Colors.DisabledText;
-                ResizeLabel();
-            }
-        }
-
         #endregion
+
 
         #region Constructor Region
-
-        public DarkLabel()
-        {
-            BackColor = Color.Transparent;
-            ForeColor = ThemeProvider.Theme.Colors.LightText;
-            ResizeRedraw = true;
-        }
-
-        #endregion
-
-        #region Method Region
 
         private void ResizeLabel()
         {
@@ -83,7 +50,7 @@ namespace AltUI.Controls
                 _isGrowing = true;
                 var sz = new Size(Width, int.MaxValue);
                 sz = TextRenderer.MeasureText(Text, Font, sz, TextFormatFlags.WordBreak);
-                Height = sz.Height + Padding.Vertical;
+                Height = sz.Height;
             }
             finally
             {
@@ -91,26 +58,58 @@ namespace AltUI.Controls
             }
         }
 
+                public DarkLabel()
+        {
+            SetStyle(ControlStyles.SupportsTransparentBackColor |
+                     ControlStyles.OptimizedDoubleBuffer |
+                     ControlStyles.ResizeRedraw |
+                     ControlStyles.UserPaint, true);
+        }
+
         #endregion
 
-        #region Event Handler Region
+        #region Method Region
 
-        protected override void OnTextChanged(EventArgs e)
+        private void SetControlState(DarkControlState controlState)
         {
-            base.OnTextChanged(e);
-            ResizeLabel();
+            if (_controlState != controlState)
+            {
+                _controlState = controlState;
+                Invalidate();
+            }
         }
 
-        protected override void OnFontChanged(EventArgs e)
-        {
-            base.OnFontChanged(e);
-            ResizeLabel();
-        }
+        #endregion
 
-        protected override void OnSizeChanged(EventArgs e)
+        #region Paint Region
+
+        protected override void OnPaint(PaintEventArgs e)
         {
-            base.OnSizeChanged(e);
-            ResizeLabel();
+            var g = e.Graphics;
+            var rect = new Rectangle(0, 0, ClientSize.Width, ClientSize.Height);
+
+            var textColor = ThemeProvider.Theme.Colors.LightText;
+
+            if (!Enabled)
+            {
+                textColor = ThemeProvider.Theme.Colors.DisabledText;
+            }
+
+            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.GreyBackground))
+            {
+                g.FillRectangle(b, rect);
+            }
+
+            using (var b = new SolidBrush(textColor))
+            {
+                var stringFormat = new StringFormat
+                {
+                    LineAlignment = StringAlignment.Center,
+                    Alignment = StringAlignment.Near
+                };
+                var modRect = new Rectangle(0, 0, rect.Width + 2, rect.Height);
+                g.DrawString(Text, Font, b, modRect, stringFormat);
+            }
         }
 
         #endregion

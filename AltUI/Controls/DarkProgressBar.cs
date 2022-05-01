@@ -67,6 +67,5 @@ namespace AltUI.Controls
             Invalidate();
             base.OnVisibleChanged(e);
         }
-        protected override void OnClick(EventArgs e) { }
     }
 }

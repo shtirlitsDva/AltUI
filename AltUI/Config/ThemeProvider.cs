@@ -26,7 +26,7 @@ namespace AltUI.Config
                 if (LightMode)
                 {
                     if (TransparencyMode & WindowsVersion >= 22000)
-                    { return Color.FromArgb(243, 243, 243); }
+                    { return Color.FromArgb(231, 231, 232); }
                     else { return Color.FromArgb(255, 255, 255); }
                 }
                 else if (TransparencyMode & WindowsVersion >= 22000)
@@ -81,12 +81,13 @@ namespace AltUI.Config
         private static int ColorToHex(Color c) => Convert.ToInt32($"{c.B:X2}{c.G:X2}{c.R:X2}", 16);
         [DllImport("DwmApi")]
         private static extern int DwmSetWindowAttribute(IntPtr hwnd, uint attr, int[] attrValue, int attrSize);
-        public static void SetupWindow(IntPtr Handle, int Corners)
+        public static void SetupWindow(IntPtr Handle, int Corners, bool CustomBorder = true)
         {
             var MSOTOI = Marshal.SizeOf(typeof(int));
             // Use rounded corners on 22000+
             DwmSetWindowAttribute(Handle, 33, new[] { Corners }, MSOTOI);
             // Set Window border to match control border
+            if (CustomBorder)
             DwmSetWindowAttribute(Handle, 34, new[] { ColorToHex(Theme.Colors.GreySelection) }, MSOTOI);
             // Set Window Caption to match background
             if (WindowsVersion < 22523 || !TransparencyMode)
@@ -100,7 +101,7 @@ namespace AltUI.Config
                 // Mica for below 22523
                 DwmSetWindowAttribute(Handle, 1029, new[] { 1 }, MSOTOI);
                 // Mica for 22523 and up
-                DwmSetWindowAttribute(Handle, 38, new[] { 2 }, MSOTOI);
+                DwmSetWindowAttribute(Handle, 38, new[] { LightMode ? 4 : 2 }, MSOTOI);
             }
         }
     }

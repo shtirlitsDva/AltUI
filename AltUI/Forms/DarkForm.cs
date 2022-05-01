@@ -10,21 +10,21 @@ namespace AltUI.Forms
     {
         #region Field Region
 
-        private bool _flatBorder;
+        private bool _customBorder;
 
         #endregion
 
         #region Property Region
 
         [Category("Appearance")]
-        [Description("Determines whether a single pixel border should be rendered around the form.")]
+        [Description("Determines whether the form's border should be set to the colour of a Control's border.")]
         [DefaultValue(false)]
-        public bool FlatBorder
+        public bool CustomBorder
         {
-            get { return _flatBorder; }
+            get { return _customBorder; }
             set
             {
-                _flatBorder = value;
+                _customBorder = value;
                 Invalidate();
             }
         }
@@ -40,33 +40,17 @@ namespace AltUI.Forms
 
         #endregion
 
-        #region Paint Region
-
-        protected override void OnPaintBackground(PaintEventArgs e)
-        {
-            base.OnPaintBackground(e);
-
-            if (!_flatBorder)
-                return;
-
-            var g = e.Graphics;
-
-            using (var p = new Pen(ThemeProvider.Theme.Colors.DarkBorder))
-            {
-                var modRect = new Rectangle(ClientRectangle.Location, new Size(ClientRectangle.Width - 1, ClientRectangle.Height - 1));
-                g.DrawRectangle(p, modRect);
-            }
-        }
-
-        #endregion
-
         protected override void OnHandleCreated(EventArgs e)
         {
-            ThemeProvider.SetupWindow(Handle, FormBorderStyle == FormBorderStyle.None ? 3 : 2);
+            ThemeProvider.SetupWindow(Handle, FormBorderStyle == FormBorderStyle.None ? 3 : 2, CustomBorder);
             if (ThemeProvider.TransparencyMode & ThemeProvider.WindowsVersion >= 22000)
             {
                 TransparencyKey = BackColor;
                 AllowTransparency = true;
+            }
+            else
+            {
+                AllowTransparency = false;
             }
         }
     }
