@@ -26,7 +26,7 @@ namespace AltUI.Controls
             var g = e.Graphics;
             g.SmoothingMode = SmoothingMode.AntiAlias;
             g.Clip = new Region(ClientRectangle);
-            var modRect = new Rectangle(0, 0, Width - 1, Height - 1);
+            var modRect = new Rectangle(0, 0, Width - 1, Height + 1);
             using (var b = new SolidBrush(ThemeProvider.Theme.Colors.GreyBackground))
             {
                 g.FillRectangle(b, ClientRectangle);
