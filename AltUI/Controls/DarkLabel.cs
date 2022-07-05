@@ -35,6 +35,7 @@ namespace AltUI.Controls
                 }
             }
         }
+
         #endregion
 
 
@@ -95,7 +96,7 @@ namespace AltUI.Controls
                 textColor = ThemeProvider.Theme.Colors.DisabledText;
             }
 
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.GreyBackground))
+            using (var b = new SolidBrush(BackColor))
             {
                 g.FillRectangle(b, rect);
             }
@@ -107,7 +108,7 @@ namespace AltUI.Controls
                     LineAlignment = StringAlignment.Center,
                     Alignment = StringAlignment.Near
                 };
-                var modRect = new Rectangle(0, 0, rect.Width + 2, rect.Height);
+                var modRect = new Rectangle(0, 0, rect.Width + (int)g.MeasureString("E", Font).Width, rect.Height);
                 g.DrawString(Text, Font, b, modRect, stringFormat);
             }
         }

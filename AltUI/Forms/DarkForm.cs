@@ -52,6 +52,7 @@ namespace AltUI.Forms
             {
                 AllowTransparency = false;
             }
+            base.OnHandleCreated(e);
         }
     }
 }
