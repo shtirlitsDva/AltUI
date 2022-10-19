@@ -9,6 +9,7 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWindowsForms>true</UseWindowsForms>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <Configurations>Debug;Release;Main</Configurations>
   </PropertyGroup>
   <ItemGroup>
     <Compile Update="Controls\DarkCheckBox.cs">
