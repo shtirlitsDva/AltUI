@@ -225,7 +225,7 @@ namespace AltUI.Controls
                     var y = rect.Height / 2 - 2;
                     g.SmoothingMode = SmoothingMode.AntiAlias;
                     g.DrawLine(p, x, y, x + 3, y +3);
-                    g.DrawLine(p, x + 4, y + 3, x + 7, y);
+                    g.DrawLine(p, x + 3, y + 3, x + 6, y);
                     g.SmoothingMode = SmoothingMode.None;
                 }
                 var text = SelectedItem != null ? SelectedItem.ToString() : Text;

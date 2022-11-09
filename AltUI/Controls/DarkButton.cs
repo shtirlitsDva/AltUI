@@ -20,7 +20,9 @@ namespace AltUI.Controls
         private bool _spacePressed;
         private bool _flatBottom;
         private bool _flatTop;
-        private bool _holdColour;
+        private bool _customColour;
+
+        private Color _borderColour;
 
         private int _padding = ThemeProvider.Theme.Sizes.Padding / 2;
         private int _imagePadding = 5; // ThemeProvider.Theme.Sizes.Padding / 2
@@ -31,7 +33,7 @@ namespace AltUI.Controls
 
         public new string Text
         {
-            get { return base.Text; }
+            get => base.Text;
             set
             {
                 base.Text = value;
@@ -41,7 +43,7 @@ namespace AltUI.Controls
 
         public new bool Enabled
         {
-            get { return base.Enabled; }
+            get => base.Enabled;
             set
             {
                 base.Enabled = value;
@@ -54,7 +56,7 @@ namespace AltUI.Controls
         [DefaultValue(DarkButtonStyle.Normal)]
         public DarkButtonStyle ButtonStyle
         {
-            get { return _style; }
+            get => _style;
             set
             {
                 _style = value;
@@ -67,7 +69,7 @@ namespace AltUI.Controls
         [DefaultValue(5)]
         public int ImagePadding
         {
-            get { return _imagePadding; }
+            get => _imagePadding;
             set
             {
                 _imagePadding = value;
@@ -80,7 +82,7 @@ namespace AltUI.Controls
         [DefaultValue(5)]
         public bool FlatTop
         {
-            get { return _flatTop; }
+            get => _flatTop;
             set
             {
                 _flatTop = value;
@@ -93,7 +95,7 @@ namespace AltUI.Controls
         [DefaultValue(5)]
         public bool FlatBottom
         {
-            get { return _flatBottom; }
+            get => _flatBottom;
             set
             {
                 _flatBottom = value;
@@ -102,14 +104,27 @@ namespace AltUI.Controls
         }
 
         [Category("Appearance")]
-        [Description("Determines whether or not the button has a coloured border.")]
+        [Description("Determines whether or not the button has a custom coloured border.")]
         [DefaultValue(5)]
-        public bool HoldColour
+        public bool CustomColour
         {
-            get { return _holdColour; }
+            get => _customColour;
             set
             {
-                _holdColour = value;
+                _customColour = value;
+                Invalidate();
+            }
+        }
+
+        [Category("Appearance")]
+        [Description("Determines whether or not the button has a coloured border.")]
+        [DefaultValue(5)]
+        public Color BorderColour
+        {
+            get => _borderColour;
+            set
+            {
+                _borderColour = value;
                 Invalidate();
             }
         }
@@ -120,59 +135,35 @@ namespace AltUI.Controls
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new bool AutoEllipsis
-        {
-            get { return false; }
-        }
+        public new bool AutoEllipsis => false;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public DarkControlState ButtonState
-        {
-            get { return _buttonState; }
-        }
+        public DarkControlState ButtonState => _buttonState;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new ContentAlignment ImageAlign
-        {
-            get { return base.ImageAlign; }
-        }
+        public new ContentAlignment ImageAlign => base.ImageAlign;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new bool FlatAppearance
-        {
-            get { return false; }
-        }
+        public new bool FlatAppearance => false;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new FlatStyle FlatStyle
-        {
-            get { return base.FlatStyle; }
-        }
+        public new FlatStyle FlatStyle => base.FlatStyle;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new ContentAlignment TextAlign
-        {
-            get { return base.TextAlign; }
-        }
+        public new ContentAlignment TextAlign => base.TextAlign;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new bool UseCompatibleTextRendering
-        {
-            get { return false; }
-        }
+        public new bool UseCompatibleTextRendering => false;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new bool UseVisualStyleBackColor
-        {
-            get { return false; }
-        }
+        public new bool UseVisualStyleBackColor => false;
 
         #endregion
 
@@ -353,16 +344,16 @@ namespace AltUI.Controls
             var rect = new Rectangle(0, 0, ClientSize.Width, ClientSize.Height);
 
             var textColor = ThemeProvider.Theme.Colors.LightText;
-            var borderColor = ThemeProvider.Theme.Colors.GreySelection;
+            var borderColor =  ThemeProvider.Theme.Colors.GreySelection;
             var fillColor = ThemeProvider.Theme.Colors.LightBackground;
             var overlayColor = Color.Transparent;
 
             if (Enabled)
             {
-                if (Focused && TabStop || _holdColour)
+                if (Focused && TabStop || _customColour)
                 {
                     BringToFront();
-                    borderColor = ThemeProvider.Theme.Colors.BlueHighlight;
+                    borderColor = _customColour ? _borderColour : ThemeProvider.Theme.Colors.BlueHighlight;
                 }
 
                 if (ButtonStyle == DarkButtonStyle.Normal)
