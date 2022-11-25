@@ -1,11 +1,11 @@
-﻿using AltUI.Config;
-using AltUI.Icons;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using AltUI.Config;
+using AltUI.Icons;
 
 namespace AltUI.Controls
 {
@@ -25,7 +25,7 @@ namespace AltUI.Controls
         private DarkDropdownItem _selectedItem;
 
         private DarkContextMenu _menu = new DarkContextMenu();
-        private bool _menuOpen = false;
+        private bool _menuOpen;
 
         private bool _showBorder = true;
 

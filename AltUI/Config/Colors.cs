@@ -46,5 +46,6 @@ namespace AltUI.Config
 
         public Color ActiveControl { get; set; }
 
+        public Color OpaqueBackground { get; set; }
     }
 }

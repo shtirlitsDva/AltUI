@@ -1,8 +1,7 @@
 ﻿using System;
-using AltUI.Config;
 using System.ComponentModel;
-using System.Drawing;
 using System.Windows.Forms;
+using AltUI.Config;
 
 namespace AltUI.Forms
 {

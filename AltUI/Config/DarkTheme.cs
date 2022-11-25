@@ -16,7 +16,7 @@ namespace AltUI.Config
             Colors.DarkBlueBackground = Color.FromArgb(52, 57, 66);
             Colors.DarkBackground = Color.FromArgb(47, 47, 47); // Control Clicked
             Colors.MediumBackground = Color.FromArgb(49, 51, 53);
-            Colors.LightBackground = Color.FromArgb(26, 26, 29); // Control Colour
+            Colors.LightBackground = Color.FromArgb(26, 26, 28); // Control Colour
             Colors.LighterBackground = Color.FromArgb(33, 33, 37); // Control Hover
             Colors.LightestBackground = Color.FromArgb(230, 230, 230);
             Colors.LightBorder = Color.FromArgb(81, 81, 81);
@@ -26,11 +26,12 @@ namespace AltUI.Config
             Colors.BlueHighlight = ThemeProvider.GetAccentColor(50); // Blue Borders
             Colors.BlueSelection = ThemeProvider.GetAccentColor(0); // DropDown Selection
             Colors.GreyHighlight = Color.FromArgb(146, 146, 146); // ComboBox Arrow
-            Colors.GreySelection = Color.FromArgb(47, 47, 55); // Control Border
+            Colors.GreySelection = Color.FromArgb(48, 48, 52); // Control Border
             Colors.DarkGreySelection = Color.FromArgb(82, 82, 82);
             Colors.DarkBlueBorder = Color.FromArgb(51, 61, 78);
             Colors.LightBlueBorder = Color.FromArgb(86, 97, 114);
             Colors.ActiveControl = Color.FromArgb(159, 178, 196);
+            Colors.OpaqueBackground = Color.FromArgb(28, 28, 30);
 
             Sizes.Padding = 10;
             Sizes.ScrollBarSize = 15;

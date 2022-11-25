@@ -1,5 +1,4 @@
-﻿using AltUI.Config;
-using System;
+﻿using System;
 using System.Drawing;
 
 namespace AltUI.Controls

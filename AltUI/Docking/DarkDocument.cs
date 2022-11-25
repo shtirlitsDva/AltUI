@@ -1,5 +1,5 @@
-﻿using AltUI.Config;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using AltUI.Config;
 
 namespace AltUI.Docking
 {

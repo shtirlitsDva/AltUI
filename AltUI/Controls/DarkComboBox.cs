@@ -1,9 +1,9 @@
-﻿using AltUI.Config;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using AltUI.Config;
 
 namespace AltUI.Controls
 {
@@ -53,7 +53,7 @@ namespace AltUI.Controls
 
         private bool hover;
 
-        public DarkComboBox() : base()
+        public DarkComboBox()
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer |
                      ControlStyles.ResizeRedraw |
@@ -208,7 +208,7 @@ namespace AltUI.Controls
                 {
                     var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
                     g.SmoothingMode = SmoothingMode.AntiAlias;
-                    RoundRects.FillRoundedRectangle(g, b, modRect, 4, clicked, 1);
+                    g.FillRoundedRectangle(b, modRect, 4, clicked, 1);
                     g.SmoothingMode = SmoothingMode.None;
                 }
 
@@ -216,7 +216,7 @@ namespace AltUI.Controls
                 {
                     var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
                     g.SmoothingMode = SmoothingMode.AntiAlias;
-                    RoundRects.DrawRoundedRectangle(g, p, modRect, 4, clicked, 1);
+                    g.DrawRoundedRectangle(p, modRect, 4, clicked, 1);
                     g.SmoothingMode = SmoothingMode.None;
                 }
                 using (var p = new Pen(arrowColour, 1))

@@ -1,6 +1,6 @@
-﻿using AltUI.Collections;
-using System;
+﻿using System;
 using System.Drawing;
+using AltUI.Collections;
 
 namespace AltUI.Controls
 {
@@ -68,7 +68,7 @@ namespace AltUI.Controls
                 if (_expanded == value)
                     return;
 
-                if (value == true && Nodes.Count == 0)
+                if (value && Nodes.Count == 0)
                     return;
 
                 _expanded = value;

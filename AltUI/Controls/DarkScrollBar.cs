@@ -1,9 +1,9 @@
-﻿using AltUI.Config;
-using AltUI.Icons;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using AltUI.Config;
+using AltUI.Icons;
 
 namespace AltUI.Controls
 {
@@ -20,7 +20,7 @@ namespace AltUI.Controls
         private DarkScrollOrientation _scrollOrientation;
 
         private int _value;
-        private int _minimum = 0;
+        private int _minimum;
         private int _maximum = 100;
 
         private int _viewSize;
@@ -248,7 +248,6 @@ namespace AltUI.Controls
                     _initialValue = _thumbArea.Left;
 
                 Invalidate();
-                return;
             }
         }
 
@@ -362,7 +361,7 @@ namespace AltUI.Controls
 
             var trackAreaSize = isVert ? _trackArea.Height - _thumbArea.Height : _trackArea.Width - _thumbArea.Width;
 
-            var positionRatio = (float)positionInPixels / (float)trackAreaSize;
+            var positionRatio = positionInPixels / (float)trackAreaSize;
             var viewScrollSize = (Maximum - ViewSize);
 
             var newValue = (int)(positionRatio * viewScrollSize);
@@ -429,9 +428,9 @@ namespace AltUI.Controls
                 Value = maximumValue;
 
             // Calculate size ratio
-            _viewContentRatio = (float)ViewSize / (float)Maximum;
+            _viewContentRatio = ViewSize / (float)Maximum;
             var viewAreaSize = Maximum - ViewSize;
-            var positionRatio = (float)Value / (float)viewAreaSize;
+            var positionRatio = Value / (float)viewAreaSize;
 
             // Update area
             if (_scrollOrientation == DarkScrollOrientation.Vertical)

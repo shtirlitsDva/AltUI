@@ -1,8 +1,8 @@
-﻿using AltUI.Config;
+﻿using System.Drawing;
+using System.Windows.Forms;
+using AltUI.Config;
 using AltUI.Extensions;
 using AltUI.Icons;
-using System.Drawing;
-using System.Windows.Forms;
 
 namespace AltUI.Renderers
 {

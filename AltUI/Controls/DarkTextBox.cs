@@ -1,5 +1,5 @@
-﻿using AltUI.Config;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using AltUI.Config;
 
 namespace AltUI.Controls
 {

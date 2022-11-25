@@ -1,13 +1,12 @@
-using AltUI.Config;
 using System;
-using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using AltUI.Config;
 
 namespace AltUI.Controls
 {
-    public partial class DarkProgressBar : ProgressBar
+    public class DarkProgressBar : ProgressBar
     {
         private string _text;
         public override string Text

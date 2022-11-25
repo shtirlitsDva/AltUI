@@ -1,11 +1,11 @@
-﻿using AltUI.Config;
-using AltUI.Icons;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using AltUI.Config;
+using AltUI.Icons;
 
 namespace AltUI.Docking
 {
@@ -20,7 +20,7 @@ namespace AltUI.Docking
 
         private DarkDockTabArea _tabArea;
 
-        private DarkDockTab _dragTab = null;
+        private DarkDockTab _dragTab;
 
         #endregion
 
@@ -526,15 +526,13 @@ namespace AltUI.Docking
                         _tabArea.ClickedCloseButton = tab;
                         return;
                     }
-                    else
-                    {
-                        DockPanel.ActiveContent = tab.DockContent;
-                        EnsureVisible();
 
-                        _dragTab = tab;
+                    DockPanel.ActiveContent = tab.DockContent;
+                    EnsureVisible();
 
-                        return;
-                    }
+                    _dragTab = tab;
+
+                    return;
                 }
             }
 

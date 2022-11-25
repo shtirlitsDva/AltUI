@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace AltUI.Config
+﻿namespace AltUI.Config
 {
     public interface ITheme
     {

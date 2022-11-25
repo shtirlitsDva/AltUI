@@ -1,9 +1,9 @@
-﻿using AltUI.Config;
-using System;
-using System.Drawing;
-using System.Windows.Forms;
-using System.Drawing.Drawing2D;
+﻿using System;
 using System.ComponentModel;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Windows.Forms;
+using AltUI.Config;
 
 namespace AltUI.Controls
 {
@@ -63,7 +63,7 @@ namespace AltUI.Controls
                 g.SmoothingMode = SmoothingMode.AntiAlias;
                 if (_opaqueBackground)
                     g.FillRoundedRectangle(new SolidBrush(ThemeProvider.Theme.Colors.LightBackground), borderRect, 4);
-                RoundRects.DrawRoundedRectangle(g, p, borderRect, 4);
+                g.DrawRoundedRectangle(p, borderRect, 4);
                 g.SmoothingMode = SmoothingMode.None;
             }
 

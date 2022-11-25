@@ -1,5 +1,5 @@
-﻿using AltUI.Renderers;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using AltUI.Renderers;
 
 namespace AltUI.Controls
 {

@@ -1,9 +1,6 @@
-using AltUI.Config;
-using System;
 using System.ComponentModel;
-using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using AltUI.Config;
 
 namespace AltUI.Controls
 {
@@ -11,7 +8,7 @@ namespace AltUI.Controls
     {
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new bool HasFocus
+        public bool HasFocus
         {
             get { return Focused; }
         }

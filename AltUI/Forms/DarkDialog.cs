@@ -1,7 +1,8 @@
-﻿using AltUI.Controls;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
+using AltUI.Controls;
 
 namespace AltUI.Forms
 {
@@ -83,7 +84,7 @@ namespace AltUI.Forms
 
         #region Event Handler Region
 
-        protected override void OnLoad(System.EventArgs e)
+        protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
 

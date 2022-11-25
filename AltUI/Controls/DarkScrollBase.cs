@@ -1,8 +1,8 @@
-﻿using AltUI.Config;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using AltUI.Config;
 
 namespace AltUI.Controls
 {
@@ -27,7 +27,7 @@ namespace AltUI.Controls
 
         private Point _offsetMousePosition;
 
-        private int _maxDragChange = 0;
+        private int _maxDragChange;
         private Timer _dragTimer;
 
         private bool _hideScrollBars = true;

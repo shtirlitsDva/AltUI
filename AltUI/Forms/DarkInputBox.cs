@@ -1,19 +1,19 @@
-using AltUI.Config;
-using AltUI.Icons;
 using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using AltUI.Config;
+using AltUI.Controls;
 
 namespace AltUI.Forms
 {
-    public partial class DarkInputBox : DarkDialog
+    public class DarkInputBox : DarkDialog
     {
         #region Field Region
 
         private string _message;
-        private Controls.DarkLabel lblText;
-        private Controls.DarkTextBox inputTextBox;
+        private DarkLabel lblText;
+        private DarkTextBox inputTextBox;
         private int _maximumWidth = 350;
 
         #endregion
@@ -140,8 +140,8 @@ namespace AltUI.Forms
 
         private void InitializeComponent()
         {
-            lblText = new Controls.DarkLabel();
-            inputTextBox = new Controls.DarkTextBox();
+            lblText = new DarkLabel();
+            inputTextBox = new DarkTextBox();
             SuspendLayout();
             // 
             // DarkInputBox

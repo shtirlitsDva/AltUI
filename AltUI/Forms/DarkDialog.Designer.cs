@@ -1,4 +1,6 @@
-﻿using AltUI.Controls;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using AltUI.Controls;
 
 namespace AltUI.Forms
 {
@@ -7,7 +9,7 @@ namespace AltUI.Forms
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -174,7 +176,7 @@ namespace AltUI.Forms
 
         #endregion
 
-        private System.Windows.Forms.Panel pnlFooter;
-        private System.Windows.Forms.FlowLayoutPanel flowInner;
+        private Panel pnlFooter;
+        private FlowLayoutPanel flowInner;
     }
 }

@@ -1,8 +1,9 @@
-﻿using AltUI.Config;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using AltUI.Config;
 
 namespace AltUI.Controls
 {
@@ -333,27 +334,27 @@ namespace AltUI.Controls
             using (var b = new SolidBrush(ThemeProvider.Theme.Colors.LightBackground))
             {
                 var boxRect = new Rectangle(0, (rect.Height / 2) - (size / 2), size, size);
-                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                RoundRects.FillRoundedRectangle(g, b, boxRect, 2, false);
-                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                g.FillRoundedRectangle(b, boxRect, 2);
+                g.SmoothingMode = SmoothingMode.None;
             }
 
             using (var p = new Pen(borderColor))
             {
                 var boxRect = new Rectangle(0, (rect.Height / 2) - (size / 2), size, size);
-                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                RoundRects.DrawRoundedRectangle(g, p, boxRect, 2, false);
-                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                g.DrawRoundedRectangle(p, boxRect, 2);
+                g.SmoothingMode = SmoothingMode.None;
             }
 
             if (Checked)
             {
                 using (var p = new Pen(fillColor, 1))
                 {
-                    g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                    g.SmoothingMode = SmoothingMode.AntiAlias;
                     g.DrawLine(p, 3, 10 - _offset, 5, 13 - _offset);
                     g.DrawLine(p, 5, 13 - _offset, 9, 7 - _offset);
-                    g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
+                    g.SmoothingMode = SmoothingMode.None;
                 }
             }
 

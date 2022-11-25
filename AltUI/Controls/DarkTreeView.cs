@@ -1,9 +1,4 @@
-﻿using AltUI.Collections;
-using AltUI.Config;
-using AltUI.Extensions;
-using AltUI.Forms;
-using AltUI.Icons;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -11,6 +6,11 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using AltUI.Collections;
+using AltUI.Config;
+using AltUI.Extensions;
+using AltUI.Forms;
+using AltUI.Icons;
 
 namespace AltUI.Controls
 {
@@ -767,7 +767,8 @@ namespace AltUI.Controls
 
                         return;
                     }
-                    else if (button == MouseButtons.Right)
+
+                    if (button == MouseButtons.Right)
                     {
                         if (MultiSelect && ModifierKeys == Keys.Shift)
                             return;

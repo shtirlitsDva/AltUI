@@ -1,7 +1,7 @@
-﻿using AltUI.Forms;
-using System;
+﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using AltUI.Forms;
 
 namespace AltUI.Docking
 {

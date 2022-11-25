@@ -1,10 +1,10 @@
-﻿using AltUI.Config;
-using AltUI.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
+using AltUI.Config;
+using AltUI.Win32;
 
 namespace AltUI.Docking
 {
@@ -24,7 +24,7 @@ namespace AltUI.Docking
         private Dictionary<DarkDockArea, DarkDockRegion> _regions;
 
         private DarkDockContent _activeContent;
-        private bool _switchingContent = false;
+        private bool _switchingContent;
 
         #endregion
 

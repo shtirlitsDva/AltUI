@@ -1,9 +1,9 @@
-﻿using AltUI.Config;
-using AltUI.Icons;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using AltUI.Config;
+using AltUI.Icons;
 
 namespace AltUI.Docking
 {
@@ -13,8 +13,8 @@ namespace AltUI.Docking
         #region Field Region
 
         private Rectangle _closeButtonRect;
-        private bool _closeButtonHot = false;
-        private bool _closeButtonPressed = false;
+        private bool _closeButtonHot;
+        private bool _closeButtonPressed;
 
         private Rectangle _headerRect;
         private bool _shouldDrag;
@@ -111,7 +111,6 @@ namespace AltUI.Docking
                 if (_shouldDrag)
                 {
                     DockPanel.DragContent(this);
-                    return;
                 }
             }
         }
@@ -131,7 +130,6 @@ namespace AltUI.Docking
             if (_headerRect.Contains(e.Location))
             {
                 _shouldDrag = true;
-                return;
             }
         }
 

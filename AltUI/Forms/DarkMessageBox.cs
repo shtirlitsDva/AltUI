@@ -1,9 +1,9 @@
-﻿using AltUI.Config;
-using AltUI.Icons;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using AltUI.Config;
+using AltUI.Icons;
 
 namespace AltUI.Forms
 {

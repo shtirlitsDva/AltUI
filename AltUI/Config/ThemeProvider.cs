@@ -1,8 +1,8 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
+using Microsoft.Win32;
 
 namespace AltUI.Config
 {
@@ -27,11 +27,14 @@ namespace AltUI.Config
                 {
                     if (TransparencyMode & WindowsVersion >= 22000)
                     { return Color.FromArgb(231, 231, 232); }
-                    else { return Color.FromArgb(255, 255, 255); }
+
+                    return Color.FromArgb(255, 255, 255);
                 }
-                else if (TransparencyMode & WindowsVersion >= 22000)
+
+                if (TransparencyMode & WindowsVersion >= 22000)
                 { return Color.FromArgb(31, 31, 32); }
-                else { return Color.FromArgb(16, 16, 17); }
+
+                return Color.FromArgb(16, 16, 17);
 
             }
         }
@@ -42,13 +45,10 @@ namespace AltUI.Config
             {
                 return ParseDWordColor(AccentColour, brighten);
             }
-            else
-            {
-                if (brighten != 0)
-                    return Color.FromArgb(0, 120, 215);
-                else
-                    return Color.FromArgb(30, 71, 112);
-            }
+
+            if (brighten != 0)
+                return Color.FromArgb(0, 120, 215);
+            return Color.FromArgb(30, 71, 112);
         }
         private static Color ParseDWordColor(int color, int brighten)
         {

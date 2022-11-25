@@ -1,9 +1,9 @@
-﻿using AltUI.Config;
-using AltUI.Docking;
-using AltUI.Forms;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using AltUI.Config;
+using AltUI.Docking;
+using AltUI.Forms;
 
 namespace AltUI.Win32
 {
@@ -17,7 +17,7 @@ namespace AltUI.Win32
 
         private DarkTranslucentForm _highlightForm;
 
-        private bool _isDragging = false;
+        private bool _isDragging;
         private DarkDockRegion _targetRegion;
         private DarkDockGroup _targetGroup;
         private DockInsertType _insertType = DockInsertType.None;

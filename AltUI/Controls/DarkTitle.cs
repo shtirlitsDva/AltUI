@@ -1,15 +1,12 @@
-﻿using AltUI.Config;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
+using AltUI.Config;
 
 namespace AltUI.Controls
 {
     public class DarkTitle : Label
     {
         #region Constructor Region
-
-        public DarkTitle()
-        { }
 
         #endregion
 

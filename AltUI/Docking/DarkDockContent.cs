@@ -88,7 +88,7 @@ namespace AltUI.Docking
 
         public DarkDockContent()
         {
-            BackColor = System.Drawing.Color.Transparent;// ThemeProvider.Theme.Colors.GreyBackground;
+            BackColor = Color.Transparent;// ThemeProvider.Theme.Colors.GreyBackground;
         }
 
         #endregion
