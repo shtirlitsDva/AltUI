@@ -78,7 +78,7 @@ namespace AltUI.Config
                 theme = value;
             }
         }
-        private static int ColorToHex(Color c) => Convert.ToInt32($"{c.B:X2}{c.G:X2}{c.R:X2}", 16);
+        private static int ToColorRef(this Color c) => Convert.ToInt32($"{c.B:X2}{c.G:X2}{c.R:X2}", 16);
         [DllImport("DwmApi")]
         private static extern int DwmSetWindowAttribute(IntPtr hwnd, uint attr, int[] attrValue, int attrSize);
         public static void SetupWindow(IntPtr Handle, int Corners, bool CustomBorder = true)
@@ -88,12 +88,12 @@ namespace AltUI.Config
             DwmSetWindowAttribute(Handle, 33, new[] { Corners }, MSOTOI);
             // Set Window border to match control border
             if (CustomBorder)
-            DwmSetWindowAttribute(Handle, 34, new[] { ColorToHex(Theme.Colors.GreySelection) }, MSOTOI);
+            DwmSetWindowAttribute(Handle, 34, new[] { Theme.Colors.GreySelection.ToColorRef() }, MSOTOI);
             // Set Window Caption to match background
             if (WindowsVersion < 22523 || !TransparencyMode)
-                DwmSetWindowAttribute(Handle, 35, new[] { ColorToHex(Theme.Colors.GreyBackground) }, MSOTOI);
+                DwmSetWindowAttribute(Handle, 35, new[] { Theme.Colors.GreyBackground.ToColorRef() }, MSOTOI);
             // Set Titlebar Font to match Theme
-            DwmSetWindowAttribute(Handle, 36, new[] { ColorToHex(Theme.Colors.LightText) }, MSOTOI);
+            DwmSetWindowAttribute(Handle, 36, new[] { Theme.Colors.LightText.ToColorRef() }, MSOTOI);
             // Apply immersive dark mode if it's used by system
             DwmSetWindowAttribute(Handle, 20, new[] { LightMode ? 0 : 1 }, MSOTOI);
             if (TransparencyMode & WindowsVersion >= 22000)

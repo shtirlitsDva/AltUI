@@ -10,7 +10,8 @@ namespace AltUI.Forms
         #region Field Region
 
         private bool _customBorder;
-
+        private CornerPreference _cornerPreference;
+        public enum CornerPreference { Default, Square, Round, SlightRound }
         #endregion
 
         #region Property Region
@@ -20,10 +21,23 @@ namespace AltUI.Forms
         [DefaultValue(false)]
         public bool CustomBorder
         {
-            get { return _customBorder; }
+            get => _customBorder;
             set
             {
                 _customBorder = value;
+                Invalidate();
+            }
+        }
+
+        [Category("Appearance")]
+        [Description("Determines the \"roundness\" of corners.")]
+        [DefaultValue(0)]
+        public CornerPreference CornerStyle
+        {
+            get => _cornerPreference;
+            set
+            {
+                _cornerPreference = value;
                 Invalidate();
             }
         }
@@ -41,7 +55,9 @@ namespace AltUI.Forms
 
         protected override void OnHandleCreated(EventArgs e)
         {
-            ThemeProvider.SetupWindow(Handle, FormBorderStyle == FormBorderStyle.None ? 3 : 2, CustomBorder);
+            var cp = _cornerPreference;
+            if (cp == 0) { cp = FormBorderStyle == FormBorderStyle.None ? CornerPreference.SlightRound : CornerPreference.Round; }
+            ThemeProvider.SetupWindow(Handle, (int) cp, CustomBorder);
             if (ThemeProvider.TransparencyMode & ThemeProvider.WindowsVersion >= 22000)
             {
                 TransparencyKey = BackColor;
