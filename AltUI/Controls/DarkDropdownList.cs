@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -24,7 +24,7 @@ namespace AltUI.Controls
         private ObservableCollection<DarkDropdownItem> _items = new ObservableCollection<DarkDropdownItem>();
         private DarkDropdownItem _selectedItem;
 
-        private DarkContextMenu _menu = new DarkContextMenu();
+        private DarkContextMenu _menu = new();
         private bool _menuOpen;
 
         private bool _showBorder = true;

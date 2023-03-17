@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
@@ -110,9 +110,9 @@ namespace AltUI.Config
         public static GraphicsPath RoundedRect(Rectangle bounds, int radius, bool flatBottom = false, int bottomOffset = 0, bool flatTop = false)
         {
             int diameter = radius * 2;
-            Size size = new Size(diameter, diameter);
-            Rectangle arc = new Rectangle(bounds.Location, size);
-            GraphicsPath path = new GraphicsPath();
+            Size size = new(diameter, diameter);
+            Rectangle arc = new(bounds.Location, size);
+            GraphicsPath path = new();
 
             if (radius == 0 || flatBottom && flatTop)
             {
@@ -122,8 +122,8 @@ namespace AltUI.Config
             if (flatTop)
             {
                 // top
-                PointF tr = new PointF(bounds.Right, bounds.Top);
-                PointF tl = new PointF(bounds.Left, bounds.Top);
+                PointF tr = new(bounds.Right, bounds.Top);
+                PointF tl = new(bounds.Left, bounds.Top);
                 path.AddLine(tl,tr);
                 arc.X = bounds.Right - diameter;
             }
@@ -139,8 +139,8 @@ namespace AltUI.Config
             if (flatBottom)
             {
                 // bottom line
-                PointF br = new PointF(bounds.Right, bounds.Bottom + bottomOffset);
-                PointF bl = new PointF(bounds.Left, bounds.Bottom + bottomOffset);
+                PointF br = new(bounds.Right, bounds.Bottom + bottomOffset);
+                PointF bl = new(bounds.Left, bounds.Bottom + bottomOffset);
                 path.AddLine(br, bl);
             }
             else
@@ -196,9 +196,9 @@ namespace AltUI.Config
         
         public static void DrawCustomBorder(this Graphics graphics, Rectangle bounds, int cornerRadius)
         {
-            SolidBrush brush = new SolidBrush(ThemeProvider.Theme.Colors.GreyBackground);
-            Pen pen1 = new Pen(ThemeProvider.Theme.Colors.GreyBackground);
-            Pen pen2 = new Pen(ThemeProvider.Theme.Colors.GreySelection);
+            SolidBrush brush = new(ThemeProvider.Theme.Colors.GreyBackground);
+            Pen pen1 = new(ThemeProvider.Theme.Colors.GreyBackground);
+            Pen pen2 = new(ThemeProvider.Theme.Colors.GreySelection);
             bounds.Width--;
             bounds.Height--;
             graphics.SmoothingMode = SmoothingMode.None;
