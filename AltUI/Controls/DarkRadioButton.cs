@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -295,7 +295,7 @@ namespace AltUI.Controls
             {
                 using (var b = new SolidBrush(fillColor))
                 {
-                    Rectangle boxRect = new Rectangle(3, (rect.Height / 2) - ((size - 7) / 2) - 1, size - 6, size - 6);
+                    Rectangle boxRect = new(3, (rect.Height / 2) - ((size - 7) / 2) - 1, size - 6, size - 6);
                     g.FillEllipse(b, boxRect);
                 }
             }

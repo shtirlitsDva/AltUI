@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using AltUI.Controls;
@@ -12,7 +12,7 @@ namespace AltUI.Docking
         private Dictionary<DarkDockContent, DarkDockTab> _tabs = new Dictionary<DarkDockContent, DarkDockTab>();
 
         private List<ToolStripMenuItem> _menuItems = new List<ToolStripMenuItem>();
-        private DarkContextMenu _tabMenu = new DarkContextMenu();
+        private DarkContextMenu _tabMenu = new();
 
         #endregion
 
