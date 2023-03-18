@@ -1387,10 +1387,8 @@ namespace AltUI.ColorPicker
                 }
 
                 // HACK: Inflating the brush rectangle by 1 seems to get rid of a odd issue where the last color is drawn on the first pixel
-                using LinearGradientBrush brush = new LinearGradientBrush(Rectangle.Inflate(_barBounds, 1, 1), Color.Empty, Color.Empty, angle, false)
-                {
-                    InterpolationColors = blend
-                };
+                using LinearGradientBrush brush = new(Rectangle.Inflate(_barBounds, 1, 1), Color.Empty, Color.Empty, angle, false)
+{InterpolationColors = blend};
                 var rect = _barBounds with { Width = BarBounds.Width - 1, Height = BarBounds.Height - 1 };
                 e.Graphics.FillRoundedRectangle(brush, rect, 4);
             }
@@ -1532,7 +1530,7 @@ namespace AltUI.ColorPicker
                 g.FillPolygon(brush, outer);
             }
 
-            using (Pen pen = new Pen(_nubOutlineColor))
+            using (Pen pen = new(_nubOutlineColor))
             {
                 g.DrawPolygon(pen, outer);
             }

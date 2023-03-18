@@ -129,8 +129,8 @@ namespace AltUI.Config
             if (flatTop)
             {
                 // top
-                PointF tr = new PointF(bounds.Right, bounds.Top);
-                PointF tl = new PointF(bounds.Left, bounds.Top);
+                PointF tr = new(bounds.Right, bounds.Top);
+                PointF tl = new(bounds.Left, bounds.Top);
                 path.AddLine(tl, tr);
 
                 arc.X = bounds.Right - diameter;
@@ -184,8 +184,8 @@ namespace AltUI.Config
                 throw new ArgumentNullException("pen");
 
             int diameter = cornerRadius * 2;
-            Size size = new Size(diameter, diameter);
-            Rectangle arc = new Rectangle(bounds.Location, size);
+            Size size = new(diameter, diameter);
+            Rectangle arc = new(bounds.Location, size);
 
             if (cornerRadius == 0)
             {

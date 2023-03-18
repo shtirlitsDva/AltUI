@@ -243,11 +243,8 @@ namespace  AltUI.ColorPicker
     {
       e.Cancel = true;
 
-      using ColorDialog dialog = new ColorDialog
-      {
-          FullOpen = true,
-          Color = e.Color
-      };
+      using ColorDialog dialog = new()
+{FullOpen = true, Color = e.Color};
       if (dialog.ShowDialog(this) == DialogResult.OK)
       {
           colorGrid.Colors[e.ColorIndex] = dialog.Color;
