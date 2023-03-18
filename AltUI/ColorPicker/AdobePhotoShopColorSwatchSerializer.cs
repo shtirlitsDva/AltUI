@@ -36,7 +36,7 @@ namespace AltUI.ColorPicker
     /// <value>The default extension for files generated with this palette format.</value>
     public override string DefaultExtension
     {
-      get { return "aco"; }
+      get => "aco";
     }
 
     /// <summary>
@@ -45,7 +45,7 @@ namespace AltUI.ColorPicker
     /// <value>The descriptive name of the palette format.</value>
     public override string Name
     {
-      get { return "Adobe Photoshop Color Swatch"; }
+      get => "Adobe Photoshop Color Swatch";
     }
 
     #endregion

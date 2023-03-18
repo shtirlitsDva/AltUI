@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -22,7 +22,7 @@ namespace AltUI.Controls
         [DefaultValue(false)]
         public bool OpaqueBackground
         {
-            get { return _opaqueBackground; }
+            get => _opaqueBackground;
             set
             {
                 _opaqueBackground = value;

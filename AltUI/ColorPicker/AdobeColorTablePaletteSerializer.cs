@@ -32,7 +32,7 @@ namespace AltUI.ColorPicker
     /// <value>The default extension for files generated with this palette format.</value>
     public override string DefaultExtension
     {
-      get { return "act"; }
+      get => "act";
     }
 
     /// <summary>
@@ -43,7 +43,7 @@ namespace AltUI.ColorPicker
     /// </value>
     public override int Maximum
     {
-      get { return 256; }
+      get => 256;
     }
 
     /// <summary>
@@ -54,7 +54,7 @@ namespace AltUI.ColorPicker
     /// </value>
     public override int Minimum
     {
-      get { return 1; }
+      get => 1;
     }
 
     /// <summary>
@@ -63,10 +63,7 @@ namespace AltUI.ColorPicker
     /// <value>The descriptive name of the palette format.</value>
     public override string Name
     {
-      get
-      {
-        return "Adobe Color Table";
-      }
+      get => "Adobe Color Table";
     }
 
     #endregion
