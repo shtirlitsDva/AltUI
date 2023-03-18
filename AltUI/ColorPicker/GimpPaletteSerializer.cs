@@ -27,7 +27,7 @@ namespace AltUI.ColorPicker
     /// <value>The default extension for files generated with this palette format.</value>
     public override string DefaultExtension
     {
-      get { return "gpl"; }
+      get => "gpl";
     }
 
     /// <summary>
@@ -36,7 +36,7 @@ namespace AltUI.ColorPicker
     /// <value>The descriptive name of the palette format.</value>
     public override string Name
     {
-      get { return "GIMP Palette"; }
+      get => "GIMP Palette";
     }
 
     #endregion

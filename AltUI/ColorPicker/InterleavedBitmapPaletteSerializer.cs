@@ -29,7 +29,7 @@ namespace AltUI.ColorPicker
     /// <value><c>true</c> if palettes can be written using this serializer; otherwise, <c>false</c>.</value>
     public override bool CanWrite
     {
-      get { return false; }
+      get => false;
     }
 
     /// <summary>
@@ -38,7 +38,7 @@ namespace AltUI.ColorPicker
     /// <value>The default extension for files generated with this palette format.</value>
     public override string DefaultExtension
     {
-      get { return "bbm;lbm"; }
+      get => "bbm;lbm";
     }
 
     /// <summary>
@@ -47,7 +47,7 @@ namespace AltUI.ColorPicker
     /// <value>The descriptive name of the palette format.</value>
     public override string Name
     {
-      get { return "Interleaved Bitmap Palette"; }
+      get => "Interleaved Bitmap Palette";
     }
 
     #endregion

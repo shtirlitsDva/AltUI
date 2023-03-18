@@ -537,7 +537,7 @@ namespace AltUI.ColorPicker
         [DefaultValue(typeof(Color), "White")]
         public Color NubOutlineColor
         {
-            get { return _nubOutlineColor; }
+            get => _nubOutlineColor;
             set
             {
                 if (_nubOutlineColor != value)

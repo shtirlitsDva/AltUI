@@ -27,7 +27,7 @@ namespace AltUI.ColorPicker
     /// <value>The default extension for files generated with this palette format.</value>
     public override string DefaultExtension
     {
-      get { return "pal"; }
+      get => "pal";
     }
 
     /// <summary>
@@ -36,7 +36,7 @@ namespace AltUI.ColorPicker
     /// <value>The descriptive name of the palette format.</value>
     public override string Name
     {
-      get { return "JASC Palette"; }
+      get => "JASC Palette";
     }
 
     #endregion

@@ -28,7 +28,7 @@ namespace AltUI.ColorPicker
     /// <value>The default extension for files generated with this palette format.</value>
     public override string DefaultExtension
     {
-      get { return "txt"; }
+      get => "txt";
     }
 
     /// <summary>
@@ -39,7 +39,7 @@ namespace AltUI.ColorPicker
     /// </value>
     public override int Maximum
     {
-      get { return 96; }
+      get => 96;
     }
 
     /// <summary>
@@ -48,7 +48,7 @@ namespace AltUI.ColorPicker
     /// <value>The descriptive name of the palette format.</value>
     public override string Name
     {
-      get { return "Paint.NET Palette"; }
+      get => "Paint.NET Palette";
     }
 
     #endregion

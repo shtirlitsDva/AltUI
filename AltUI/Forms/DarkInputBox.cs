@@ -22,7 +22,7 @@ namespace AltUI.Forms
         [DefaultValue(350)]
         public int MaximumWidth
         {
-            get { return _maximumWidth; }
+            get => _maximumWidth;
             set
             {
                 _maximumWidth = value;

@@ -48,7 +48,7 @@ namespace AltUI.ColorPicker
     /// <value>The loaded serializers.</value>
     public static IEnumerable<IPaletteSerializer> AllSerializers
     {
-      get { return _serializerCache.AsReadOnly(); }
+      get => _serializerCache.AsReadOnly();
     }
 
     /// <summary>
@@ -262,7 +262,7 @@ namespace AltUI.ColorPicker
     [Browsable(false)]
     public virtual bool CanRead
     {
-      get { return true; }
+      get => true;
     }
 
     /// <summary>
@@ -272,7 +272,7 @@ namespace AltUI.ColorPicker
     [Browsable(false)]
     public virtual bool CanWrite
     {
-      get { return true; }
+      get => true;
     }
 
     /// <summary>
@@ -451,7 +451,7 @@ namespace AltUI.ColorPicker
     /// </value>
     public virtual int Maximum
     {
-      get { return int.MaxValue; }
+      get => int.MaxValue;
     }
 
     /// <summary>
@@ -462,7 +462,7 @@ namespace AltUI.ColorPicker
     /// </value>
     public virtual int Minimum
     {
-      get { return 1; }
+      get => 1;
     }
 
     /// <summary>
@@ -471,7 +471,7 @@ namespace AltUI.ColorPicker
     /// <value><c>true</c> if palettes can be read using this serializer; otherwise, <c>false</c>.</value>
     bool IPaletteSerializer.CanRead
     {
-      get { return this.CanRead; }
+      get => this.CanRead;
     }
 
     /// <summary>
@@ -480,7 +480,7 @@ namespace AltUI.ColorPicker
     /// <value><c>true</c> if palettes can be written using this serializer; otherwise, <c>false</c>.</value>
     bool IPaletteSerializer.CanWrite
     {
-      get { return this.CanWrite; }
+      get => this.CanWrite;
     }
 
     /// <summary>
@@ -489,7 +489,7 @@ namespace AltUI.ColorPicker
     /// <value>The default extension for files generated with this palette format.</value>
     string IPaletteSerializer.DefaultExtension
     {
-      get { return this.DefaultExtension; }
+      get => this.DefaultExtension;
     }
 
     /// <summary>
@@ -498,7 +498,7 @@ namespace AltUI.ColorPicker
     /// <value>The descriptive name of the palette format.</value>
     string IPaletteSerializer.Name
     {
-      get { return this.Name; }
+      get => this.Name;
     }
 
     #endregion

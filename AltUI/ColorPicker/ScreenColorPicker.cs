@@ -171,7 +171,7 @@ namespace  AltUI.ColorPicker
     [DefaultValue(typeof(Color), "Empty")]
     public virtual Color Color
     {
-      get { return _color; }
+      get => _color;
       set
       {
         if (_color != value)
@@ -191,7 +191,7 @@ namespace  AltUI.ColorPicker
     [DefaultValue(typeof(Color), "ControlDark")]
     public virtual Color GridColor
     {
-      get { return _gridColor; }
+      get => _gridColor;
       set
       {
         if (_gridColor != value)
@@ -222,7 +222,7 @@ namespace  AltUI.ColorPicker
     [DefaultValue(typeof(Image), null)]
     public virtual Image Image
     {
-      get { return _image; }
+      get => _image;
       set
       {
         if (_image != value)
@@ -242,7 +242,7 @@ namespace  AltUI.ColorPicker
     [DefaultValue(true)]
     public virtual bool ShowGrid
     {
-      get { return _showGrid; }
+      get => _showGrid;
       set
       {
         if (_showGrid != value)
@@ -262,7 +262,7 @@ namespace  AltUI.ColorPicker
     [DefaultValue(false)]
     public virtual bool ShowTextWithSnapshot
     {
-      get { return _showTextWithSnapshot; }
+      get => _showTextWithSnapshot;
       set
       {
         if (_showTextWithSnapshot != value)
@@ -284,8 +284,8 @@ namespace  AltUI.ColorPicker
     [DefaultValue(0)]
     public new int TabIndex
     {
-      get { return base.TabIndex; }
-      set { base.TabIndex = value; }
+      get => base.TabIndex;
+      set => base.TabIndex = value;
     }
 
     /// <summary>
@@ -298,8 +298,8 @@ namespace  AltUI.ColorPicker
     [DefaultValue(false)]
     public new bool TabStop
     {
-      get { return base.TabStop; }
-      set { base.TabStop = value; }
+      get => base.TabStop;
+      set => base.TabStop = value;
     }
 
     /// <summary>
@@ -310,7 +310,7 @@ namespace  AltUI.ColorPicker
     [DefaultValue(8)]
     public virtual int Zoom
     {
-      get { return _zoom; }
+      get => _zoom;
       set
       {
         if (_zoom != value)

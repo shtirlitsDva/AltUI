@@ -58,12 +58,8 @@ namespace AltUI.Icons {
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public static CultureInfo Culture {
-            get {
-                return resourceCulture;
-            }
-            set {
-                resourceCulture = value;
-            }
+            get => resourceCulture;
+            set => resourceCulture = value;
         }
         
         /// <summary>
