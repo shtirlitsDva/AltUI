@@ -24,7 +24,7 @@ namespace  AltUI.ColorPicker
   public class ColorWheel : Control, IColorEditor
   {
 #if !NET46_OR_GREATER
-    private static readonly HslColor[] _empty = new HslColor[0];
+    private static readonly HslColor[] _empty = Array.Empty<HslColor>();
 #endif
 
     #region Private Fields

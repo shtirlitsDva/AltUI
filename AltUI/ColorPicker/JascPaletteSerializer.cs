@@ -121,7 +121,7 @@ namespace AltUI.ColorPicker
           {
               ' ',
               '\t'
-          }, StringSplitOptions.RemoveEmptyEntries) : new string[0];
+          }, StringSplitOptions.RemoveEmptyEntries) : Array.Empty<string>();
 
           if (!int.TryParse(parts[0], out r) || !int.TryParse(parts[1], out g) || !int.TryParse(parts[2], out b))
           {
