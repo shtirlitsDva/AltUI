@@ -1,9 +1,9 @@
-﻿using System;
+﻿using AltUI.Config;
+using AltUI.Icons;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using AltUI.Config;
-using AltUI.Icons;
 
 namespace AltUI.Forms
 {
@@ -14,7 +14,7 @@ namespace AltUI.Forms
         private string _message;
         private int _maximumWidth = 350;
 
-        #endregion
+        #endregion Field Region
 
         #region Property Region
 
@@ -22,7 +22,7 @@ namespace AltUI.Forms
         [DefaultValue(350)]
         public int MaximumWidth
         {
-            get { return _maximumWidth; }
+            get => _maximumWidth;
             set
             {
                 _maximumWidth = value;
@@ -30,7 +30,7 @@ namespace AltUI.Forms
             }
         }
 
-        #endregion
+        #endregion Property Region
 
         #region Constructor Region
 
@@ -65,7 +65,7 @@ namespace AltUI.Forms
             : this(message, title, icon, DarkDialogButton.Ok)
         { }
 
-        #endregion
+        #endregion Constructor Region
 
         #region Static Method Region
 
@@ -83,7 +83,7 @@ namespace AltUI.Forms
         {
             return ShowDialog(message, caption, ThemeProvider.LightMode ? DarkMessageBoxIcon.LError : DarkMessageBoxIcon.Error, buttons);
         }
-        
+
         public static DialogResult ShowMessage(string message, string caption, DarkDialogButton buttons = DarkDialogButton.Ok)
         {
             return ShowDialog(message, caption, DarkMessageBoxIcon.None, buttons);
@@ -96,14 +96,12 @@ namespace AltUI.Forms
 
         private static DialogResult ShowDialog(string message, string caption, DarkMessageBoxIcon icon, DarkDialogButton buttons, Bitmap customIcon = null)
         {
-            using (var dlg = new DarkMessageBox(message, caption, icon, buttons, customIcon))
-            {
-                var result = dlg.ShowDialog();
-                return result;
-            }
+            using var dlg = new DarkMessageBox(message, caption, icon, buttons, customIcon);
+            var result = dlg.ShowDialog();
+            return result;
         }
 
-        #endregion
+        #endregion Static Method Region
 
         #region Method Region
 
@@ -115,24 +113,31 @@ namespace AltUI.Forms
                     picIcon.Visible = false;
                     lblText.Left = 10;
                     break;
+
                 case DarkMessageBoxIcon.Information:
                     picIcon.Image = MessageBoxIcons.info;
                     break;
+
                 case DarkMessageBoxIcon.Warning:
                     picIcon.Image = MessageBoxIcons.warning;
                     break;
+
                 case DarkMessageBoxIcon.Error:
                     picIcon.Image = MessageBoxIcons.error;
                     break;
+
                 case DarkMessageBoxIcon.Custom:
                     picIcon.Image = customIcon;
                     break;
+
                 case DarkMessageBoxIcon.LInformation:
                     picIcon.Image = MessageBoxIcons.linfo;
                     break;
+
                 case DarkMessageBoxIcon.LWarning:
                     picIcon.Image = MessageBoxIcons.lwarning;
                     break;
+
                 case DarkMessageBoxIcon.LError:
                     picIcon.Image = MessageBoxIcons.lerror;
                     break;
@@ -184,7 +189,7 @@ namespace AltUI.Forms
             Size = new Size(width, height);
         }
 
-        #endregion
+        #endregion Method Region
 
         #region Event Handler Region
 
@@ -195,7 +200,6 @@ namespace AltUI.Forms
             CalculateSize();
         }
 
-        
         protected override void OnHandleCreated(EventArgs e)
         {
             ThemeProvider.SetupWindow(Handle, 2);
@@ -205,7 +209,7 @@ namespace AltUI.Forms
                 AllowTransparency = true;
             }
         }
-        
-        #endregion
+
+        #endregion Event Handler Region
     }
 }

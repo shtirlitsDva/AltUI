@@ -3,7 +3,10 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using AltUI.ColorPicker;
 using AltUI.Config;
+using AltUI.Forms;
+#pragma warning disable CA1416
 
 namespace AltUI.Controls
 {
@@ -22,7 +25,7 @@ namespace AltUI.Controls
         [DefaultValue(false)]
         public bool AutoExpanding
         {
-            get { return _autoExpanding; }
+            get => _autoExpanding;
             set
             {
                 _autoExpanding = value;
@@ -182,73 +185,76 @@ namespace AltUI.Controls
         {
             if (ClientRectangle.Width <= 0 || ClientRectangle.Height <= 0)
                 _buffer = new Bitmap(1, 1);
-            if (_buffer == null)
-                _buffer = new Bitmap(ClientRectangle.Width, ClientRectangle.Height);
+            _buffer ??= new Bitmap(ClientRectangle.Width, ClientRectangle.Height);
 
-            using (var g = Graphics.FromImage(_buffer))
+            using var g = Graphics.FromImage(_buffer);
+            var rect = new Rectangle(0, 0, ClientSize.Width, ClientSize.Height);
+            var textColor = Enabled
+                ? ThemeProvider.Theme.Colors.LightText
+                : ThemeProvider.Theme.Colors.DisabledText;
+
+            var borderColor = ThemeProvider.Theme.Colors.GreySelection;
+            var fillColor = hover ? ThemeProvider.Theme.Colors.LighterBackground : ThemeProvider.Theme.Colors.LightBackground;
+            var arrowColour = !(Focused && TabStop) ? ThemeProvider.Theme.Colors.GreyHighlight : ThemeProvider.Theme.Colors.BlueHighlight;
+
+            if (Focused && TabStop)
+                borderColor = ThemeProvider.Theme.Colors.BlueHighlight;
+
+            if (Parent.GetType() == typeof(TabPage) || Parent.GetType() == typeof(DarkGroupBox) && ((DarkGroupBox)Parent).OpaqueBackground)
             {
-                var rect = new Rectangle(0, 0, ClientSize.Width, ClientSize.Height);
-                var textColor = Enabled
-                    ? ThemeProvider.Theme.Colors.LightText
-                    : ThemeProvider.Theme.Colors.DisabledText;
+                using var b = new SolidBrush(ThemeProvider.Theme.Colors.LightBackground);
+                g.FillRectangle(b, rect);
+            }
+            else
+            {
+                using var b = new SolidBrush(ThemeProvider.Theme.Colors.GreyBackground);
+                g.FillRectangle(b, rect);
+            }
 
-                var borderColor = ThemeProvider.Theme.Colors.GreySelection;
-                var fillColor = hover ? ThemeProvider.Theme.Colors.LighterBackground : ThemeProvider.Theme.Colors.LightBackground;
-                var arrowColour = !(Focused && TabStop) ? ThemeProvider.Theme.Colors.GreyHighlight : ThemeProvider.Theme.Colors.BlueHighlight;
+            using (var b = new SolidBrush(fillColor))
+            {
+                var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                g.FillRoundedRectangle(b, modRect, 4, clicked, 1);
+                g.SmoothingMode = SmoothingMode.None;
+            }
 
-                if (Focused && TabStop)
-                    borderColor = ThemeProvider.Theme.Colors.BlueHighlight;
+            using (var p = new Pen(borderColor, 1))
+            {
+                var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                g.DrawRoundedRectangle(p, modRect, 4, clicked, 1);
+                g.SmoothingMode = SmoothingMode.None;
+            }
+            using (var p = new Pen(arrowColour, 1))
+            {
+                var x = rect.Right - 8 - (ThemeProvider.Theme.Sizes.Padding / 2);
+                var y = rect.Height / 2 - 2;
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                g.DrawLine(p, x, y, x + 3, y +3);
+                g.DrawLine(p, x + 3, y + 3, x + 6, y);
+                g.SmoothingMode = SmoothingMode.None;
+            }
+            var text = SelectedItem != null ? SelectedItem.ToString() : Text;
 
-                using (var b = new SolidBrush(ThemeProvider.Theme.Colors.GreyBackground))
+            using (var b = new SolidBrush(textColor))
+            {
+                const int padding = 2;
+
+                var modRect = new Rectangle(rect.Left + padding,
+                    rect.Top + padding,
+                    rect.Width - 8 - (ThemeProvider.Theme.Sizes.Padding / 2) - (padding * 2),
+                    rect.Height - (padding * 2));
+
+                var stringFormat = new StringFormat
                 {
-                    g.FillRectangle(b, rect);
-                }
+                    LineAlignment = StringAlignment.Center,
+                    Alignment = StringAlignment.Near,
+                    FormatFlags = StringFormatFlags.NoWrap,
+                    Trimming = StringTrimming.EllipsisCharacter
+                };
 
-                using (var b = new SolidBrush(fillColor))
-                {
-                    var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
-                    g.SmoothingMode = SmoothingMode.AntiAlias;
-                    g.FillRoundedRectangle(b, modRect, 4, clicked, 1);
-                    g.SmoothingMode = SmoothingMode.None;
-                }
-
-                using (var p = new Pen(borderColor, 1))
-                {
-                    var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
-                    g.SmoothingMode = SmoothingMode.AntiAlias;
-                    g.DrawRoundedRectangle(p, modRect, 4, clicked, 1);
-                    g.SmoothingMode = SmoothingMode.None;
-                }
-                using (var p = new Pen(arrowColour, 1))
-                {
-                    var x = rect.Right - 8 - (ThemeProvider.Theme.Sizes.Padding / 2);
-                    var y = rect.Height / 2 - 2;
-                    g.SmoothingMode = SmoothingMode.AntiAlias;
-                    g.DrawLine(p, x, y, x + 3, y +3);
-                    g.DrawLine(p, x + 3, y + 3, x + 6, y);
-                    g.SmoothingMode = SmoothingMode.None;
-                }
-                var text = SelectedItem != null ? SelectedItem.ToString() : Text;
-
-                using (var b = new SolidBrush(textColor))
-                {
-                    var padding = 2;
-
-                    var modRect = new Rectangle(rect.Left + padding,
-                                                rect.Top + padding,
-                                                rect.Width - 8 - (ThemeProvider.Theme.Sizes.Padding / 2) - (padding * 2),
-                                                rect.Height - (padding * 2));
-
-                    var stringFormat = new StringFormat
-                    {
-                        LineAlignment = StringAlignment.Center,
-                        Alignment = StringAlignment.Near,
-                        FormatFlags = StringFormatFlags.NoWrap,
-                        Trimming = StringTrimming.EllipsisCharacter
-                    };
-
-                    g.DrawString(text, Font, b, modRect, stringFormat);
-                }
+                g.DrawString(text, Font, b, modRect, stringFormat);
             }
         }
 
@@ -284,29 +290,27 @@ namespace AltUI.Controls
                 g.FillRectangle(b, rect);
             }
 
-            if (e.Index >= 0 && e.Index < Items.Count)
+            if (e.Index < 0 || e.Index >= Items.Count) return;
             {
                 var text = Items[e.Index].ToString();
 
-                using (var b = new SolidBrush(textColor))
+                using var b = new SolidBrush(textColor);
+                var padding = 2;
+
+                var modRect = new Rectangle(rect.Left + padding,
+                    rect.Top + padding,
+                    rect.Width - (padding * 2),
+                    rect.Height - (padding * 2));
+
+                var stringFormat = new StringFormat
                 {
-                    var padding = 2;
+                    LineAlignment = StringAlignment.Center,
+                    Alignment = StringAlignment.Near,
+                    FormatFlags = StringFormatFlags.NoWrap,
+                    Trimming = StringTrimming.EllipsisCharacter
+                };
 
-                    var modRect = new Rectangle(rect.Left + padding,
-                        rect.Top + padding,
-                        rect.Width - (padding * 2),
-                        rect.Height - (padding * 2));
-
-                    var stringFormat = new StringFormat
-                    {
-                        LineAlignment = StringAlignment.Center,
-                        Alignment = StringAlignment.Near,
-                        FormatFlags = StringFormatFlags.NoWrap,
-                        Trimming = StringTrimming.EllipsisCharacter
-                    };
-
-                    g.DrawString(text, Font, b, modRect, stringFormat);
-                }
+                g.DrawString(text, Font, b, modRect, stringFormat);
             }
         }
     }

@@ -34,7 +34,7 @@ namespace AltUI.Forms
         [DefaultValue(DarkDialogButton.Ok)]
         public DarkDialogButton DialogButtons
         {
-            get { return _dialogButtons; }
+            get => _dialogButtons;
             set
             {
                 if (_dialogButtons == value)
@@ -53,16 +53,16 @@ namespace AltUI.Forms
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new IButtonControl AcceptButton
         {
-            get { return base.AcceptButton; }
-            private set { base.AcceptButton = value; }
+            get => base.AcceptButton;
+            private set => base.AcceptButton = value;
         }
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new IButtonControl CancelButton
         {
-            get { return base.CancelButton; }
-            private set { base.CancelButton = value; }
+            get => base.CancelButton;
+            private set => base.CancelButton = value;
         }
 
         #endregion

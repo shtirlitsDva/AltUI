@@ -38,7 +38,7 @@ namespace AltUI.Controls
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ObservableCollection<DarkListItem> Items
         {
-            get { return _items; }
+            get => _items;
             set
             {
                 if (_items != null)
@@ -54,17 +54,14 @@ namespace AltUI.Controls
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public List<int> SelectedIndices
-        {
-            get { return _selectedIndices; }
-        }
+        public List<int> SelectedIndices => _selectedIndices;
 
         [Category("Appearance")]
         [Description("Determines the height of the individual list view items.")]
         [DefaultValue(20)]
         public int ItemHeight
         {
-            get { return _itemHeight; }
+            get => _itemHeight;
             set
             {
                 _itemHeight = value;
@@ -77,8 +74,8 @@ namespace AltUI.Controls
         [DefaultValue(false)]
         public bool MultiSelect
         {
-            get { return _multiSelect; }
-            set { _multiSelect = value; }
+            get => _multiSelect;
+            set => _multiSelect = value;
         }
 
         [Category("Appearance")]
@@ -393,10 +390,8 @@ namespace AltUI.Controls
 
         private void UpdateItemSize(DarkListItem item)
         {
-            using (var g = CreateGraphics())
-            {
-                UpdateItemSize(item, g);
-            }
+            using var g = CreateGraphics();
+            UpdateItemSize(item, g);
         }
 
         private void UpdateItemSize(DarkListItem item, Graphics g)

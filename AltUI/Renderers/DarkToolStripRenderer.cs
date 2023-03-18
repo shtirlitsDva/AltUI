@@ -40,11 +40,9 @@ namespace AltUI.Renderers
 
             if (e.ToolStrip.GetType() == typeof(ToolStripOverflow))
             {
-                using (var p = new Pen(ThemeProvider.Theme.Colors.GreyBackground))
-                {
-                    var rect = new Rectangle(e.AffectedBounds.Left, e.AffectedBounds.Top, e.AffectedBounds.Width - 1, e.AffectedBounds.Height - 1);
-                    g.DrawRectangle(p, rect);
-                }
+                using var p = new Pen(ThemeProvider.Theme.Colors.GreyBackground);
+                var rect = new Rectangle(e.AffectedBounds.Left, e.AffectedBounds.Top, e.AffectedBounds.Width - 1, e.AffectedBounds.Height - 1);
+                g.DrawRectangle(p, rect);
             }
         }
 
@@ -62,10 +60,8 @@ namespace AltUI.Renderers
 
             if (e.Item.Selected || e.Item.Pressed)
             {
-                using (var b = new SolidBrush(ThemeProvider.Theme.Colors.GreySelection))
-                {
-                    g.FillRectangle(b, rect);
-                }
+                using var b = new SolidBrush(ThemeProvider.Theme.Colors.GreySelection);
+                g.FillRectangle(b, rect);
             }
 
             if (e.Item.GetType() == typeof(ToolStripButton))
@@ -74,19 +70,15 @@ namespace AltUI.Renderers
 
                 if (castItem.Checked)
                 {
-                    using (var b = new SolidBrush(ThemeProvider.Theme.Colors.GreySelection))
-                    {
-                        g.FillRectangle(b, rect);
-                    }
+                    using var b = new SolidBrush(ThemeProvider.Theme.Colors.GreySelection);
+                    g.FillRectangle(b, rect);
                 }
 
                 if (castItem.Checked && castItem.Selected)
                 {
                     var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
-                    using (var p = new Pen(ThemeProvider.Theme.Colors.GreyHighlight))
-                    {
-                        g.DrawRectangle(p, modRect);
-                    }
+                    using var p = new Pen(ThemeProvider.Theme.Colors.GreyHighlight);
+                    g.DrawRectangle(p, modRect);
                 }
             }
         }
@@ -99,10 +91,8 @@ namespace AltUI.Renderers
 
             if (e.Item.Selected || e.Item.Pressed)
             {
-                using (var b = new SolidBrush(ThemeProvider.Theme.Colors.GreySelection))
-                {
-                    g.FillRectangle(b, rect);
-                }
+                using var b = new SolidBrush(ThemeProvider.Theme.Colors.GreySelection);
+                g.FillRectangle(b, rect);
             }
         }
 
@@ -113,10 +103,8 @@ namespace AltUI.Renderers
 
             var g = e.Graphics;
 
-            using (var img = MenuIcons.grip.SetColor(ThemeProvider.Theme.Colors.LightBorder))
-            {
-                g.DrawImageUnscaled(img, new Point(e.AffectedBounds.Left, e.AffectedBounds.Top));
-            }
+            using var img = MenuIcons.grip.SetColor(ThemeProvider.Theme.Colors.LightBorder);
+            g.DrawImageUnscaled(img, new Point(e.AffectedBounds.Left, e.AffectedBounds.Top));
         }
 
         protected override void OnRenderSeparator(ToolStripSeparatorRenderEventArgs e)

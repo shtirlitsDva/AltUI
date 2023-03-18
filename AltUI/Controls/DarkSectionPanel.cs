@@ -19,16 +19,13 @@ namespace AltUI.Controls
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new Padding Padding
-        {
-            get { return base.Padding; }
-        }
+        public new Padding Padding => base.Padding;
 
         [Category("Appearance")]
         [Description("The section header text associated with this control.")]
         public string SectionHeader
         {
-            get { return _sectionHeader; }
+            get => _sectionHeader;
             set
             {
                 _sectionHeader = value;
@@ -46,7 +43,7 @@ namespace AltUI.Controls
                      ControlStyles.ResizeRedraw |
                      ControlStyles.UserPaint, true);
             BackColor = ThemeProvider.Theme.Colors.OpaqueBackground;
-            foreach (Control c in this.Controls)
+            foreach (Control c in Controls)
             {
                 c.BackColor = ThemeProvider.Theme.Colors.OpaqueBackground;
             }

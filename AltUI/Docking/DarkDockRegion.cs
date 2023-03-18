@@ -37,13 +37,7 @@ namespace AltUI.Docking
             }
         }
 
-        public List<DarkDockGroup> Groups
-        {
-            get
-            {
-                return _groups.ToList();
-            }
-        }
+        public List<DarkDockGroup> Groups => _groups.ToList();
 
         #endregion
 

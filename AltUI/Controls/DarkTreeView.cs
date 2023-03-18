@@ -61,7 +61,7 @@ namespace AltUI.Controls
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ObservableList<DarkTreeNode> Nodes
         {
-            get { return _nodes; }
+            get => _nodes;
             set
             {
                 if (_nodes != null)
@@ -87,17 +87,14 @@ namespace AltUI.Controls
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public ObservableCollection<DarkTreeNode> SelectedNodes
-        {
-            get { return _selectedNodes; }
-        }
+        public ObservableCollection<DarkTreeNode> SelectedNodes => _selectedNodes;
 
         [Category("Appearance")]
         [Description("Determines the height of tree nodes.")]
         [DefaultValue(20)]
         public int ItemHeight
         {
-            get { return _itemHeight; }
+            get => _itemHeight;
             set
             {
                 _itemHeight = value;
@@ -111,7 +108,7 @@ namespace AltUI.Controls
         [DefaultValue(20)]
         public int Indent
         {
-            get { return _indent; }
+            get => _indent;
             set
             {
                 _indent = value;

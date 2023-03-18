@@ -8,10 +8,8 @@ namespace AltUI.Controls
     {
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public bool HasFocus
-        {
-            get { return Focused; }
-        }
+        public bool HasFocus => Focused;
+
         public DarkRichTextBox()
         {
             BackColor = ThemeProvider.Theme.Colors.GreyBackground;

@@ -22,7 +22,7 @@ namespace AltUI.Controls
         [DefaultValue(false)]
         public bool AutoUpdateHeight
         {
-            get { return _autoUpdateHeight; }
+            get => _autoUpdateHeight;
             set
             {
                 _autoUpdateHeight = value;

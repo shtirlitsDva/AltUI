@@ -41,7 +41,7 @@ namespace AltUI.Controls
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Rectangle Viewport
         {
-            get { return _viewport; }
+            get => _viewport;
             private set
             {
                 _viewport = value;
@@ -55,7 +55,7 @@ namespace AltUI.Controls
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Size ContentSize
         {
-            get { return _contentSize; }
+            get => _contentSize;
             set
             {
                 _contentSize = value;
@@ -68,17 +68,14 @@ namespace AltUI.Controls
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Point OffsetMousePosition
-        {
-            get { return _offsetMousePosition; }
-        }
+        public Point OffsetMousePosition => _offsetMousePosition;
 
         [Category("Behavior")]
         [Description("Determines the maximum scroll change when dragging.")]
         [DefaultValue(0)]
         public int MaxDragChange
         {
-            get { return _maxDragChange; }
+            get => _maxDragChange;
             set
             {
                 _maxDragChange = value;
@@ -95,7 +92,7 @@ namespace AltUI.Controls
         [DefaultValue(true)]
         public bool HideScrollBars
         {
-            get { return _hideScrollBars; }
+            get => _hideScrollBars;
             set
             {
                 _hideScrollBars = value;

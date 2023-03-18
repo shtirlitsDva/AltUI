@@ -55,7 +55,7 @@ namespace AltUI.Controls
         [DefaultValue(DarkScrollOrientation.Vertical)]
         public DarkScrollOrientation ScrollOrientation
         {
-            get { return _scrollOrientation; }
+            get => _scrollOrientation;
             set
             {
                 _scrollOrientation = value;
@@ -68,7 +68,7 @@ namespace AltUI.Controls
         [DefaultValue(0)]
         public int Value
         {
-            get { return _value; }
+            get => _value;
             set
             {
                 if (value < Minimum)
@@ -95,7 +95,7 @@ namespace AltUI.Controls
         [DefaultValue(0)]
         public int Minimum
         {
-            get { return _minimum; }
+            get => _minimum;
             set
             {
                 _minimum = value;
@@ -108,7 +108,7 @@ namespace AltUI.Controls
         [DefaultValue(100)]
         public int Maximum
         {
-            get { return _maximum; }
+            get => _maximum;
             set
             {
                 _maximum = value;
@@ -121,7 +121,7 @@ namespace AltUI.Controls
         [DefaultValue(0)]
         public int ViewSize
         {
-            get { return _viewSize; }
+            get => _viewSize;
             set
             {
                 _viewSize = value;
@@ -131,7 +131,7 @@ namespace AltUI.Controls
 
         public new bool Visible
         {
-            get { return base.Visible; }
+            get => base.Visible;
             set
             {
                 if (base.Visible == value)
@@ -474,10 +474,17 @@ namespace AltUI.Controls
             var g = e.Graphics;
 
             // DEBUG: Scrollbar bg
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.GreyBackground))
+            if (Parent.GetType() == typeof(TabPage) || Parent.GetType() == typeof(DarkGroupBox) && ((DarkGroupBox)Parent).OpaqueBackground)
             {
+                using var b = new SolidBrush(ThemeProvider.Theme.Colors.LightBackground);
                 g.FillRectangle(b, ClientRectangle);
-            }/**/
+            }
+            else
+            {
+                using var b = new SolidBrush(ThemeProvider.Theme.Colors.GreyBackground);
+                g.FillRectangle(b, ClientRectangle);
+            }
+            /**/
 
             // DEBUG: Arrow backgrounds
             /*using (var b = new SolidBrush(Color.White))
@@ -528,10 +535,8 @@ namespace AltUI.Controls
                 if (_isScrolling)
                     scrollColor = ThemeProvider.Theme.Colors.ActiveControl;
 
-                using (var b = new SolidBrush(scrollColor))
-                {
-                    g.FillRectangle(b, _thumbArea);
-                }
+                using var b = new SolidBrush(scrollColor);
+                g.FillRectangle(b, _thumbArea);
             }
         }
 

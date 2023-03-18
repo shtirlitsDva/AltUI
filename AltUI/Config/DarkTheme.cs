@@ -23,7 +23,7 @@ namespace AltUI.Config
             Colors.DarkBorder = Color.FromArgb(32, 32, 32);
             Colors.LightText = Color.FromArgb(213, 213, 213); // Normal Text
             Colors.DisabledText = Color.FromArgb(101, 101, 101); // Disabled Text
-            Colors.BlueHighlight = ThemeProvider.GetAccentColor(50); // Blue Borders
+            Colors.BlueHighlight = ThemeProvider.GetAccentColor(0); // Blue Borders
             Colors.BlueSelection = ThemeProvider.GetAccentColor(0); // DropDown Selection
             Colors.GreyHighlight = Color.FromArgb(146, 146, 146); // ComboBox Arrow
             Colors.GreySelection = Color.FromArgb(48, 48, 52); // Control Border

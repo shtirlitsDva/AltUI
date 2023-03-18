@@ -21,108 +21,63 @@ namespace AltUI.Controls
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new Appearance Appearance
-        {
-            get { return base.Appearance; }
-        }
+        public new Appearance Appearance => base.Appearance;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new bool AutoEllipsis
-        {
-            get { return base.AutoEllipsis; }
-        }
+        public new bool AutoEllipsis => base.AutoEllipsis;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new Image BackgroundImage
-        {
-            get { return base.BackgroundImage; }
-        }
+        public new Image BackgroundImage => base.BackgroundImage;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new ImageLayout BackgroundImageLayout
-        {
-            get { return base.BackgroundImageLayout; }
-        }
+        public new ImageLayout BackgroundImageLayout => base.BackgroundImageLayout;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new bool FlatAppearance
-        {
-            get { return false; }
-        }
+        public new bool FlatAppearance => false;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new FlatStyle FlatStyle
-        {
-            get { return base.FlatStyle; }
-        }
+        public new FlatStyle FlatStyle => base.FlatStyle;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new Image Image
-        {
-            get { return base.Image; }
-        }
+        public new Image Image => base.Image;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new ContentAlignment ImageAlign
-        {
-            get { return base.ImageAlign; }
-        }
+        public new ContentAlignment ImageAlign => base.ImageAlign;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new int ImageIndex
-        {
-            get { return base.ImageIndex; }
-        }
+        public new int ImageIndex => base.ImageIndex;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new string ImageKey
-        {
-            get { return base.ImageKey; }
-        }
+        public new string ImageKey => base.ImageKey;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new ImageList ImageList
-        {
-            get { return base.ImageList; }
-        }
+        public new ImageList ImageList => base.ImageList;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new ContentAlignment TextAlign
-        {
-            get { return base.TextAlign; }
-        }
+        public new ContentAlignment TextAlign => base.TextAlign;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new TextImageRelation TextImageRelation
-        {
-            get { return base.TextImageRelation; }
-        }
+        public new TextImageRelation TextImageRelation => base.TextImageRelation;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new bool UseCompatibleTextRendering
-        {
-            get { return false; }
-        }
+        public new bool UseCompatibleTextRendering => false;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new bool UseVisualStyleBackColor
-        {
-            get { return false; }
-        }
+        public new bool UseVisualStyleBackColor => false;
 
         #endregion
 
@@ -293,11 +248,9 @@ namespace AltUI.Controls
 
             if (Checked)
             {
-                using (var b = new SolidBrush(fillColor))
-                {
-                    Rectangle boxRect = new(3, (rect.Height / 2) - ((size - 7) / 2) - 1, size - 6, size - 6);
-                    g.FillEllipse(b, boxRect);
-                }
+                using var b = new SolidBrush(fillColor);
+                Rectangle boxRect = new(3, (rect.Height / 2) - ((size - 7) / 2) - 1, size - 6, size - 6);
+                g.FillEllipse(b, boxRect);
             }
 
             g.SmoothingMode = SmoothingMode.Default;

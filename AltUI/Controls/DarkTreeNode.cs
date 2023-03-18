@@ -34,7 +34,7 @@ namespace AltUI.Controls
 
         public string Text
         {
-            get { return _text; }
+            get => _text;
             set
             {
                 if (_text == value)
@@ -62,7 +62,7 @@ namespace AltUI.Controls
 
         public bool Expanded
         {
-            get { return _expanded; }
+            get => _expanded;
             set
             {
                 if (_expanded == value)
@@ -88,7 +88,7 @@ namespace AltUI.Controls
 
         public ObservableList<DarkTreeNode> Nodes
         {
-            get { return _nodes; }
+            get => _nodes;
             set
             {
                 if (_nodes != null)
@@ -106,13 +106,13 @@ namespace AltUI.Controls
 
         public bool IsRoot
         {
-            get { return _isRoot; }
-            set { _isRoot = value; }
+            get => _isRoot;
+            set => _isRoot = value;
         }
 
         public DarkTreeView ParentTree
         {
-            get { return _parentTree; }
+            get => _parentTree;
             set
             {
                 if (_parentTree == value)
@@ -127,8 +127,8 @@ namespace AltUI.Controls
 
         public DarkTreeNode ParentNode
         {
-            get { return _parentNode; }
-            set { _parentNode = value; }
+            get => _parentNode;
+            set => _parentNode = value;
         }
 
         public bool Odd { get; set; }

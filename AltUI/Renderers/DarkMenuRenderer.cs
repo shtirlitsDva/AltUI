@@ -38,10 +38,8 @@ namespace AltUI.Renderers
         protected override void OnRenderToolStripBackground(ToolStripRenderEventArgs e)
         {
             var g = e.Graphics;
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.GreyBackground))
-            {
-                g.FillRectangle(b, e.AffectedBounds);
-            }
+            using var b = new SolidBrush(ThemeProvider.Theme.Colors.GreyBackground);
+            g.FillRectangle(b, e.AffectedBounds);
         }
 
         protected override void OnRenderImageMargin(ToolStripRenderEventArgs e)
@@ -50,10 +48,8 @@ namespace AltUI.Renderers
 
             var rect = new Rectangle(0, 0, e.ToolStrip.Width - 1, e.ToolStrip.Height - 1);
 
-            using (var p = new Pen(ThemeProvider.Theme.Colors.LightBorder))
-            {
-                g.DrawRectangle(p, rect);
-            }
+            using var p = new Pen(ThemeProvider.Theme.Colors.LightBorder);
+            g.DrawRectangle(p, rect);
         }
 
         protected override void OnRenderItemCheck(ToolStripItemImageRenderEventArgs e)
@@ -86,10 +82,8 @@ namespace AltUI.Renderers
 
             var rect = new Rectangle(1, 3, e.Item.Width, 1);
 
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.LightBorder))
-            {
-                g.FillRectangle(b, rect);
-            }
+            using var b = new SolidBrush(ThemeProvider.Theme.Colors.LightBorder);
+            g.FillRectangle(b, rect);
         }
 
         protected override void OnRenderArrow(ToolStripArrowRenderEventArgs e)
@@ -124,10 +118,8 @@ namespace AltUI.Renderers
                 {
                     if (((ToolStripMenuItem)e.Item).DropDown.Visible && e.Item.IsOnDropDown == false)
                     {
-                        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.GreySelection))
-                        {
-                            g.FillRectangle(b, rect);
-                        }
+                        using var b = new SolidBrush(ThemeProvider.Theme.Colors.GreySelection);
+                        g.FillRectangle(b, rect);
                     }
                 }
             }

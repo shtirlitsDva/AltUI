@@ -34,7 +34,7 @@ namespace AltUI.Docking
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public DarkDockContent ActiveContent
         {
-            get { return _activeContent; }
+            get => _activeContent;
             set
             {
                 // Don't let content visibility changes re-trigger event
@@ -68,13 +68,7 @@ namespace AltUI.Docking
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public DarkDockContent ActiveDocument
-        {
-            get
-            {
-                return _regions[DarkDockArea.Document].ActiveDocument;
-            }
-        }
+        public DarkDockContent ActiveDocument => _regions[DarkDockArea.Document].ActiveDocument;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -101,13 +95,7 @@ namespace AltUI.Docking
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Dictionary<DarkDockArea, DarkDockRegion> Regions
-        {
-            get
-            {
-                return _regions;
-            }
-        }
+        public Dictionary<DarkDockArea, DarkDockRegion> Regions => _regions;
 
         #endregion
 

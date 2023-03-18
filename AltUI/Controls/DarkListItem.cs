@@ -21,7 +21,7 @@ namespace AltUI.Controls
 
         public string Text
         {
-            get { return _text; }
+            get => _text;
             set
             {
                 _text = value;

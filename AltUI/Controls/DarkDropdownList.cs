@@ -42,16 +42,13 @@ namespace AltUI.Controls
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public ObservableCollection<DarkDropdownItem> Items
-        {
-            get { return _items; }
-        }
+        public ObservableCollection<DarkDropdownItem> Items => _items;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public DarkDropdownItem SelectedItem
         {
-            get { return _selectedItem; }
+            get => _selectedItem;
             set
             {
                 _selectedItem = value;
@@ -64,7 +61,7 @@ namespace AltUI.Controls
         [DefaultValue(true)]
         public bool ShowBorder
         {
-            get { return _showBorder; }
+            get => _showBorder;
             set
             {
                 _showBorder = value;
@@ -72,24 +69,18 @@ namespace AltUI.Controls
             }
         }
 
-        protected override Size DefaultSize
-        {
-            get { return new Size(100, 26); }
-        }
+        protected override Size DefaultSize => new Size(100, 26);
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public DarkControlState ControlState
-        {
-            get { return _controlState; }
-        }
+        public DarkControlState ControlState => _controlState;
 
         [Category("Appearance")]
         [Description("Determines the height of the individual list view items.")]
         [DefaultValue(22)]
         public int ItemHeight
         {
-            get { return _itemHeight; }
+            get => _itemHeight;
             set
             {
                 _itemHeight = value;
@@ -102,7 +93,7 @@ namespace AltUI.Controls
         [DefaultValue(130)]
         public int MaxHeight
         {
-            get { return _maxHeight; }
+            get => _maxHeight;
             set
             {
                 _maxHeight = value;
@@ -115,8 +106,8 @@ namespace AltUI.Controls
         [DefaultValue(ToolStripDropDownDirection.Default)]
         public ToolStripDropDownDirection DropdownDirection
         {
-            get { return _dropdownDirection; }
-            set { _dropdownDirection = value; }
+            get => _dropdownDirection;
+            set => _dropdownDirection = value;
         }
 
         #endregion
@@ -406,11 +397,9 @@ namespace AltUI.Controls
             {
                 if (ShowBorder)
                 {
-                    using (var p = new Pen(ThemeProvider.Theme.Colors.LightBorder, 1))
-                    {
-                        var modRect = new Rectangle(ClientRectangle.Left, ClientRectangle.Top, ClientRectangle.Width - 1, ClientRectangle.Height - 1);
-                        g.DrawRectangle(p, modRect);
-                    }
+                    using var p = new Pen(ThemeProvider.Theme.Colors.LightBorder, 1);
+                    var modRect = new Rectangle(ClientRectangle.Left, ClientRectangle.Top, ClientRectangle.Width - 1, ClientRectangle.Height - 1);
+                    g.DrawRectangle(p, modRect);
                 }
             }
 
@@ -468,24 +457,22 @@ namespace AltUI.Controls
                 }
 
                 // Draw Text
-                using (var b = new SolidBrush(ThemeProvider.Theme.Colors.LightText))
+                using var b = new SolidBrush(ThemeProvider.Theme.Colors.LightText);
+                var stringFormat = new StringFormat
                 {
-                    var stringFormat = new StringFormat
-                    {
-                        Alignment = StringAlignment.Near,
-                        LineAlignment = StringAlignment.Center
-                    };
+                    Alignment = StringAlignment.Near,
+                    LineAlignment = StringAlignment.Center
+                };
 
-                    var rect = new Rectangle(ClientRectangle.Left + 2, ClientRectangle.Top, ClientRectangle.Width - 16, ClientRectangle.Height);
+                var rect = new Rectangle(ClientRectangle.Left + 2, ClientRectangle.Top, ClientRectangle.Width - 16, ClientRectangle.Height);
 
-                    if (hasIcon)
-                    {
-                        rect.X += _iconSize + 7;
-                        rect.Width -= _iconSize + 7;
-                    }
-
-                    g.DrawString(SelectedItem.Text, Font, b, rect, stringFormat);
+                if (hasIcon)
+                {
+                    rect.X += _iconSize + 7;
+                    rect.Width -= _iconSize + 7;
                 }
+
+                g.DrawString(SelectedItem.Text, Font, b, rect, stringFormat);
             }
         }
 

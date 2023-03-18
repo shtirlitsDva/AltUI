@@ -10,10 +10,7 @@ namespace AltUI.Docking
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new DarkDockArea DefaultDockArea
-        {
-            get { return base.DefaultDockArea; }
-        }
+        public new DarkDockArea DefaultDockArea => base.DefaultDockArea;
 
         #endregion
 

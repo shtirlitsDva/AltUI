@@ -1,15 +1,15 @@
-﻿using System;
+﻿using AltUI.Config;
+using AltUI.Forms;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-using AltUI.Config;
 
 namespace AltUI.Controls
 {
     [ToolboxBitmap(typeof(Button))]
     [DefaultEvent("Click")]
-
     public class DarkButton : Button
     {
         #region Field Region
@@ -28,7 +28,7 @@ namespace AltUI.Controls
         private int _padding = ThemeProvider.Theme.Sizes.Padding / 2;
         private int _imagePadding = 5; // ThemeProvider.Theme.Sizes.Padding / 2
 
-        #endregion
+        #endregion Field Region
 
         #region Designer Property Region
 
@@ -130,7 +130,7 @@ namespace AltUI.Controls
             }
         }
 
-        #endregion
+        #endregion Designer Property Region
 
         #region Code Property Region
 
@@ -166,7 +166,7 @@ namespace AltUI.Controls
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new bool UseVisualStyleBackColor => false;
 
-        #endregion
+        #endregion Code Property Region
 
         #region Constructor Region
 
@@ -183,7 +183,7 @@ namespace AltUI.Controls
             Padding = new Padding(_padding);
         }
 
-        #endregion
+        #endregion Constructor Region
 
         #region Method Region
 
@@ -196,7 +196,7 @@ namespace AltUI.Controls
             }
         }
 
-        #endregion
+        #endregion Method Region
 
         #region Event Handler Region
 
@@ -335,7 +335,7 @@ namespace AltUI.Controls
             Invalidate();
         }
 
-        #endregion
+        #endregion Event Handler Region
 
         #region Paint Region
 
@@ -345,7 +345,7 @@ namespace AltUI.Controls
             var rect = new Rectangle(0, 0, ClientSize.Width, ClientSize.Height);
 
             var textColor = ThemeProvider.Theme.Colors.LightText;
-            var borderColor =  ThemeProvider.Theme.Colors.GreySelection;
+            var borderColor = ThemeProvider.Theme.Colors.GreySelection;
             var fillColor = ThemeProvider.Theme.Colors.LightBackground;
             var overlayColor = Color.Transparent;
 
@@ -364,6 +364,7 @@ namespace AltUI.Controls
                         case DarkControlState.Hover:
                             fillColor = ThemeProvider.Theme.Colors.LighterBackground;
                             break;
+
                         case DarkControlState.Pressed:
                             fillColor = ThemeProvider.Theme.Colors.DarkBackground;
                             break;
@@ -376,9 +377,11 @@ namespace AltUI.Controls
                         case DarkControlState.Normal:
                             fillColor = ThemeProvider.Theme.Colors.GreyBackground;
                             break;
+
                         case DarkControlState.Hover:
                             fillColor = ThemeProvider.Theme.Colors.MediumBackground;
                             break;
+
                         case DarkControlState.Pressed:
                             fillColor = ThemeProvider.Theme.Colors.DarkBackground;
                             break;
@@ -391,9 +394,11 @@ namespace AltUI.Controls
                         case DarkControlState.Normal:
                             overlayColor = Color.Transparent;
                             break;
+
                         case DarkControlState.Hover:
                             overlayColor = Color.FromArgb(27, 242, 242, 255);
                             break;
+
                         case DarkControlState.Pressed:
                             overlayColor = Color.FromArgb(57, 255, 255, 246);
                             break;
@@ -406,10 +411,16 @@ namespace AltUI.Controls
                 fillColor = ThemeProvider.Theme.Colors.DarkGreySelection;
             }
 
-           using (var b = new SolidBrush(ThemeProvider.Theme.Colors.GreyBackground))
-           {
-               g.FillRectangle(b, rect);
-           }
+            if (Parent.GetType() == typeof(TabPage) || Parent.GetType() == typeof(DarkGroupBox) && ((DarkGroupBox)Parent).OpaqueBackground)
+            {
+                using var b = new SolidBrush(ThemeProvider.Theme.Colors.LightBackground);
+                g.FillRectangle(b, rect);
+            }
+            else
+            {
+                using var b = new SolidBrush(ThemeProvider.Theme.Colors.GreyBackground);
+                g.FillRectangle(b, rect);
+            }
 
             using (var b = new SolidBrush(fillColor))
             {
@@ -418,7 +429,7 @@ namespace AltUI.Controls
                 g.FillRoundedRectangle(b, modRect, 4, _flatBottom, 0, _flatTop);
                 g.SmoothingMode = SmoothingMode.None;
             }
-            
+
             if (ButtonStyle == DarkButtonStyle.Image && BackgroundImage != null)
             {
                 var imgRect = new Rectangle(rect.Left + 1, rect.Top + 1, rect.Width - 2, rect.Height - 2);
@@ -426,21 +437,17 @@ namespace AltUI.Controls
                 g.DrawImage(BackgroundImage, imgRect.X, imgRect.Y, imgRect.Width, imgRect.Height);
                 g.DrawRectangleCorners(new SolidBrush(ThemeProvider.Theme.Colors.LightBackground), rect, 4);
                 g.SmoothingMode = SmoothingMode.AntiAlias;
-                using (var b = new SolidBrush(overlayColor))
-                {
-                    g.FillRoundedRectangle(b, modRect, 4);
-                }
+                using var b = new SolidBrush(overlayColor);
+                g.FillRoundedRectangle(b, modRect, 4);
             }
 
             if (ButtonStyle == DarkButtonStyle.Normal || ButtonStyle == DarkButtonStyle.Image)
             {
-                using (var p = new Pen(borderColor, 1))
-                {
-                    var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
-                    g.SmoothingMode = SmoothingMode.AntiAlias;
-                    g.DrawRoundedRectangle(p, modRect, 4, _flatBottom, 0, _flatTop);
-                    g.SmoothingMode = SmoothingMode.None;
-                }
+                using var p = new Pen(borderColor, 1);
+                var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                g.DrawRoundedRectangle(p, modRect, 4, _flatBottom, 0, _flatTop);
+                g.SmoothingMode = SmoothingMode.None;
             }
 
             var textOffsetX = 0;
@@ -459,14 +466,17 @@ namespace AltUI.Controls
                         textOffsetY = (Image.Size.Height / 2) + (ImagePadding / 2);
                         y = y - ((int)(stringSize.Height / 2) + (ImagePadding / 2));
                         break;
+
                     case TextImageRelation.TextAboveImage:
                         textOffsetY = ((Image.Size.Height / 2) + (ImagePadding / 2)) * -1;
                         y = y + ((int)(stringSize.Height / 2) + (ImagePadding / 2));
                         break;
+
                     case TextImageRelation.ImageBeforeText:
                         textOffsetX = Image.Size.Width + (ImagePadding * 2);
                         x = ImagePadding;
                         break;
+
                     case TextImageRelation.TextBeforeImage:
                         x = x + (int)stringSize.Width;
                         break;
@@ -491,6 +501,6 @@ namespace AltUI.Controls
             }
         }
 
-        #endregion
+        #endregion Paint Region
     }
 }

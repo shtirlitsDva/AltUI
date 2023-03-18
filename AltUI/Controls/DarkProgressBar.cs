@@ -11,7 +11,7 @@ namespace AltUI.Controls
         private string _text;
         public override string Text
         {
-            get { return _text; }
+            get => _text;
             set { _text = value; Invalidate(); }
         }
         public DarkProgressBar()

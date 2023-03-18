@@ -36,7 +36,7 @@ namespace AltUI.Docking
 
         public int Order { get; set; }
 
-        public int ContentCount { get { return _contents.Count; } }
+        public int ContentCount => _contents.Count;
 
         #endregion
 
@@ -698,10 +698,8 @@ namespace AltUI.Docking
             // Draw separators
             if (tab.ShowSeparator)
             {
-                using (var p = new Pen(ThemeProvider.Theme.Colors.DarkBorder))
-                {
-                    g.DrawLine(p, tabRect.Right - 1, tabRect.Top, tabRect.Right - 1, tabRect.Bottom);
-                }
+                using var p = new Pen(ThemeProvider.Theme.Colors.DarkBorder);
+                g.DrawLine(p, tabRect.Right - 1, tabRect.Top, tabRect.Right - 1, tabRect.Bottom);
             }
 
             var xOffset = 0;
@@ -763,10 +761,8 @@ namespace AltUI.Docking
             // Draw separators
             if (tab.ShowSeparator)
             {
-                using (var p = new Pen(ThemeProvider.Theme.Colors.DarkBorder))
-                {
-                    g.DrawLine(p, tabRect.Right - 1, tabRect.Top, tabRect.Right - 1, tabRect.Bottom);
-                }
+                using var p = new Pen(ThemeProvider.Theme.Colors.DarkBorder);
+                g.DrawLine(p, tabRect.Right - 1, tabRect.Top, tabRect.Right - 1, tabRect.Bottom);
             }
 
             var tabTextFormat = new StringFormat

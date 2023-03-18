@@ -7,10 +7,7 @@ namespace AltUI.Forms
     {
         #region Property Region
 
-        protected override bool ShowWithoutActivation
-        {
-            get { return true; }
-        }
+        protected override bool ShowWithoutActivation => true;
 
         #endregion
 

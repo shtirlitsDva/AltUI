@@ -35,19 +35,17 @@ namespace AltUI.Controls
             try
             {
                 // Prevent flickering, only if our assembly has reflection permission
-                Type type = Controls[0].GetType();
-                BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Instance;
-                MethodInfo method = type.GetMethod("SetStyle", flags);
+                var type = Controls[0].GetType();
+                const BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Instance;
+                var method = type.GetMethod("SetStyle", flags);
 
-                if (method != null)
-                {
-                    object[] param = { ControlStyles.AllPaintingInWmPaint | ControlStyles.DoubleBuffer, true };
-                    method.Invoke(Controls[0], param);
-                }
+                if (method == null) return;
+                object[] param = { ControlStyles.AllPaintingInWmPaint | ControlStyles.DoubleBuffer, true };
+                method.Invoke(Controls[0], param);
             }
             catch (SecurityException)
             {
-                // Don't do anything, we are running in a trusted contex
+                // Don't do anything, we are running in a trusted context
             }
         }
 

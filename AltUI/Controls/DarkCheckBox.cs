@@ -1,9 +1,10 @@
-﻿using System;
+﻿using AltUI.Config;
+using AltUI.Forms;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-using AltUI.Config;
 
 namespace AltUI.Controls
 {
@@ -16,7 +17,7 @@ namespace AltUI.Controls
         private bool _spacePressed;
         private int _offset = 1;
 
-        #endregion
+        #endregion Field Region
 
         #region Property Region
 
@@ -25,7 +26,7 @@ namespace AltUI.Controls
         [DefaultValue(false)]
         public int Offset
         {
-            get { return _offset; }
+            get => _offset;
             set
             {
                 _offset = value;
@@ -35,117 +36,69 @@ namespace AltUI.Controls
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new Appearance Appearance
-        {
-            get { return base.Appearance; }
-        }
+        public new Appearance Appearance => base.Appearance;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new bool AutoEllipsis
-        {
-            get { return base.AutoEllipsis; }
-        }
+        public new bool AutoEllipsis => base.AutoEllipsis;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new Image BackgroundImage
-        {
-            get { return base.BackgroundImage; }
-        }
+        public new Image BackgroundImage => base.BackgroundImage;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new ImageLayout BackgroundImageLayout
-        {
-            get { return base.BackgroundImageLayout; }
-        }
+        public new ImageLayout BackgroundImageLayout => base.BackgroundImageLayout;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new bool FlatAppearance
-        {
-            get { return false; }
-        }
+        public new bool FlatAppearance => false;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new FlatStyle FlatStyle
-        {
-            get { return base.FlatStyle; }
-        }
+        public new FlatStyle FlatStyle => base.FlatStyle;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new Image Image
-        {
-            get { return base.Image; }
-        }
+        public new Image Image => base.Image;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new ContentAlignment ImageAlign
-        {
-            get { return base.ImageAlign; }
-        }
+        public new ContentAlignment ImageAlign => base.ImageAlign;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new int ImageIndex
-        {
-            get { return base.ImageIndex; }
-        }
+        public new int ImageIndex => base.ImageIndex;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new string ImageKey
-        {
-            get { return base.ImageKey; }
-        }
+        public new string ImageKey => base.ImageKey;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new ImageList ImageList
-        {
-            get { return base.ImageList; }
-        }
+        public new ImageList ImageList => base.ImageList;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new ContentAlignment TextAlign
-        {
-            get { return base.TextAlign; }
-        }
+        public new ContentAlignment TextAlign => base.TextAlign;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new TextImageRelation TextImageRelation
-        {
-            get { return base.TextImageRelation; }
-        }
+        public new TextImageRelation TextImageRelation => base.TextImageRelation;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new bool ThreeState
-        {
-            get { return base.ThreeState; }
-        }
+        public new bool ThreeState => base.ThreeState;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new bool UseCompatibleTextRendering
-        {
-            get { return false; }
-        }
+        public new bool UseCompatibleTextRendering => false;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new bool UseVisualStyleBackColor
-        {
-            get { return false; }
-        }
+        public new bool UseVisualStyleBackColor => false;
 
-        #endregion
+        #endregion Property Region
 
         #region Constructor Region
 
@@ -157,7 +110,7 @@ namespace AltUI.Controls
                      ControlStyles.UserPaint, true);
         }
 
-        #endregion
+        #endregion Constructor Region
 
         #region Method Region
 
@@ -170,7 +123,7 @@ namespace AltUI.Controls
             }
         }
 
-        #endregion
+        #endregion Method Region
 
         #region Event Handler Region
 
@@ -286,7 +239,7 @@ namespace AltUI.Controls
             }
         }
 
-        #endregion
+        #endregion Event Handler Region
 
         #region Paint Region
 
@@ -326,8 +279,14 @@ namespace AltUI.Controls
                 fillColor = ThemeProvider.Theme.Colors.GreySelection;
             }
 
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.GreyBackground))
+            if (Parent.GetType() == typeof(TabPage) || Parent.GetType() == typeof(DarkGroupBox) && ((DarkGroupBox)Parent).OpaqueBackground)
             {
+                using var b = new SolidBrush(ThemeProvider.Theme.Colors.LightBackground);
+                g.FillRectangle(b, rect);
+            }
+            else
+            {
+                using var b = new SolidBrush(ThemeProvider.Theme.Colors.GreyBackground);
                 g.FillRectangle(b, rect);
             }
 
@@ -349,13 +308,11 @@ namespace AltUI.Controls
 
             if (Checked)
             {
-                using (var p = new Pen(fillColor, 1))
-                {
-                    g.SmoothingMode = SmoothingMode.AntiAlias;
-                    g.DrawLine(p, 3, 10 - _offset, 5, 13 - _offset);
-                    g.DrawLine(p, 5, 13 - _offset, 9, 7 - _offset);
-                    g.SmoothingMode = SmoothingMode.None;
-                }
+                using var p = new Pen(fillColor, 1);
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                g.DrawLine(p, 3, 10 - _offset, 5, 13 - _offset);
+                g.DrawLine(p, 5, 13 - _offset, 9, 7 - _offset);
+                g.SmoothingMode = SmoothingMode.None;
             }
 
             using (var b = new SolidBrush(textColor))
@@ -371,6 +328,6 @@ namespace AltUI.Controls
             }
         }
 
-        #endregion
+        #endregion Paint Region
     }
 }
