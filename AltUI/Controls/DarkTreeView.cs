@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -487,7 +487,7 @@ namespace AltUI.Controls
                     if (difference > ItemHeight)
                         difference = ItemHeight;
 
-                    _vScrollBar.Value = _vScrollBar.Value - difference;
+                    _vScrollBar.Value -= difference;
                 }
 
                 // Scroll down
@@ -498,7 +498,7 @@ namespace AltUI.Controls
                     if (difference > ItemHeight)
                         difference = ItemHeight;
 
-                    _vScrollBar.Value = _vScrollBar.Value + difference;
+                    _vScrollBar.Value += difference;
                 }
             }
 
@@ -512,7 +512,7 @@ namespace AltUI.Controls
                     if (difference > ItemHeight)
                         difference = ItemHeight;
 
-                    _hScrollBar.Value = _hScrollBar.Value - difference;
+                    _hScrollBar.Value -= difference;
                 }
 
                 // Scroll right
@@ -523,7 +523,7 @@ namespace AltUI.Controls
                     if (difference > ItemHeight)
                         difference = ItemHeight;
 
-                    _hScrollBar.Value = _hScrollBar.Value + difference;
+                    _hScrollBar.Value += difference;
                 }
             }
         }

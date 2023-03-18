@@ -47,7 +47,7 @@ namespace AltUI.Controls
                     case 2:
                         barRect = new Rectangle(0, modRect.Y + 2, barWidth, modRect.Height - 4);
                         break; }   
-                    modRect.Height = modRect.Height - 2;
+                    modRect.Height -= 2;
                     g.FillRoundedRectangle(b, barRect, 4);
                 }
                 skip:
