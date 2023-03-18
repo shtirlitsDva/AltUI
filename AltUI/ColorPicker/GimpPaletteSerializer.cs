@@ -59,7 +59,7 @@ namespace AltUI.ColorPicker
 
       try
       {
-          using StreamReader reader = new StreamReader(stream);
+          using StreamReader reader = new(stream);
           string header;
 
           header = reader.ReadLine();
@@ -90,7 +90,7 @@ namespace AltUI.ColorPicker
 
       results = new ColorCollection();
 
-      using StreamReader reader = new StreamReader(stream);
+      using StreamReader reader = new(stream);
       string header;
       int swatchIndex;
       bool readingPalette;
@@ -183,7 +183,7 @@ namespace AltUI.ColorPicker
 
       // TODO: Allow name and columns attributes to be specified
 
-      using StreamWriter writer = new StreamWriter(stream, Encoding.ASCII);
+      using StreamWriter writer = new(stream, Encoding.ASCII);
       writer.WriteLine("GIMP Palette");
       writer.WriteLine("Name: ");
       writer.WriteLine("Columns: 8");

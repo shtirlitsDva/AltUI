@@ -59,7 +59,7 @@ namespace AltUI.ColorPicker
 
       try
       {
-          using StreamReader reader = new StreamReader(stream);
+          using StreamReader reader = new(stream);
           string header;
           string version;
 
@@ -93,7 +93,7 @@ namespace AltUI.ColorPicker
 
       results = new ColorCollection();
 
-      using StreamReader reader = new StreamReader(stream);
+      using StreamReader reader = new(stream);
       string header;
       string version;
       int colorCount;
@@ -151,7 +151,7 @@ namespace AltUI.ColorPicker
         throw new ArgumentNullException(nameof(palette));
       }
 
-      using StreamWriter writer = new StreamWriter(stream, Encoding.UTF8);
+      using StreamWriter writer = new(stream, Encoding.UTF8);
       writer.WriteLine("JASC-PAL");
       writer.WriteLine("0100");
       writer.WriteLine(palette.Count);

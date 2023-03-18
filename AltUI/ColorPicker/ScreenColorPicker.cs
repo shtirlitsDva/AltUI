@@ -778,10 +778,8 @@ namespace  AltUI.ColorPicker
       pixelSize = _zoom;
       viewport = ClientRectangle;
 
-      using Pen pen = new Pen(_gridColor)
-      {
-          DashStyle = DashStyle.Dot
-      };
+      using Pen pen = new(_gridColor)
+{DashStyle = DashStyle.Dot};
       for (int x = viewport.Left + 1; x < viewport.Right; x += pixelSize)
       {
           e.Graphics.DrawLine(pen, x, viewport.Top, x, viewport.Bottom);

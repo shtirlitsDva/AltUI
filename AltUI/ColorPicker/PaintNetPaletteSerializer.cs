@@ -71,7 +71,7 @@ namespace AltUI.ColorPicker
 
       try
       {
-          using StreamReader reader = new StreamReader(stream);
+          using StreamReader reader = new(stream);
           string firstLine;
 
           firstLine = reader.ReadLine();
@@ -102,7 +102,7 @@ namespace AltUI.ColorPicker
 
       results = new ColorCollection();
 
-      using StreamReader reader = new StreamReader(stream);
+      using StreamReader reader = new(stream);
       while (!reader.EndOfStream)
       {
           string line;
@@ -146,7 +146,7 @@ namespace AltUI.ColorPicker
 
       // TODO: Not writing 96 colors, but the entire contents of the palette, wether that's less than 96 or more
 
-      using StreamWriter writer = new StreamWriter(stream, Encoding.UTF8);
+      using StreamWriter writer = new(stream, Encoding.UTF8);
       writer.WriteLine(@"; Paint.NET Palette File
 ; Lines that start with a semicolon are comments
 ; Colors are written as 8-digit hexadecimal numbers: aarrggbb

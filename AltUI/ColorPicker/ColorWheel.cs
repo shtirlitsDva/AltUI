@@ -1535,7 +1535,7 @@ namespace  AltUI.ColorPicker
 
         radius = (float)(_radius * _hslColor.S);
 
-        using Pen pen = new Pen(HslColor.HslToRgb(0, 0, _hslColor.S));
+        using Pen pen = new(HslColor.HslToRgb(0, 0, _hslColor.S));
         g.DrawEllipse(pen, new RectangleF(_centerPoint.X - radius, _centerPoint.Y - radius, radius * 2, radius * 2));
       }
     }
