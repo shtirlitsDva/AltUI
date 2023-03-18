@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -375,7 +375,7 @@ namespace AltUI.Controls
                     if (MaxDragChange > 0 && difference > MaxDragChange)
                         difference = MaxDragChange;
 
-                    _vScrollBar.Value = _vScrollBar.Value - difference;
+                    _vScrollBar.Value -= difference;
                 }
 
                 // Scroll down
@@ -386,7 +386,7 @@ namespace AltUI.Controls
                     if (MaxDragChange > 0 && difference > MaxDragChange)
                         difference = MaxDragChange;
 
-                    _vScrollBar.Value = _vScrollBar.Value + difference;
+                    _vScrollBar.Value += difference;
                 }
             }
 
@@ -400,7 +400,7 @@ namespace AltUI.Controls
                     if (MaxDragChange > 0 && difference > MaxDragChange)
                         difference = MaxDragChange;
 
-                    _hScrollBar.Value = _hScrollBar.Value - difference;
+                    _hScrollBar.Value -= difference;
                 }
 
                 // Scroll right
@@ -411,7 +411,7 @@ namespace AltUI.Controls
                     if (MaxDragChange > 0 && difference > MaxDragChange)
                         difference = MaxDragChange;
 
-                    _hScrollBar.Value = _hScrollBar.Value + difference;
+                    _hScrollBar.Value += difference;
                 }
             }
         }
