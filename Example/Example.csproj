@@ -1,52 +1,56 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
-    <OutputType>WinExe</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <UseWindowsForms>true</UseWindowsForms>
-    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="AltUI">
-      <HintPath>..\AltUI\bin\Release\AltUI.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>.\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Forms\Docking\DockDocument.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Forms\Docking\DockConsole.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Forms\Docking\DockHistory.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Forms\Docking\DockLayers.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Forms\Docking\DockProperties.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Forms\Docking\DockProject.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Update="Resources\NewFile_6276.png">
-      <Generator>Icons</Generator>
-      <CustomToolNamespace>Example</CustomToolNamespace>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.4.336902">
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Windows.Compatibility" Version="6.0.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AltUI\AltUI.csproj" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<OutputType>WinExe</OutputType>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+	</PropertyGroup>
+	<PropertyGroup>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Include="AltUI">
+			<HintPath>..\AltUI\bin\Release\AltUI.dll</HintPath>
+		</Reference>
+		<Reference Include="Newtonsoft.Json">
+			<HintPath>.\Newtonsoft.Json.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Update="Forms\Docking\DockDocument.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="Forms\Docking\DockConsole.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="Forms\Docking\DockHistory.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="Forms\Docking\DockLayers.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="Forms\Docking\DockProperties.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="Forms\Docking\DockProject.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+	</ItemGroup>
+	<ItemGroup>
+		<None Update="Resources\NewFile_6276.png">
+			<Generator>Icons</Generator>
+			<CustomToolNamespace>Example</CustomToolNamespace>
+		</None>
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.4.336902">
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Windows.Compatibility" Version="6.0.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\AltUI\AltUI.csproj" />
+	</ItemGroup>
 </Project>
