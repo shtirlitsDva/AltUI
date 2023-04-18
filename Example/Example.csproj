@@ -9,6 +9,7 @@
 	<PropertyGroup>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+		<ApplicationManifest>example.manifest</ApplicationManifest>
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Include="AltUI">

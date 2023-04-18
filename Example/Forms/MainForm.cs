@@ -224,7 +224,7 @@ namespace Example.Forms
             var state = SerializerHelper.Deserialize<DockPanelState>(path);
             DockPanel.RestoreDockPanelState(state, GetContentBySerializationKey);
         }
-         
+
         private DarkDockContent GetContentBySerializationKey(string key)
         {
             foreach (var window in _toolWindows)
